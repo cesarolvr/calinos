@@ -10,8 +10,9 @@ import "./App.css";
 const App = () => {
   return (
     <Router>
-      <div className="wrapper">App</div>
-      <Routes />
+      <div className="wrapper">
+        <Routes />
+      </div>
     </Router>
   );
 };

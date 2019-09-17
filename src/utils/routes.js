@@ -7,6 +7,7 @@ import { FirebaseAuthConsumer } from "@react-firebase/auth";
 // Pages
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import NotFound from "../pages/NotFound";
 
 const Routes = () => (
   <FirebaseAuthConsumer>
@@ -20,6 +21,7 @@ const Routes = () => (
           authed={firebaseProps.isSignedIn}
           component={Home}
         />
+        <Route exact path="/*" component={NotFound} />
       </Fragment>
     )}
   </FirebaseAuthConsumer>
