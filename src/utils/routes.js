@@ -1,4 +1,4 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import React, { Fragment } from "react";
 
 // Firebase
@@ -13,15 +13,18 @@ const Routes = () => (
   <FirebaseAuthConsumer>
     {firebaseProps => (
       <Fragment>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Login} />
-        <PrivatedRoute
-          exact
-          path="/"
-          authed={firebaseProps.isSignedIn}
-          component={Home}
-        />
-        <Route exact path="/*" component={NotFound} />
+        <Switch>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Login} />
+          <PrivatedRoute
+            exact
+            path="/home"
+            authed={firebaseProps.isSignedIn}
+            component={Home}
+          />
+          <Route path="/not-found" exact={true} component={NotFound} />
+          <Redirect from='*' to='/not-found' />
+        </Switch>
       </Fragment>
     )}
   </FirebaseAuthConsumer>
