@@ -1,5 +1,5 @@
 import { Route, Redirect, Switch } from "react-router-dom";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 
 // Firebase
 import { FirebaseAuthConsumer } from "@react-firebase/auth";
@@ -9,26 +9,61 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
 
-const Routes = () => (
-  <FirebaseAuthConsumer>
-    {firebaseProps => (
-      <Fragment>
-        <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Login} />
-          <PrivatedRoute
-            exact
-            path="/home"
-            authed={firebaseProps.isSignedIn}
-            component={Home}
-          />
-          <Route path="/not-found" exact={true} component={NotFound} />
-          <Redirect from='*' to='/not-found' />
-        </Switch>
-      </Fragment>
-    )}
-  </FirebaseAuthConsumer>
-);
+const isAuthed = firebaseProps => {
+  const { isSignedIn, firebase } = firebaseProps;
+  return !!(isSignedIn && firebase.auth);
+};
+
+const Routes = () => {
+  return (
+    <FirebaseAuthConsumer>
+      {firebaseProps => {
+        return (
+          <Fragment>
+            <Switch>
+              <OwnRoute
+                exact
+                path="/login"
+                authed={isAuthed(firebaseProps)}
+                component={Login}
+              />
+              <OwnRoute
+                exact
+                path="/register"
+                authed={isAuthed(firebaseProps)}
+                component={Login}
+              />
+              <PrivatedRoute
+                exact
+                path="/home"
+                authed={isAuthed(firebaseProps)}
+                component={Home}
+              />
+              <Route path="/not-found" exact={true} component={NotFound} />
+              <Redirect from="*" to="/not-found" />
+            </Switch>
+          </Fragment>
+        );
+      }}
+    </FirebaseAuthConsumer>
+  );
+};
+
+const OwnRoute = ({ component: Component, authed, ...rest }) => {
+  console.log(authed);
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        authed ? (
+          <Redirect to={{ pathname: "/home" }} />
+        ) : (
+          <Component {...props} />
+        )
+      }
+    />
+  );
+};
 
 const PrivatedRoute = ({ component: Component, authed, ...rest }) => {
   return (
