@@ -6,6 +6,7 @@
     "@react-firebase/auth": "^0.2.9",
     "firebase": "^6.4.2",
     "formik": "^1.5.8",
+    "google-maps-react": "^2.0.2",
     "ramda": "^0.26.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

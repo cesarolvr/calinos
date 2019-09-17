@@ -7,7 +7,7 @@ import Routes from "../../utils/routes";
 // Styles
 import "./App.css";
 
-const App = props => {
+const App = () => {
   return (
     <Router>
       <div className="wrapper">
