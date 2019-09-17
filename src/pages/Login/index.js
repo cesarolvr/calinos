@@ -1,18 +1,19 @@
 import React from "react";
 import { Formik } from "formik";
+import R from "ramda";
 
 // Firebase
 import firebase from "firebase/app";
 
-const Login = () => {
-  const signIn = () => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(
-        "cesar2012oliveira@gmail.com",
-        "12345678"
-      );
+const Login = props => {
+  const reallyDisconnected = R.path(
+    ["firebaseprops", "firebase", "auth"],
+    props
+  );
+  const signIn = ({ email, password }) => {
+    firebase.auth().signInWithEmailAndPassword(email, password);
   };
+  if (!reallyDisconnected) return null;
   return (
     <div>
       Login
@@ -30,7 +31,12 @@ const Login = () => {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          signIn();
+          const { email, password } = values;
+
+          signIn({
+            email,
+            password
+          });
           setSubmitting(false);
         }}
       >

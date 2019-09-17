@@ -8,7 +8,6 @@ import Routes from "../../utils/routes";
 import "./App.css";
 
 const App = props => {
-
   return (
     <Router>
       <div className="wrapper">

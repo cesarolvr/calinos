@@ -26,6 +26,7 @@ const Routes = () => {
                 path="/login"
                 authed={isAuthed(firebaseProps)}
                 component={Login}
+                firebaseprops={firebaseProps}
               />
               <OwnRoute
                 exact
@@ -50,7 +51,6 @@ const Routes = () => {
 };
 
 const OwnRoute = ({ component: Component, authed, ...rest }) => {
-  console.log(authed);
   return (
     <Route
       {...rest}
@@ -58,7 +58,7 @@ const OwnRoute = ({ component: Component, authed, ...rest }) => {
         authed ? (
           <Redirect to={{ pathname: "/home" }} />
         ) : (
-          <Component {...props} />
+          <Component {...props} {...rest} />
         )
       }
     />
