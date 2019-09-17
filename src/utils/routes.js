@@ -7,6 +7,7 @@ import { FirebaseAuthConsumer } from "@react-firebase/auth";
 // Pages
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
 
 const isAuthed = firebaseProps => {
@@ -32,7 +33,8 @@ const Routes = () => {
                 exact
                 path="/register"
                 authed={isAuthed(firebaseProps)}
-                component={Login}
+                component={Register}
+                firebaseprops={firebaseProps}
               />
               <PrivatedRoute
                 exact
