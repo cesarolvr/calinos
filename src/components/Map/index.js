@@ -1,6 +1,9 @@
 import React from "react";
 import { Map, GoogleApiWrapper } from "google-maps-react";
 
+// Consts
+import { mapsConfig } from '../../consts'
+
 const MapContainer = props => {
   return (
     <div>
@@ -19,5 +22,5 @@ const MapContainer = props => {
 };
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyBG6K4tgGZerf4CDgCs7_i9wu4aQReHQLY"
+  apiKey: mapsConfig.apiKey
 })(MapContainer);

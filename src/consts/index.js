@@ -8,4 +8,8 @@ const firebaseConfig = {
   appId: "1:808770362620:web:ce44ff4ad6d9efa2"
 };
 
-export { firebaseConfig };
+const mapsConfig = {
+  apiKey: 'AIzaSyBG6K4tgGZerf4CDgCs7_i9wu4aQReHQLY'
+}
+
+export { firebaseConfig, mapsConfig };
