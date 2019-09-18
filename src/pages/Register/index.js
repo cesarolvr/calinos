@@ -11,7 +11,35 @@ const Register = props => {
     props
   );
   const signUp = ({ email, password }) => {
-    firebase.auth().createUserWithEmailAndPassword(email, password);
+    const db = firebase.firestore();
+    const citiesRef = db.collection("users");
+    const query = citiesRef.where("email", "==", email);
+    console.log(email);
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(user => {
+        query.get().then(querySnapshot => {
+          if (querySnapshot.empty) {
+            db.collection("users")
+              .add({
+                email: user.email,
+                followers: [],
+                id: user.uid,
+                markers: [],
+                nome: "teste"
+              })
+              .then(docRef => {
+                console.log("User registered with ID: ", docRef.id);
+              })
+              .catch(error => {
+                console.error("Error on register user: ", error);
+              });
+          }
+        });
+      })
+      .catch(err => console.log(err));
   };
   if (!reallyDisconnected) return null;
   return (

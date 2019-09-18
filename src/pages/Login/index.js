@@ -1,17 +1,78 @@
 import React from "react";
 import { Formik } from "formik";
 import R from "ramda";
+import { Link } from "react-router-dom";
 
 // Firebase
 import firebase from "firebase/app";
 
 const Login = props => {
+  const db = firebase.firestore();
   const reallyDisconnected = R.path(
     ["firebaseprops", "firebase", "auth"],
     props
   );
+
   const signIn = ({ email, password }) => {
-    firebase.auth().signInWithEmailAndPassword(email, password);
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(userLogged => {
+        const citiesRef = db.collection("users");
+        const query = citiesRef.where("email", "==", email);
+        query.get().then(querySnapshot => {
+          if (querySnapshot.empty) {
+            db.collection("users")
+              .add({
+                email: email,
+                followers: [],
+                id: userLogged.id,
+                markers: [],
+                nome: ''
+              })
+              .then(docRef => {
+                console.log("User registered with ID: ", docRef.id);
+              })
+              .catch(error => {
+                console.error("Error on register user: ", error);
+              });
+          }
+        });
+      })
+      .catch(err => console.log(err));
+  };
+  const signInGoogle = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(result => {
+        const { user } = result;
+
+        const citiesRef = db.collection("users");
+        const query = citiesRef.where("email", "==", user.email);
+        query.get().then(querySnapshot => {
+          if (querySnapshot.empty) {
+            db.collection("users")
+              .add({
+                email: user.email,
+                followers: [],
+                id: user.uid,
+                markers: [],
+                nome: user.displayName
+              })
+              .then(docRef => {
+                console.log("User registered with ID: ", docRef.id);
+              })
+              .catch(error => {
+                console.error("Error on register user: ", error);
+              });
+          }
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
   if (!reallyDisconnected) return null;
   return (
@@ -73,6 +134,10 @@ const Login = props => {
           </form>
         )}
       </Formik>
+      <Link to="/register">Register</Link>
+      <button type="submit" onClick={signInGoogle}>
+        Login with Google
+      </button>
     </div>
   );
 };

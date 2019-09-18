@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Map, GoogleApiWrapper } from "google-maps-react";
+import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
 // Consts
 import { mapsConfig } from "../../consts";
 
 // Utils
 import getGeolocation from "../../utils/geolocation";
+
+// // Firebase
+// import firebase from "firebase/app";
 
 const MapContainer = props => {
   const [coords, setCoords] = useState({
@@ -16,21 +19,22 @@ const MapContainer = props => {
     getGeolocation().then(res => {
       setCoords(res);
     });
-  }, [])
+  }, []);
   return (
     <div>
       Mapa
       <Map
         google={props.google}
-        zoom={5}
+        zoom={15}
         style={{
           width: "100%",
           height: "100%"
         }}
-        initialCenter={{ lat: coords.lat, lng: coords.lng }}
-      />
-      {coords.lat}
-      {coords.lng}
+        center={coords}
+      >
+        <Marker title={"Me"} name={"Eu"} position={coords} />
+      </Map>
+      {JSON.stringify(coords)}
     </div>
   );
 };

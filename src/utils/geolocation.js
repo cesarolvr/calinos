@@ -3,8 +3,8 @@ const getGeolocation = () =>
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(res => {
         return resolve({
-          lat: Math.floor(res.coords.latitude),
-          lng: Math.floor(res.coords.longitude)
+          lat: res.coords.latitude.toFixed(4),
+          lng: res.coords.longitude.toFixed(4)
         });
       });
     } else {
