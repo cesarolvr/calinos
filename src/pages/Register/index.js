@@ -14,12 +14,11 @@ const Register = props => {
     const db = firebase.firestore();
     const citiesRef = db.collection("users");
     const query = citiesRef.where("email", "==", email);
-    console.log(email);
-
+    
     firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(user => {
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then(({ user }) => {
         query.get().then(querySnapshot => {
           if (querySnapshot.empty) {
             db.collection("users")
