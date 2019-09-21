@@ -7,19 +7,24 @@ import { mapsConfig } from "../../consts";
 // Utils
 import getGeolocation from "../../utils/geolocation";
 
-// // Firebase
-// import firebase from "firebase/app";
+// Api
+import { isUserInDatabase } from "../../api/database";
 
 const MapContainer = props => {
-  const [coords, setCoords] = useState({
+  const [markers, setMarkers] = useState([]);
+  const [initialCoords, setInitialCoords] = useState({
     lat: 20,
     lng: 20
   });
+
   useEffect(() => {
-    getGeolocation().then(res => {
-      setCoords(res);
+    getGeolocation().then(res => setInitialCoords(res));
+    isUserInDatabase().then(res => {
+      const receivedMarkers = res.markers;
+      setMarkers([...markers, ...receivedMarkers]);
     });
   }, []);
+
   return (
     <div>
       Mapa
@@ -30,11 +35,24 @@ const MapContainer = props => {
           width: "100%",
           height: "100%"
         }}
-        center={coords}
+        center={initialCoords}
       >
-        <Marker title={"Me"} name={"Eu"} position={coords} />
+        <Marker title={"Me"} name={"Eu"} position={initialCoords} />
+        {markers.map((marker, index) => {
+          return (
+            <Marker
+              title={"Me"}
+              key={index}
+              name={"Eu"}
+              position={{
+                lat: marker.lat,
+                lng: marker.lng
+              }}
+            />
+          );
+        })}
       </Map>
-      {JSON.stringify(coords)}
+      {JSON.stringify(initialCoords)}
     </div>
   );
 };

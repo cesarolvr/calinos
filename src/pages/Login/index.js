@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 // Firebase
 import firebase from "firebase/app";
 
+// Api
+import { signIn, signInGoogle } from "../../api/auth/login";
+
 const Login = props => {
   const db = firebase.firestore();
   const reallyDisconnected = R.path(
@@ -13,13 +16,11 @@ const Login = props => {
     props
   );
 
-  const signIn = ({ email, password }) => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
+  const signInWithEmailPassword = ({ email, password }) => {
+    signIn({ email, password })
       .then(userLogged => {
-        const citiesRef = db.collection("users");
-        const query = citiesRef.where("email", "==", email);
+        const usersRef = db.collection("users");
+        const query = usersRef.where("email", "==", email);
         query.get().then(querySnapshot => {
           if (querySnapshot.empty) {
             db.collection("users")
@@ -28,7 +29,7 @@ const Login = props => {
                 followers: [],
                 id: userLogged.id,
                 markers: [],
-                nome: ''
+                nome: ""
               })
               .then(docRef => {
                 console.log("User registered with ID: ", docRef.id);
@@ -41,14 +42,10 @@ const Login = props => {
       })
       .catch(err => console.log(err));
   };
-  const signInGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(provider)
+  const signInWithGoogle = () => {
+    signInGoogle()
       .then(result => {
         const { user } = result;
-
         const citiesRef = db.collection("users");
         const query = citiesRef.where("email", "==", user.email);
         query.get().then(querySnapshot => {
@@ -94,7 +91,7 @@ const Login = props => {
         onSubmit={(values, { setSubmitting }) => {
           const { email, password } = values;
 
-          signIn({
+          signInWithEmailPassword({
             email,
             password
           });
@@ -135,7 +132,7 @@ const Login = props => {
         )}
       </Formik>
       <Link to="/register">Register</Link>
-      <button type="submit" onClick={signInGoogle}>
+      <button type="submit" onClick={signInWithGoogle}>
         Login with Google
       </button>
     </div>
