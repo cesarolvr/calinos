@@ -6,6 +6,7 @@ import { mapsConfig } from "../../consts";
 
 // Utils
 import getGeolocation from "../../utils/geolocation";
+import styleMap from './styleMap.json'
 
 // Api
 import { isUserInDatabase } from "../../api/database";
@@ -35,6 +36,7 @@ const MapContainer = props => {
           width: "100%",
           height: "100%"
         }}
+        styles={styleMap}
         center={initialCoords}
       >
         <Marker title={"Me"} name={"Eu"} position={initialCoords} />
