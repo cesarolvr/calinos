@@ -16,6 +16,8 @@ import "./Login.scss";
 import Logo from "../../components/Logo";
 
 const Login = props => {
+  
+  
   const db = firebase.firestore();
   const reallyDisconnected = R.path(
     ["firebaseprops", "firebase", "auth"],

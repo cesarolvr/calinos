@@ -28,10 +28,9 @@ const MapContainer = props => {
 
   return (
     <div>
-      Mapa
       <Map
         google={props.google}
-        zoom={15}
+        zoom={17}
         style={{
           width: "100%",
           height: "100%"
@@ -54,7 +53,6 @@ const MapContainer = props => {
           );
         })}
       </Map>
-      {JSON.stringify(initialCoords)}
     </div>
   );
 };

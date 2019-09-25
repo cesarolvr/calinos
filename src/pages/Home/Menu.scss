@@ -1,0 +1,13 @@
+.menu {
+  position: fixed;
+  background: white;
+  z-index: 31;
+  left: -100%;
+  top: 0;
+  width: 50%;
+  height: 100vh;
+
+  &.-opened {
+    left: 0%;
+  }
+}
