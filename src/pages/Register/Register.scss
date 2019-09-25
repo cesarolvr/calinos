@@ -1,0 +1,26 @@
+.page {
+  &.register {
+    background-color: #f6f6f6;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    justify-content: space-between;
+
+    .logo {
+      margin: 10px 0 0px;
+    }
+
+    .form {
+      margin: 0;
+
+      .box {
+        margin-bottom: 10px;
+      }
+
+      .button {
+        margin-bottom: 0px;
+      }
+    }
+  }
+}

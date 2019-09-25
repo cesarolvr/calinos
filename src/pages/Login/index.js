@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
-import R from "ramda";
+import * as R from "ramda";
 import { Link } from "react-router-dom";
 
 // Firebase
@@ -8,6 +8,12 @@ import firebase from "firebase/app";
 
 // Api
 import { signIn, signInGoogle } from "../../api/auth/login";
+
+// Styles
+import "./Login.scss";
+
+// Components
+import Logo from "../../components/Logo";
 
 const Login = props => {
   const db = firebase.firestore();
@@ -73,8 +79,8 @@ const Login = props => {
   };
   if (!reallyDisconnected) return null;
   return (
-    <div>
-      Login
+    <div className="page login">
+      <Logo />
       <Formik
         initialValues={{ email: "", password: "" }}
         validate={values => {
@@ -108,33 +114,55 @@ const Login = props => {
           isSubmitting
           /* and other goodies */
         }) => (
-          <form onSubmit={handleSubmit}>
-            <input
-              type="email"
-              name="email"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.email}
-            />
-            {errors.email && touched.email && errors.email}
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.password}
-            />
+          <form className="form" onSubmit={handleSubmit}>
+            <div className="box">
+              <div className="input-wrapper">
+                <label className="label">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="input"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                  placeholder="email@example.com"
+                />
+              </div>
+              {errors.email && touched.email && errors.email}
+              <div className="input-wrapper">
+                <label className="label">Senha</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="input"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                  placeholder="*********"
+                />
+              </div>
+            </div>
             {errors.password && touched.password && errors.password}
-            <button type="submit" disabled={isSubmitting}>
-              Submit
+            <button class="button" type="submit" disabled={isSubmitting}>
+              Entrar
+            </button>
+            <button
+              type="button"
+              class="button -secondary"
+              onClick={signInWithGoogle}
+            >
+              Entrar com Google
             </button>
           </form>
         )}
       </Formik>
-      <Link to="/register">Register</Link>
-      <button type="submit" onClick={signInWithGoogle}>
-        Login with Google
-      </button>
+
+      <p className="register">
+        Não tem uma conta?
+        <Link className="link" to="/register">
+          Cadastre-se
+        </Link>
+      </p>
     </div>
   );
 };

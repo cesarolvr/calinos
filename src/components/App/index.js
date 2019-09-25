@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "../../utils/routes";
 
 // Styles
-import "./App.css";
+import "./App.scss";
 
 const App = () => {
   return (

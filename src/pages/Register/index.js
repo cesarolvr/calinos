@@ -1,9 +1,16 @@
 import React from "react";
 import { Formik } from "formik";
-import R from "ramda";
+import * as R from "ramda";
+import { Link } from "react-router-dom";
 
 // Firebase
 import firebase from "firebase/app";
+
+// Style
+import "./Register.scss";
+
+// Components
+import Logo from "../../components/Logo";
 
 const Register = props => {
   const reallyDisconnected = R.path(
@@ -14,11 +21,11 @@ const Register = props => {
     const db = firebase.firestore();
     const citiesRef = db.collection("users");
     const query = citiesRef.where("email", "==", email);
-    
+
     firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then(({ user }) => {
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(({ user }) => {
         query.get().then(querySnapshot => {
           if (querySnapshot.empty) {
             db.collection("users")
@@ -42,10 +49,10 @@ const Register = props => {
   };
   if (!reallyDisconnected) return null;
   return (
-    <div>
-      Register
+    <div className="page register">
+      <Logo />
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ email: "", password: "", name:"" }}
         validate={values => {
           let errors = {};
           if (!values.email) {
@@ -75,31 +82,65 @@ const Register = props => {
           handleBlur,
           handleSubmit,
           isSubmitting
-          /* and other goodies */
         }) => (
-          <form onSubmit={handleSubmit}>
-            <input
-              type="email"
-              name="email"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.email}
-            />
-            {errors.email && touched.email && errors.email}
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.password}
-            />
-            {errors.password && touched.password && errors.password}
-            <button type="submit" disabled={isSubmitting}>
-              Register
+          <form className="form" onSubmit={handleSubmit}>
+            <div className="box">
+            <div className="input-wrapper">
+                <label className="label">Nome</label>
+                <input
+                  type="text"
+                  name="name"
+                  className="input"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.name}
+                  placeholder="João Silva"
+                />
+                {errors.name && touched.name && errors.name}
+              </div>
+              <div className="input-wrapper">
+                <label className="label">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="input"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                  placeholder="email@example.com"
+                />
+                {errors.email && touched.email && errors.email}
+              </div>
+              <div className="input-wrapper">
+                <label className="label">Senha</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="input"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                  placeholder="*********"
+                />
+                {errors.password && touched.password && errors.password}
+              </div>
+            </div>
+            <button className="button" type="submit" disabled={isSubmitting}>
+              Criar conta
+            </button>
+            <button className="button -secondary" type="button">
+              Criar com Google
             </button>
           </form>
         )}
       </Formik>
+
+      <p className="register">
+        Já tem uma conta?
+        <Link className="link" to="/login">
+          Login
+        </Link>
+      </p>
     </div>
   );
 };

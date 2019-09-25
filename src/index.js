@@ -5,7 +5,8 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 
 // Styles
-import "./styles/base.css";
+import "./styles/base.scss";
+import "./styles/default.scss";
 
 // Firebase
 import {
