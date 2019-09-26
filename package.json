@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@react-firebase/auth": "^0.2.9",
+    "classnames": "^2.2.6",
     "firebase": "^6.4.2",
     "formik": "^1.5.8",
     "google-maps-react": "^2.0.2",

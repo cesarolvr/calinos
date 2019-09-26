@@ -6,7 +6,9 @@ import { mapsConfig } from "../../consts";
 
 // Utils
 import getGeolocation from "../../utils/geolocation";
-import styleMap from './styleMap.json'
+import styleMap from "./styleMap.json";
+
+import "./Map.scss";
 
 // Api
 import { isUserInDatabase } from "../../api/database";
@@ -27,33 +29,31 @@ const MapContainer = props => {
   }, []);
 
   return (
-    <div>
-      <Map
-        google={props.google}
-        zoom={17}
-        style={{
-          width: "100%",
-          height: "100%"
-        }}
-        styles={styleMap}
-        center={initialCoords}
-      >
-        <Marker title={"Me"} name={"Eu"} position={initialCoords} />
-        {markers.map((marker, index) => {
-          return (
-            <Marker
-              title={"Me"}
-              key={index}
-              name={"Eu"}
-              position={{
-                lat: marker.lat,
-                lng: marker.lng
-              }}
-            />
-          );
-        })}
-      </Map>
-    </div>
+    <Map
+      google={props.google}
+      zoom={17}
+      style={{
+        width: "100%",
+        height: "100%"
+      }}
+      styles={styleMap}
+      center={initialCoords}
+    >
+      <Marker title={"Me"} name={"Eu"} position={initialCoords} />
+      {markers.map((marker, index) => {
+        return (
+          <Marker
+            title={"Me"}
+            key={index}
+            name={"Eu"}
+            position={{
+              lat: marker.lat,
+              lng: marker.lng
+            }}
+          />
+        );
+      })}
+    </Map>
   );
 };
 
