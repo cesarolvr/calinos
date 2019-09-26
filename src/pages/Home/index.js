@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import classNames from "classnames";
+import React from "react";
 
 // Components
 import Map from "../../components/Map";

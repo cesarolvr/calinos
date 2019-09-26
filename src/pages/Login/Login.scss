@@ -1,14 +1,13 @@
-.page {
-  &.login {
-    background-color: #f6f6f6;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.login {
+  background-color: #f6f6f6;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 40px;
 
-    .logo {
-      margin: 50px 0 20px;
-    }
+  .logo {
+    margin: 50px 0 20px;
   }
-
 }

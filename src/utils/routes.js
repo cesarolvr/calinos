@@ -4,17 +4,14 @@ import React, { Fragment } from "react";
 // Firebase
 import { FirebaseAuthConsumer } from "@react-firebase/auth";
 
+import { isAuthed } from '../utils/auth'
+
 // Pages
 import Home from "../pages/Home";
 import Feed from "../pages/Feed";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
-
-const isAuthed = firebaseProps => {
-  const { isSignedIn, firebase } = firebaseProps;
-  return !!(isSignedIn && firebase.auth);
-};
 
 const Routes = () => {
   return (

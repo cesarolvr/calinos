@@ -30,7 +30,13 @@
 
   &.-opened {
     > .page-holder {
-      transform: scale(0.8) translateX(60%)
+      transform: scale(0.8) translateX(60%);
+      border-radius: 30px;
+      overflow: hidden;
+
+      > .home, > .bar {
+        pointer-events: none;
+      }
     }
 
     > .menu {

@@ -150,7 +150,7 @@ const Login = props => {
             </button>
             <button
               type="button"
-              class="button -secondary"
+              className="button -secondary"
               onClick={signInWithGoogle}
             >
               Entrar com Google

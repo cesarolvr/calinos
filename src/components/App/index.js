@@ -12,7 +12,9 @@ import Menu from "../../components/Menu";
 // Styles
 import "./App.scss";
 
-const App = () => {
+import { isAuthed } from "../../utils/auth";
+
+const App = ({ firebaseprops }) => {
   const [menuOpened, setMenuOpened] = useState(false);
   return (
     <Router>
@@ -21,14 +23,18 @@ const App = () => {
           "-opened": menuOpened
         })}
       >
-        <div
-          className="menu-toggle"
-          onClick={() => setMenuOpened(!menuOpened)}
-        />
-        <Menu />
+        {isAuthed(firebaseprops) && (
+          <>
+            <div
+              className="menu-toggle"
+              onClick={() => setMenuOpened(!menuOpened)}
+            />
+            <Menu />
+          </>
+        )}
         <div className="page-holder">
           <Routes />
-          <Bar />
+          {isAuthed(firebaseprops) && <Bar />}
         </div>
       </div>
     </Router>
