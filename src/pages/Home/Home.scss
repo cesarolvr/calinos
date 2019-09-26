@@ -1,26 +1,6 @@
 .home {
-  
-  > .map {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-
-    > .menu-toggle {
-      width: 35px;
-      height: 35px;
-      background: black;
-      position: fixed;
-      z-index: 32;
-      top: 60px;
-      left: 50px;
-    }
-  }
-
-  &.-opened {
-    > .map {
-      transform: scale(0.9) translateX(50%);
-      border-radius: 30px;
-    }
-  }
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
 }

@@ -15,3 +15,28 @@
     color: #a7a7a7;
   }
 }
+
+.page {
+  
+  > .menu-toggle {
+    width: 35px;
+    height: 35px;
+    background: black;
+    position: fixed;
+    z-index: 32;
+    top: 60px;
+    left: 50px;
+  }
+
+  &.-opened {
+    > .page-holder {
+      transform: scale(0.8) translateX(60%)
+    }
+
+    > .menu {
+      left: 0;
+    }
+  }
+
+}
+

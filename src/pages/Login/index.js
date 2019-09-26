@@ -145,7 +145,7 @@ const Login = props => {
               </div>
             </div>
             {errors.password && touched.password && errors.password}
-            <button class="button" type="submit" disabled={isSubmitting}>
+            <button className="button" type="submit" disabled={isSubmitting}>
               Entrar
             </button>
             <button

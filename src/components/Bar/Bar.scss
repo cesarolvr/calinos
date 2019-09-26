@@ -1,0 +1,27 @@
+.bar {
+  position: absolute;
+  z-index: 30;
+  width: 80%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: white;
+  bottom: 40px;
+  border-radius: 26px;
+  box-shadow: 0 5px 10px rgba(168, 174, 201, 0.3);
+
+  > .bar-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+    > .item {
+      width: 23px;
+      height: 23px;
+      border-radius: 50%;
+      background: #ddd;
+    }
+  }
+}
