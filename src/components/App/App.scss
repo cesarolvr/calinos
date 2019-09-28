@@ -16,9 +16,19 @@
   }
 }
 
+.create-post {
+  position: absolute;
+  right: 50px;
+  top: 60px;
+  width: 35px;
+  height: 35px;
+  z-index: 32;
+  background: #ccc;
+}
+
 .page {
   
-  > .menu-toggle {
+  .menu-toggle {
     width: 35px;
     height: 35px;
     background: black;
@@ -28,8 +38,10 @@
     left: 50px;
   }
 
+  
+
   &.-opened {
-    > .page-holder {
+    .page-holder {
       transform: scale(0.8) translateX(60%);
       border-radius: 30px;
       overflow: hidden;

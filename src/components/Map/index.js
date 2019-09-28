@@ -11,20 +11,16 @@ import styleMap from "./styleMap.json";
 import "./Map.scss";
 
 // Api
-import { isUserInDatabase } from "../../api/database";
+import { getPosts } from "../../api/database";
 
 const MapContainer = props => {
   const [markers, setMarkers] = useState([]);
-  const [initialCoords, setInitialCoords] = useState({
-    lat: 20,
-    lng: 20
-  });
+  const [initialCoords, setInitialCoords] = useState({ lat: 20, lng: 20 });
 
   useEffect(() => {
     getGeolocation().then(res => setInitialCoords(res));
-    isUserInDatabase().then(res => {
-      const receivedMarkers = res.markers;
-      setMarkers([...markers, ...receivedMarkers]);
+    getPosts().then(posts => {
+      setMarkers([...markers, ...posts]);
     });
   }, []);
 
@@ -40,15 +36,15 @@ const MapContainer = props => {
       center={initialCoords}
     >
       <Marker title={"Me"} name={"Eu"} position={initialCoords} />
-      {markers.map((marker, index) => {
+      {markers.map(({ pin }, index) => {
         return (
           <Marker
             title={"Me"}
             key={index}
             name={"Eu"}
             position={{
-              lat: marker.lat,
-              lng: marker.lng
+              lat: pin.lat,
+              lng: pin.lng
             }}
           />
         );

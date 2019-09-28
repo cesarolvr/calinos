@@ -17,7 +17,7 @@ const Register = props => {
     ["firebaseprops", "firebase", "auth"],
     props
   );
-  const signUp = ({ email, password }) => {
+  const signUp = ({ name, email, password }) => {
     const db = firebase.firestore();
     const citiesRef = db.collection("users");
     const query = citiesRef.where("email", "==", email);
@@ -32,9 +32,9 @@ const Register = props => {
               .add({
                 email: user.email,
                 followers: [],
-                id: user.uid,
+                authId: user.uid,
                 markers: [],
-                nome: "teste"
+                name
               })
               .then(docRef => {
                 console.log("User registered with ID: ", docRef.id);
@@ -65,9 +65,10 @@ const Register = props => {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          const { email, password } = values;
+          const { name, email, password } = values;
 
           signUp({
+            name,
             email,
             password
           });

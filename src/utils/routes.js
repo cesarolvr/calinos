@@ -11,6 +11,7 @@ import Home from "../pages/Home";
 import Feed from "../pages/Feed";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Post from "../pages/Post";
 import NotFound from "../pages/NotFound";
 
 const Routes = () => {
@@ -45,6 +46,12 @@ const Routes = () => {
                 path="/feed"
                 authed={isAuthed(firebaseProps)}
                 component={Feed}
+              />
+              <PrivatedRoute
+                exact
+                path="/post"
+                authed={isAuthed(firebaseProps)}
+                component={Post}
               />
               <Route path="/not-found" exact={true} component={NotFound} />
               <Redirect from="*" to="/not-found" />

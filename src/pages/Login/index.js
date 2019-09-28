@@ -35,7 +35,7 @@ const Login = props => {
               .add({
                 email: email,
                 followers: [],
-                id: userLogged.id,
+                authId: userLogged.id,
                 markers: [],
                 nome: ""
               })
@@ -62,7 +62,7 @@ const Login = props => {
               .add({
                 email: user.email,
                 followers: [],
-                id: user.uid,
+                authId: user.uid,
                 markers: [],
                 nome: user.displayName
               })
