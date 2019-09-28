@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 // Components
 import App from "./components/App";
@@ -23,7 +24,11 @@ import { firebaseConfig } from "./consts";
 ReactDOM.render(
   <FirebaseAuthProvider firebase={firebase} {...firebaseConfig}>
     <FirebaseAuthConsumer>
-      {firebaseProps => <App firebaseprops={firebaseProps} />}
+      {firebaseProps => (
+        <Router>
+          <App firebaseprops={firebaseProps} />
+        </Router>
+      )}
     </FirebaseAuthConsumer>
   </FirebaseAuthProvider>,
   document.getElementById("root")

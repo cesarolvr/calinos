@@ -7,7 +7,7 @@ import "./Home.scss";
 
 const Home = () => {
   return (
-    <div className="home">
+    <div className="panel home">
       <div className="map">
         <Map />
       </div>
