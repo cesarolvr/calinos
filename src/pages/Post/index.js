@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as R from "ramda";
+
+import './Post.scss'
 
 // Steps
 import Step0 from "./Step0";
@@ -11,7 +13,7 @@ import Step4 from "./Step4";
 const Post = () => {
   const [step, setStep] = useState(0);
   const [formValue, setFormValue] = useState({
-    personal: {
+    animal: {
       name: "",
       breed: "",
       color: "",
@@ -20,9 +22,13 @@ const Post = () => {
     local: {
       street: "",
       reference: "",
-      comment: ""
+      comment: "",
+      pin: {
+        lat: 0,
+        lng: 0
+      }
     },
-    photo: {}
+    photos: []
   });
 
   const nextStep = () => {
@@ -31,6 +37,9 @@ const Post = () => {
   const prevStep = () => {
     return setStep(step >= 0 ? step - 1 : 0);
   };
+
+  console.log(formValue);
+  
 
   return R.cond([
     [R.equals(0), R.always(<Step0 nextStep={nextStep} />)],

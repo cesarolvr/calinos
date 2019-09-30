@@ -13,7 +13,7 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => (
       onSubmit={(values, { setSubmitting }) => {
         setFormValue({
           ...formValue,
-          personal: values
+          animal: values
         });
         nextStep()
       }}
@@ -39,9 +39,8 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => (
                   className="input"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.email}
+                  value={values.name}
                   placeholder="Totó"
-                  required
                 />
               </div>
               {errors.name && touched.name && errors.name}
@@ -60,6 +59,14 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => (
                   <option value="Bege">Bege</option>
                   <option value="Preto">Preto</option>
                   <option value="Branco">Branco</option>
+                </Field>
+              </div>
+              <div className="input-wrapper">
+                <label className="label">Porte</label>
+                <Field component="select" name="size" className="input">
+                  <option value="Pequeno">Pequeno</option>
+                  <option value="Medio">Médio</option>
+                  <option value="Grande">Grande</option>
                 </Field>
               </div>
             </div>

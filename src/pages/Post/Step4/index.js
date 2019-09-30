@@ -11,7 +11,7 @@ const Step4 = ({ setStep, formValue, setFormValue }) => (
       Você pode compartilhar em outras redes para obter um alcance maior.
     </p>
     <button className="button">Compartilhar</button>
-    <button className="button -disable">Voltar para home</button>
+    <button className="button -secondary">Voltar para home</button>
   </div>
 );
 
