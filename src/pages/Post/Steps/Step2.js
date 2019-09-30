@@ -7,14 +7,18 @@ const Step2 = ({ nextStep, prevStep, setFormValue, formValue }) => (
       initialValues={{
         street: "",
         reference: "",
-        comment: ""
+        comment: "",
+        pin: {
+          lat: 0,
+          lng: 0
+        }
       }}
-      onSubmit={(values) => {
+      onSubmit={values => {
         setFormValue({
           ...formValue,
           local: values
         });
-        nextStep()
+        nextStep();
       }}
     >
       {({
@@ -68,7 +72,11 @@ const Step2 = ({ nextStep, prevStep, setFormValue, formValue }) => (
               </div>
             </div>
             {errors.password && touched.password && errors.password}
-            <button type="button" className="button -secondary" onClick={prevStep}>
+            <button
+              type="button"
+              className="button -secondary"
+              onClick={prevStep}
+            >
               Voltar
             </button>
             <button className="button" type="submit">

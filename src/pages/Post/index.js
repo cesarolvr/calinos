@@ -10,8 +10,6 @@ import Step2 from "./Steps/Step2";
 import Step3 from "./Steps/Step3";
 import Step4 from "./Steps/Step4";
 
-import getGeolocation from "../../utils/geolocation";
-
 const Post = () => {
   const [step, setStep] = useState(0);
 
@@ -35,28 +33,12 @@ const Post = () => {
     photos: []
   });
 
-  // TODO: reescrever isso aqui
-  getGeolocation().then(({ lat, lng }) => {
-    setFormValue({
-      ...formValue,
-      local: {
-        ...formValue.local,
-        pin: {
-          lat,
-          lng
-        }
-      }
-    });
-  });
-
   const nextStep = () => {
     return setStep(step <= 4 ? step + 1 : 4);
   };
   const prevStep = () => {
     return setStep(step >= 0 ? step - 1 : 0);
   };
-
-  console.log(formValue);
 
   return R.cond([
     [R.equals(0), R.always(<Step0 nextStep={nextStep} />)],

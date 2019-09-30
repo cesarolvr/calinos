@@ -36,15 +36,16 @@ const MapContainer = props => {
       center={initialCoords}
     >
       <Marker title={"Me"} name={"Eu"} position={initialCoords} />
-      {markers.map(({ pin }, index) => {
+      {markers.map(({ local }, index) => {
+        if (!local.pin) return;
         return (
           <Marker
             title={"Me"}
             key={index}
             name={"Eu"}
             position={{
-              lat: pin.lat,
-              lng: pin.lng
+              lat: local.pin.lat,
+              lng: local.pin.lng
             }}
           />
         );

@@ -1,6 +1,8 @@
 import React from "react";
 
-const Step4 = ({ setStep, formValue, setFormValue }) => (
+import { Link } from "react-router-dom";
+
+const Step4 = () => (
   <div className="panel post">
     <h1>Feito!</h1>
     <p className="description">
@@ -11,7 +13,9 @@ const Step4 = ({ setStep, formValue, setFormValue }) => (
       Você pode compartilhar em outras redes para obter um alcance maior.
     </p>
     <button className="button">Compartilhar</button>
-    <button className="button -secondary">Voltar para home</button>
+    <Link className="link" to="/home">
+      Voltar para home
+    </Link>
   </div>
 );
 

@@ -29,4 +29,6 @@ const signInGoogle = () =>
       );
   });
 
-export { signIn, signInGoogle };
+  const getCurrentUser = () => firebase.auth().currentUser;
+
+export { signIn, signInGoogle, getCurrentUser };
