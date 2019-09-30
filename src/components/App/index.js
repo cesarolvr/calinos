@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { withRouter } from "react-router"
+import { withRouter } from "react-router";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 
@@ -16,12 +16,10 @@ import "./App.scss";
 // Utils
 import { isAuthed } from "../../utils/auth";
 
-const App = ({ firebaseprops, location, ...props }) => {
-  
+const App = ({ firebaseprops, location }) => {
   const [menuOpened, setMenuOpened] = useState(false);
-  
-  const isHome = location.pathname === '/home'
-  console.log(isHome);
+
+  const isHome = location.pathname === "/home";
 
   return (
     <div
@@ -29,9 +27,9 @@ const App = ({ firebaseprops, location, ...props }) => {
         "-opened": menuOpened
       })}
     >
-      <Link className="create-post" to="/post"></Link>
       {isAuthed(firebaseprops) && isHome && (
         <>
+          <Link className="create-post" to="/post"></Link>
           <div
             className="menu-toggle"
             onClick={() => setMenuOpened(!menuOpened)}
@@ -41,7 +39,7 @@ const App = ({ firebaseprops, location, ...props }) => {
       )}
       <div className="page-holder">
         <Routes />
-        {isAuthed(firebaseprops) && <Bar />}
+        {isAuthed(firebaseprops) && isHome && <Bar />}
       </div>
     </div>
   );
