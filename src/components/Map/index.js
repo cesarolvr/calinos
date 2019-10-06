@@ -13,6 +13,9 @@ import "./Map.scss";
 // Api
 import { getPosts } from "../../api/database";
 
+import pin from '../../assets/images/pin.svg'
+import pinMe from '../../assets/images/pinMe.svg'
+
 const MapContainer = props => {
   const [markers, setMarkers] = useState([]);
   const [initialCoords, setInitialCoords] = useState({ lat: 20, lng: 20 });
@@ -35,14 +38,15 @@ const MapContainer = props => {
       styles={styleMap}
       center={initialCoords}
     >
-      <Marker title={"Me"} name={"Eu"} position={initialCoords} />
+      <Marker title={"Me"} name={"Eu"} icon={pinMe} position={initialCoords} />
       {markers.map(({ local }, index) => {
-        if (!local.pin) return;
+        if (!local.pin) return null;
         return (
           <Marker
             title={"Me"}
             key={index}
             name={"Eu"}
+            icon={pin}
             position={{
               lat: local.pin.lat,
               lng: local.pin.lng
