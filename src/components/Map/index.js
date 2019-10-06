@@ -8,17 +8,22 @@ import { mapsConfig } from "../../consts";
 import getGeolocation from "../../utils/geolocation";
 import styleMap from "./styleMap.json";
 
+// Styles
 import "./Map.scss";
 
 // Api
 import { getPosts } from "../../api/database";
 
-import pin from '../../assets/images/pin.svg'
-import pinMe from '../../assets/images/pinMe.svg';
+// Assets
+import pin from "../../assets/images/pin.svg";
+import pinMe from "../../assets/images/pinMe.svg";
+
+// Components
+import MapPanel from './MapPanel'
 
 const MapContainer = props => {
   const [markers, setMarkers] = useState([]);
-  const [ activeMarker, setActiveMarker ] = useState({})
+  const [activeMarker, setActiveMarker] = useState({});
   const [initialCoords, setInitialCoords] = useState({ lat: 20, lng: 20 });
 
   useEffect(() => {
@@ -29,39 +34,47 @@ const MapContainer = props => {
   }, []);
 
   const openMarker = marker => {
-    console.log('click', marker)
-  }
+    setActiveMarker(marker);
+  };
 
   return (
-    <Map
-      google={props.google}
-      zoom={17}
-      style={{
-        width: "100%",
-        height: "100%"
-      }}
-      styles={styleMap}
-      center={initialCoords}
-    >
-      <Marker title={"Me"} name={"Eu"} icon={pinMe} position={initialCoords} />
-      {markers.map((marker, index) => {
-        const { local } = marker;
-        if (!local.pin) return null;
-        return (
-          <Marker
-            title={"Me"}
-            key={index}
-            name={"Eu"}
-            onClick={() => openMarker(marker)}
-            icon={pin}
-            position={{
-              lat: local.pin.lat,
-              lng: local.pin.lng
-            }}
-          />
-        );
-      })}
-    </Map>
+    <>
+      <MapPanel activeMarker={activeMarker} />
+      <Map
+        google={props.google}
+        zoom={17}
+        style={{
+          width: "100%",
+          height: "100%"
+        }}
+        styles={styleMap}
+        center={initialCoords}
+      >
+        <Marker
+          title={"Me"}
+          name={"Eu"}
+          icon={pinMe}
+          position={initialCoords}
+        />
+        {markers.map((marker, index) => {
+          const { local } = marker;
+          if (!local.pin) return null;
+          return (
+            <Marker
+              title={"Me"}
+              key={index}
+              name={"Eu"}
+              onClick={() => openMarker(marker)}
+              icon={pin}
+              position={{
+                lat: local.pin.lat,
+                lng: local.pin.lng
+              }}
+            />
+          );
+        })}
+      </Map>
+    </>
   );
 };
 
