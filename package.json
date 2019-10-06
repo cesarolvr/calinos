@@ -2,11 +2,13 @@
   "name": "calinos2",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://cesarolvr.github.io/calinos",
   "dependencies": {
     "@react-firebase/auth": "^0.2.9",
     "classnames": "^2.2.6",
     "firebase": "^6.4.2",
     "formik": "^1.5.8",
+    "gh-pages": "^2.1.1",
     "google-maps-react": "^2.0.2",
     "node-sass": "^4.12.0",
     "ramda": "^0.26.1",
@@ -19,6 +21,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
