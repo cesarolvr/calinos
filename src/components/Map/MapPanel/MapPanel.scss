@@ -8,6 +8,11 @@
   width: 100%;
   box-shadow: 0 5px 10px rgba(168, 174, 201, 0.3);
   padding: 30px;
+
+  img {
+    width: 100px;
+  }
+  
   &.-active {
     display: block;
   }

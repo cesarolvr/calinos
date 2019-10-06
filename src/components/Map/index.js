@@ -39,7 +39,7 @@ const MapContainer = props => {
 
   return (
     <>
-      <MapPanel activeMarker={activeMarker} />
+      <MapPanel {...activeMarker} />
       <Map
         google={props.google}
         zoom={17}

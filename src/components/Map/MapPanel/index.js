@@ -1,18 +1,20 @@
 import React from "react";
-import * as R from "ramda";
 import classNames from "classnames";
 
 import "./MapPanel.scss";
 
-const MapPanel = ({ activeMarker }) => {
-  const active = !R.isEmpty(activeMarker);
+const MapPanel = ({ animal, photos, ...props }) => {
+  const active = !!animal;
+  if (!active) return null;
   return (
     <div
       className={classNames("map-panel", {
         "-active": active
       })}
     >
-      {JSON.stringify(activeMarker)}
+      {photos.map(photo => (
+        <img src={photo} />
+      ))}
     </div>
   );
 };

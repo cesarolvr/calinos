@@ -39,32 +39,65 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
     for (let i = 0; i < photos.length; i++) {
       const fileName = `pic-${Math.floor(Math.random() * 1000000000)}`;
       const file = photos[i].file;
-      storageRef
+      const uploadTask = storageRef
         .child(`images/${userId}/${fileName}.jpg`)
-        .put(file)
-        .then(({ state, metadata }) => {
-          if (state !== "success") return;
-          newPhoto.push(metadata.fullPath);
-          if (i === photos.length - 1) {
-            getGeolocation().then(l => {
-              db.collection("posts")
-                .doc()
-                .set({
-                  ...formValue,
-                  local: {
-                    ...formValue.local,
-                    pin: {
-                      lat: l.lat,
-                      lng: l.lng
-                    }
-                  },
-                  authorId: user.uid,
-                  photos: [...newPhoto]
-                })
-                .then(nextStep);
-            });
-          }
-        });
+        .put(file);
+
+      uploadTask.on(
+        "state_changed",
+        progress => console.log(progress),
+        err => console.log(err),
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL().then(url => {
+            newPhoto.push(url);
+            if (i === photos.length - 1) {
+              getGeolocation().then(l => {
+                db.collection("posts")
+                  .doc()
+                  .set({
+                    ...formValue,
+                    local: {
+                      ...formValue.local,
+                      pin: {
+                        lat: l.lat,
+                        lng: l.lng
+                      }
+                    },
+                    authorId: user.uid,
+                    photos: [...newPhoto]
+                  })
+                  .then(nextStep);
+              });
+            }
+          });
+        }
+      );
+
+      // .then(({ state, metadata }) => {
+      //   storageRef.getDownloadURL().then(console.log);
+
+      // if (state !== "success") return;
+      // newPhoto.push(metadata.fullPath);
+      // if (i === photos.length - 1) {
+      //   getGeolocation().then(l => {
+      //     db.collection("posts")
+      //       .doc()
+      //       .set({
+      //         ...formValue,
+      //         local: {
+      //           ...formValue.local,
+      //           pin: {
+      //             lat: l.lat,
+      //             lng: l.lng
+      //           }
+      //         },
+      //         authorId: user.uid,
+      //         photos: [...newPhoto]
+      //       })
+      //       .then(nextStep);
+      //   });
+      // }
+      // });
     }
   };
   return (
