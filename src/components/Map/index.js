@@ -14,10 +14,11 @@ import "./Map.scss";
 import { getPosts } from "../../api/database";
 
 import pin from '../../assets/images/pin.svg'
-import pinMe from '../../assets/images/pinMe.svg'
+import pinMe from '../../assets/images/pinMe.svg';
 
 const MapContainer = props => {
   const [markers, setMarkers] = useState([]);
+  const [ activeMarker, setActiveMarker ] = useState({})
   const [initialCoords, setInitialCoords] = useState({ lat: 20, lng: 20 });
 
   useEffect(() => {
@@ -26,6 +27,10 @@ const MapContainer = props => {
       setMarkers([...markers, ...posts]);
     });
   }, []);
+
+  const openMarker = marker => {
+    console.log('click', marker)
+  }
 
   return (
     <Map
@@ -39,13 +44,15 @@ const MapContainer = props => {
       center={initialCoords}
     >
       <Marker title={"Me"} name={"Eu"} icon={pinMe} position={initialCoords} />
-      {markers.map(({ local }, index) => {
+      {markers.map((marker, index) => {
+        const { local } = marker;
         if (!local.pin) return null;
         return (
           <Marker
             title={"Me"}
             key={index}
             name={"Eu"}
+            onClick={() => openMarker(marker)}
             icon={pin}
             position={{
               lat: local.pin.lat,
