@@ -19,12 +19,13 @@ import { isAuthed } from "../../utils/auth";
 const App = ({ firebaseprops, location }) => {
   const [menuOpened, setMenuOpened] = useState(false);
 
+  // TODO: passa isso para utils
   const isHome = location.pathname === "/home";
 
   return (
     <div
       className={classNames("page", {
-        "-opened": menuOpened
+        "-opened": menuOpened,
       })}
     >
       {isAuthed(firebaseprops) && isHome && (
@@ -32,6 +33,7 @@ const App = ({ firebaseprops, location }) => {
           <Link className="create-post" to="/post"></Link>
           <div
             className="menu-toggle"
+            // TODO: transforma isso num reƒducer, ou usar Context
             onClick={() => setMenuOpened(!menuOpened)}
           />
           <Menu />

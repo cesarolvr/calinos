@@ -4,7 +4,7 @@ import React, { Fragment } from "react";
 // Firebase
 import { FirebaseAuthConsumer } from "@react-firebase/auth";
 
-import { isAuthed } from '../utils/auth'
+import { isAuthed } from "../utils/auth";
 
 // Pages
 import Home from "../pages/Home";

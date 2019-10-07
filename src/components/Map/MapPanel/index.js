@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import "./MapPanel.scss";
 
-const MapPanel = ({ animal, photos, ...props }) => {
+const MapPanel = ({ animal, photos }) => {
   const active = !!animal;
   if (!active) return null;
   return (
@@ -12,8 +12,8 @@ const MapPanel = ({ animal, photos, ...props }) => {
         "-active": active
       })}
     >
-      {photos.map(photo => (
-        <img src={photo} />
+      {photos.map((photo, index) => (
+        <img key={index} src={photo} />
       ))}
     </div>
   );

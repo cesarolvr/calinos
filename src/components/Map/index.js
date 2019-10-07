@@ -19,9 +19,9 @@ import pin from "../../assets/images/pin.svg";
 import pinMe from "../../assets/images/pinMe.svg";
 
 // Components
-import MapPanel from './MapPanel'
+import MapPanel from "./MapPanel";
 
-const MapContainer = props => {
+const MapContainer = ({ google }) => {
   const [markers, setMarkers] = useState([]);
   const [activeMarker, setActiveMarker] = useState({});
   const [initialCoords, setInitialCoords] = useState({ lat: 20, lng: 20 });
@@ -41,7 +41,7 @@ const MapContainer = props => {
     <>
       <MapPanel {...activeMarker} />
       <Map
-        google={props.google}
+        google={google}
         zoom={17}
         style={{
           width: "100%",
