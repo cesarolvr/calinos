@@ -37,7 +37,6 @@ const App = ({ firebaseprops, location }) => {
           <Link className="create-post" to="/post"></Link>
           <div
             className="menu-toggle"
-            // TODO: transforma isso num reducer, ou usar Context
             onClick={() => {
               dispatch({
                 type: "setMenuOpened",
