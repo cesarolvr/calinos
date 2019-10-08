@@ -48,7 +48,7 @@ const MapContainer = ({ google }) => {
       <MapPanel {...activeMarker} />
       <Map
         google={google}
-        zoom={17}
+        zoom={1}
         style={{
           width: "100%",
           height: "100%"
