@@ -1,10 +1,9 @@
-import * as R from "ramda";
 
-const isHome = () => {
+
+const isHome = pathname => {
   if (!window) return;
-  const routeName = R.path(["location", "pathname"], window);
-  console.log(routeName);
-  return routeName === "/home";
+  console.log(pathname === '/home');
+  return pathname === "/home";
 };
 
 export default isHome;

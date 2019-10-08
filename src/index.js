@@ -9,6 +9,9 @@ import App from "./components/App";
 import "./styles/base.scss";
 import "./styles/default.scss";
 
+// State
+import { StateProvider } from "./state";
+
 // Firebase
 import {
   FirebaseAuthProvider,
@@ -17,17 +20,36 @@ import {
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import 'firebase/storage';
+import "firebase/storage";
 
 // Consts
 import { firebaseConfig } from "./consts";
+
+const initialState = {
+  pinOpened: false
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "changePinOpened":
+      return {
+        ...state,
+        pinOpened: action.pinOpened
+      };
+
+    default:
+      return state;
+  }
+};
 
 ReactDOM.render(
   <FirebaseAuthProvider firebase={firebase} {...firebaseConfig}>
     <FirebaseAuthConsumer>
       {firebaseProps => (
         <Router>
-          <App firebaseprops={firebaseProps} />
+          <StateProvider initialState={initialState} reducer={reducer}>
+            <App firebaseprops={firebaseProps} />
+          </StateProvider>
         </Router>
       )}
     </FirebaseAuthConsumer>

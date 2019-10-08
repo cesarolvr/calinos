@@ -3,6 +3,9 @@ import { withRouter } from "react-router";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 
+// State
+import { useStateValue } from '../../state';
+
 // Routes
 import Routes from "../../utils/routes";
 
@@ -15,25 +18,27 @@ import "./App.scss";
 
 // Utils
 import { isAuthed } from "../../utils/auth";
+import isHome from '../../utils/isHome'
 
 const App = ({ firebaseprops, location }) => {
   const [menuOpened, setMenuOpened] = useState(false);
+  const [{ pinOpened }, _] = useStateValue();
 
-  // TODO: passa isso para utils
-  const isHome = location.pathname === "/home";
+  const isHomepage = isHome(location.pathname)
 
   return (
     <div
       className={classNames("page", {
         "-opened": menuOpened,
+        "-pin-opened": !!pinOpened
       })}
     >
-      {isAuthed(firebaseprops) && isHome && (
+      {isAuthed(firebaseprops) && isHomepage && (
         <>
           <Link className="create-post" to="/post"></Link>
           <div
             className="menu-toggle"
-            // TODO: transforma isso num reƒducer, ou usar Context
+            // TODO: transforma isso num reducer, ou usar Context
             onClick={() => setMenuOpened(!menuOpened)}
           />
           <Menu />
@@ -41,7 +46,7 @@ const App = ({ firebaseprops, location }) => {
       )}
       <div className="page-holder">
         <Routes />
-        {isAuthed(firebaseprops) && isHome && <Bar />}
+        {isAuthed(firebaseprops) && isHomepage && <Bar />}
       </div>
     </div>
   );

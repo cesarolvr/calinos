@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import { useStateValue } from '../../state';
+
+// Components
+import MapPanel from "./MapPanel";
 
 // Consts
 import { mapsConfig } from "../../consts";
@@ -18,23 +22,25 @@ import { getPosts } from "../../api/database";
 import pin from "../../assets/images/pin.svg";
 import pinMe from "../../assets/images/pinMe.svg";
 
-// Components
-import MapPanel from "./MapPanel";
-
 const MapContainer = ({ google }) => {
   const [markers, setMarkers] = useState([]);
   const [activeMarker, setActiveMarker] = useState({});
   const [initialCoords, setInitialCoords] = useState({ lat: 20, lng: 20 });
-
+  const [_, dispatch] = useStateValue();
   useEffect(() => {
     getGeolocation().then(res => setInitialCoords(res));
     getPosts().then(posts => {
       setMarkers([...markers, ...posts]);
     });
   }, []);
+  
 
   const openMarker = marker => {
     setActiveMarker(marker);
+    dispatch({
+      type: 'changePinOpened',
+      pinOpened: marker
+    })
   };
 
   return (
