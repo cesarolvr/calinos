@@ -31,10 +31,16 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "changePinOpened":
+    case "setPinOpened":
       return {
         ...state,
         pinOpened: action.pinOpened
+      };
+
+    case "setMenuOpened":
+      return {
+        ...state,
+        menuOpened: action.menuOpened
       };
 
     default:

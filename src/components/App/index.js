@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { withRouter } from "react-router";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 
 // State
-import { useStateValue } from '../../state';
+import { useStateValue } from "../../state";
 
 // Routes
 import Routes from "../../utils/routes";
@@ -18,13 +18,12 @@ import "./App.scss";
 
 // Utils
 import { isAuthed } from "../../utils/auth";
-import isHome from '../../utils/isHome'
+import isHome from "../../utils/isHome";
 
 const App = ({ firebaseprops, location }) => {
-  const [menuOpened, setMenuOpened] = useState(false);
-  const [{ pinOpened }, _] = useStateValue();
+  const [{ pinOpened, menuOpened }, dispatch] = useStateValue();
 
-  const isHomepage = isHome(location.pathname)
+  const isHomepage = isHome(location.pathname);
 
   return (
     <div
@@ -39,7 +38,12 @@ const App = ({ firebaseprops, location }) => {
           <div
             className="menu-toggle"
             // TODO: transforma isso num reducer, ou usar Context
-            onClick={() => setMenuOpened(!menuOpened)}
+            onClick={() => {
+              dispatch({
+                type: "setMenuOpened",
+                menuOpened: !menuOpened
+              });
+            }}
           />
           <Menu />
         </>

@@ -38,7 +38,7 @@ const MapContainer = ({ google }) => {
   const openMarker = marker => {
     setActiveMarker(marker);
     dispatch({
-      type: 'changePinOpened',
+      type: 'setPinOpened',
       pinOpened: marker
     })
   };
