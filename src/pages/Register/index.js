@@ -33,7 +33,6 @@ const Register = props => {
                 email: user.email,
                 followers: [],
                 authId: user.uid,
-                markers: [],
                 name
               })
               .then(docRef => {

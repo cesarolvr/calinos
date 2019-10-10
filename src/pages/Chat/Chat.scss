@@ -1,0 +1,8 @@
+.panel.chat {
+  overflow: scroll;
+
+  ul {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import firebase from "firebase/app";
+import { Formik } from "formik";
 
 // Style
-// import "./Home.scss";
+import "./Chat.scss";
 
 // State
 import { useStateValue } from "../../state";
@@ -12,10 +13,11 @@ const Chat = () => {
   const [localMessages, setLocalMessages] = useState([]);
   const { authorId } = pinOpened;
 
-  const getTalk = ({ receiverId }) => {
+  const initTalk = ({ receiverId }) => {
     const databaseInstance = firebase.firestore();
     const currentUser = firebase.auth().currentUser;
-    const chatId = `${receiverId}${currentUser.uid}`;
+    const chatId = `${currentUser.uid}${receiverId}`;
+
     databaseInstance
       .collection("chats")
       .doc(chatId)
@@ -32,7 +34,7 @@ const Chat = () => {
   const chatListener = ({ receiverId }) => {
     const databaseInstance = firebase.firestore();
     const currentUser = firebase.auth().currentUser;
-    const chatId = `${receiverId}${currentUser.uid}`;
+    const chatId = `${currentUser.uid}${receiverId}`;
 
     databaseInstance
       .collection("chats")
@@ -46,16 +48,16 @@ const Chat = () => {
       });
   };
 
-  const sendMessage = ({ receiverId }) => {
+  const sendMessage = ({ text }, { receiverId }) => {
     const databaseInstance = firebase.firestore();
     const currentUser = firebase.auth().currentUser;
     const chatId = `${receiverId}${currentUser.uid}`;
 
     const message = {
-      message: "teste",
+      message: text,
       senderId: currentUser.uid,
       receiverId: receiverId,
-      date: new Date()
+      date: new Date().getTime()
     };
 
     databaseInstance
@@ -67,7 +69,7 @@ const Chat = () => {
           databaseInstance
             .collection("chats")
             .doc(chatId)
-            .set({});
+            .set({ messages: [] });
         } else {
           databaseInstance
             .collection("chats")
@@ -80,24 +82,94 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    getTalk({ receiverId: authorId });
-    chatListener({ receiverId: authorId });
+    const databaseInstance = firebase.firestore();
+    const receiverId = authorId;
+    const currentUser = firebase.auth().currentUser;
+    console.log(currentUser);
+
+    databaseInstance
+      .collection("users")
+      .where("authId", "==", receiverId)
+      .get()
+      .then(querySnapshot => {
+        if (querySnapshot.empty) return false;
+        querySnapshot.forEach(snapshot => {
+          if (snapshot.data()) {
+            databaseInstance
+              .collection("users")
+              .doc(snapshot.id)
+              .set(
+                {
+                  messages: firebase.firestore.FieldValue.arrayUnion({
+                    email: currentUser.email,
+                    id: currentUser.uid,
+                    nome: currentUser.name || ''
+                  })
+                },
+                { merge: true }
+              );
+          }
+        });
+      })
+      .catch(console.log);
+    // initTalk({ receiverId: authorId });
+    // chatListener({ receiverId: authorId });
   }, []);
   return (
     <div className="panel chat">
       Chat
-      <button
-        className="button"
-        type="button"
-        onClick={() => {
-          sendMessage({ receiverId: authorId });
+      <Formik
+        initialValues={{ text: "" }}
+        validate={values => {
+          let errors = {};
+          if (!values.text) {
+            errors.text = "Required";
+          }
+          return errors;
+        }}
+        onSubmit={(values, {}) => {
+          const payload = values;
+          sendMessage(payload, { receiverId: authorId });
         }}
       >
-        Enviar
-      </button>
+        {({
+          values,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          errors,
+          touched
+        }) => (
+          <form className="form" onSubmit={handleSubmit}>
+            <div className="box">
+              <div className="input-wrapper">
+                <label className="label">Mensagem</label>
+                <input
+                  type="text"
+                  name="text"
+                  className="input"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                  placeholder="Digite uma mensagem"
+                />
+                {errors.text && touched.text && errors.text}
+              </div>
+            </div>
+            <button className="button" type="submit">
+              Enviar
+            </button>
+          </form>
+        )}
+      </Formik>
       <ul>
         {localMessages &&
-          localMessages.map(({ message }) => <li>{message}</li>)}
+          localMessages.map(({ message, date }, index) => (
+            <li key={index}>
+              <small>{date}</small>
+              <h3>{message}</h3>
+            </li>
+          ))}
       </ul>
     </div>
   );
