@@ -31,7 +31,6 @@ const Register = props => {
             db.collection("users")
               .add({
                 email: user.email,
-                followers: [],
                 authId: user.uid,
                 name
               })

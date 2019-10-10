@@ -34,9 +34,7 @@ const Login = props => {
             db.collection("users")
               .add({
                 email: email,
-                followers: [],
                 authId: userLogged.id,
-                markers: [],
                 nome: ""
               })
               .then(docRef => {
@@ -61,9 +59,7 @@ const Login = props => {
             db.collection("users")
               .add({
                 email: user.email,
-                followers: [],
                 authId: user.uid,
-                markers: [],
                 nome: user.displayName
               })
               .then(docRef => {

@@ -7,7 +7,7 @@ const isUserInDatabase = () =>
     const currentUser = firebase.auth().currentUser;
     databaseInstance
       .collection("users")
-      .where("authId", "==", currentUser.uid)
+      .where("id", "==", currentUser.uid)
       .get()
       .then(querySnapshot => {
         if (querySnapshot.empty) return false;

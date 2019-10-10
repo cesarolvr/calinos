@@ -79,17 +79,10 @@ const Chat = () => {
             });
         }
       });
-  };
-
-  useEffect(() => {
-    const databaseInstance = firebase.firestore();
-    const receiverId = authorId;
-    const currentUser = firebase.auth().currentUser;
-    console.log(currentUser);
 
     databaseInstance
       .collection("users")
-      .where("authId", "==", receiverId)
+      .where("id", "==", receiverId)
       .get()
       .then(querySnapshot => {
         if (querySnapshot.empty) return false;
@@ -103,7 +96,7 @@ const Chat = () => {
                   messages: firebase.firestore.FieldValue.arrayUnion({
                     email: currentUser.email,
                     id: currentUser.uid,
-                    nome: currentUser.name || ''
+                    name: currentUser.name || ""
                   })
                 },
                 { merge: true }
@@ -112,8 +105,11 @@ const Chat = () => {
         });
       })
       .catch(console.log);
-    // initTalk({ receiverId: authorId });
-    // chatListener({ receiverId: authorId });
+  };
+
+  useEffect(() => {
+    initTalk({ receiverId: authorId });
+    chatListener({ receiverId: authorId });
   }, []);
   return (
     <div className="panel chat">
