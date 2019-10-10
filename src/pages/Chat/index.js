@@ -28,17 +28,14 @@ const sendMessage = ({ receiverId }) => {
   const databaseInstance = firebase.firestore();
   const currentUser = firebase.auth().currentUser;
   const chatId = `${receiverId}${currentUser.uid}`;
-  const randomKey = Math.floor(Math.random() * 1000000000);
+
+  const message = { message: 'teste', senderId: currentUser.uid, receiverId: receiverId, date: new Date()  }
 
   databaseInstance
     .collection("chats")
     .doc(chatId)
     .update({
-      [randomKey]: {
-        message: "testeeee",
-        receiverId,
-        senderId: currentUser.uid
-      }
+      messages: firebase.firestore.FieldValue.arrayUnion(message)
     });
 };
 
