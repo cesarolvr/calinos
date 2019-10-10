@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
+import history from "./utils/history";
 
 // Components
 import App from "./components/App";
@@ -27,7 +28,8 @@ import "firebase/storage";
 import { firebaseConfig } from "./consts";
 
 const initialState = {
-  pinOpened: false
+  pinOpened: false,
+  activeChat: ''
 };
 
 const reducer = (state, action) => {
@@ -44,6 +46,12 @@ const reducer = (state, action) => {
         menuOpened: action.menuOpened
       };
 
+      case "setActiveChat":
+      return {
+        ...state,
+        activeChat: action.activeChat
+      };
+
     default:
       return state;
   }
@@ -53,7 +61,7 @@ ReactDOM.render(
   <FirebaseAuthProvider firebase={firebase} {...firebaseConfig}>
     <FirebaseAuthConsumer>
       {firebaseProps => (
-        <Router>
+        <Router history={history}>
           <StateProvider initialState={initialState} reducer={reducer}>
             <App firebaseprops={firebaseProps} />
           </StateProvider>

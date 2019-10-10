@@ -9,14 +9,14 @@ import "./Chat.scss";
 import { useStateValue } from "../../state";
 
 const Chat = () => {
-  const [{ pinOpened }, dispatch] = useStateValue();
+  const [{ pinOpened, receiver, activeChat }, dispatch] = useStateValue();
   const [localMessages, setLocalMessages] = useState([]);
   const { authorId } = pinOpened;
 
   const initTalk = ({ receiverId }) => {
     const databaseInstance = firebase.firestore();
     const currentUser = firebase.auth().currentUser;
-    const chatId = `${currentUser.uid}${receiverId}`;
+    const chatId = activeChat || `${receiverId}${currentUser.uid}`;
 
     databaseInstance
       .collection("chats")
@@ -34,7 +34,7 @@ const Chat = () => {
   const chatListener = ({ receiverId }) => {
     const databaseInstance = firebase.firestore();
     const currentUser = firebase.auth().currentUser;
-    const chatId = `${currentUser.uid}${receiverId}`;
+    const chatId = activeChat || `${currentUser.uid}${receiverId}`;
 
     databaseInstance
       .collection("chats")
@@ -51,7 +51,7 @@ const Chat = () => {
   const sendMessage = ({ text }, { receiverId }) => {
     const databaseInstance = firebase.firestore();
     const currentUser = firebase.auth().currentUser;
-    const chatId = `${receiverId}${currentUser.uid}`;
+    const chatId = activeChat || `${receiverId}${currentUser.uid}`;
 
     const message = {
       message: text,
@@ -82,7 +82,7 @@ const Chat = () => {
 
     databaseInstance
       .collection("users")
-      .where("id", "==", receiverId)
+      .where("id", "==", receiver || receiverId)
       .get()
       .then(querySnapshot => {
         if (querySnapshot.empty) return false;
@@ -111,6 +111,8 @@ const Chat = () => {
     initTalk({ receiverId: authorId });
     chatListener({ receiverId: authorId });
   }, []);
+
+  
   return (
     <div className="panel chat">
       Chat
@@ -125,7 +127,7 @@ const Chat = () => {
         }}
         onSubmit={(values, {}) => {
           const payload = values;
-          sendMessage(payload, { receiverId: authorId });
+          sendMessage(payload, { receiverId: authorId  });
         }}
       >
         {({
