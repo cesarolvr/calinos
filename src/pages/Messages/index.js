@@ -44,9 +44,8 @@ const Messages = ({ history, ...props }) => {
               key={index}
               onClick={() => {
                 dispatch({
-                  type: "setActiveChat",
-                  activeChat: `${currentUser.uid}${id}`,
-                  receiver: id
+                  type: "setReceiverId",
+                  receiverId: id
                 });
                 history.push('/chat')
               }}

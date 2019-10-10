@@ -9,14 +9,13 @@ import "./Chat.scss";
 import { useStateValue } from "../../state";
 
 const Chat = () => {
-  const [{ pinOpened, receiver, activeChat }, dispatch] = useStateValue();
+  const [{ receiverId }, dispatch] = useStateValue();
   const [localMessages, setLocalMessages] = useState([]);
-  const { authorId } = pinOpened;
+  const currentUser = firebase.auth().currentUser;
 
   const initTalk = ({ receiverId }) => {
     const databaseInstance = firebase.firestore();
-    const currentUser = firebase.auth().currentUser;
-    const chatId = activeChat || `${receiverId}${currentUser.uid}`;
+    const chatId = `${receiverId}${currentUser.uid}`;
 
     databaseInstance
       .collection("chats")
@@ -33,8 +32,7 @@ const Chat = () => {
 
   const chatListener = ({ receiverId }) => {
     const databaseInstance = firebase.firestore();
-    const currentUser = firebase.auth().currentUser;
-    const chatId = activeChat || `${currentUser.uid}${receiverId}`;
+    const chatId = `${currentUser.uid}${receiverId}`;
 
     databaseInstance
       .collection("chats")
@@ -50,13 +48,12 @@ const Chat = () => {
 
   const sendMessage = ({ text }, { receiverId }) => {
     const databaseInstance = firebase.firestore();
-    const currentUser = firebase.auth().currentUser;
-    const chatId = activeChat || `${receiverId}${currentUser.uid}`;
+    const chatId = `${receiverId}${currentUser.uid}`;
 
     const message = {
+      receiverId,
       message: text,
       senderId: currentUser.uid,
-      receiverId: receiverId,
       date: new Date().getTime()
     };
 
@@ -82,7 +79,7 @@ const Chat = () => {
 
     databaseInstance
       .collection("users")
-      .where("id", "==", receiver || receiverId)
+      .where("id", "==", receiverId)
       .get()
       .then(querySnapshot => {
         if (querySnapshot.empty) return false;
@@ -105,14 +102,39 @@ const Chat = () => {
         });
       })
       .catch(console.log);
+
+    databaseInstance
+      .collection("users")
+      .where("id", "==", currentUser.uid)
+      .get()
+      .then(querySnapshot => {
+        if (querySnapshot.empty) return false;
+        querySnapshot.forEach(snapshot => {
+          if (snapshot.data()) {
+            databaseInstance
+              .collection("users")
+              .doc(snapshot.id)
+              .set(
+                {
+                  messages: firebase.firestore.FieldValue.arrayUnion({
+                    email: "email@gmail.com",
+                    id: receiverId,
+                    name: "A pessoa"
+                  })
+                },
+                { merge: true }
+              );
+          }
+        });
+      })
+      .catch(console.log);
   };
 
   useEffect(() => {
-    initTalk({ receiverId: authorId });
-    chatListener({ receiverId: authorId });
+    initTalk({ receiverId });
+    chatListener({ receiverId });
   }, []);
 
-  
   return (
     <div className="panel chat">
       Chat
@@ -127,7 +149,7 @@ const Chat = () => {
         }}
         onSubmit={(values, {}) => {
           const payload = values;
-          sendMessage(payload, { receiverId: authorId  });
+          sendMessage(payload, { receiverId });
         }}
       >
         {({

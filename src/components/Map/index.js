@@ -36,10 +36,16 @@ const MapContainer = ({ google }) => {
   
 
   const openMarker = marker => {
+    
     setActiveMarker(marker);
     dispatch({
       type: 'setPinOpened',
       pinOpened: marker
+    })
+
+    dispatch({
+      type: 'setReceiverId',
+      receiverId: marker.authorId
     })
   };
 

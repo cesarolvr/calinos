@@ -31,7 +31,7 @@ const Register = props => {
             db.collection("users")
               .add({
                 email: user.email,
-                authId: user.uid,
+                id: user.uid,
                 name
               })
               .then(docRef => {

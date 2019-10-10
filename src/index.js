@@ -28,7 +28,7 @@ import { firebaseConfig } from "./consts";
 
 const initialState = {
   pinOpened: false,
-  activeChat: ''
+  receiverId: ""
 };
 
 const reducer = (state, action) => {
@@ -45,10 +45,16 @@ const reducer = (state, action) => {
         menuOpened: action.menuOpened
       };
 
-      case "setActiveChat":
+    // case "setActiveChat":
+    //   return {
+    //     ...state,
+    //     activeChat: action.activeChat
+    //   };
+
+    case "setReceiverId":
       return {
         ...state,
-        activeChat: action.activeChat
+        receiverId: action.receiverId
       };
 
     default:

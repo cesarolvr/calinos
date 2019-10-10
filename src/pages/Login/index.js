@@ -16,8 +16,6 @@ import "./Login.scss";
 import Logo from "../../components/Logo";
 
 const Login = props => {
-  
-  
   const db = firebase.firestore();
   const reallyDisconnected = R.path(
     ["firebaseprops", "firebase", "auth"],
@@ -26,7 +24,7 @@ const Login = props => {
 
   const signInWithEmailPassword = ({ email, password }) => {
     signIn({ email, password })
-      .then(userLogged => {
+      .then(({ user }) => {
         const usersRef = db.collection("users");
         const query = usersRef.where("email", "==", email);
         query.get().then(querySnapshot => {
@@ -34,8 +32,8 @@ const Login = props => {
             db.collection("users")
               .add({
                 email: email,
-                authId: userLogged.id,
-                nome: ""
+                id: user.uid,
+                nome: "Usuário"
               })
               .then(docRef => {
                 console.log("User registered with ID: ", docRef.id);
@@ -59,7 +57,7 @@ const Login = props => {
             db.collection("users")
               .add({
                 email: user.email,
-                authId: user.uid,
+                id: user.uid,
                 nome: user.displayName
               })
               .then(docRef => {
