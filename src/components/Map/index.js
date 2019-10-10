@@ -27,9 +27,10 @@ const MapContainer = ({ google }) => {
   const [markers, setMarkers] = useState([]);
   const [activeMarker, setActiveMarker] = useState({});
   const [initialCoords, setInitialCoords] = useState({ lat: 20, lng: 20 });
-  const [{ chatId }, dispatch] = useStateValue();
   const currentUser = firebase.auth().currentUser;
   const databaseInstance = firebase.firestore();
+  const [{ chatId, receiverId }, dispatch] = useStateValue();
+  
   useEffect(() => {
     getGeolocation().then(res => setInitialCoords(res));
     getPosts().then(posts => {
@@ -40,8 +41,74 @@ const MapContainer = ({ google }) => {
   const openMarker = marker => {
     setActiveMarker(marker);
 
+    dispatch({
+      type: "setPinOpened",
+      pinOpened: marker
+    });
+
+    dispatch({
+      type: "setReceiverId",
+      receiverId: marker.authorId
+    });
+
     const ownId = currentUser.uid;
     const newChatId = `${currentUser.uid}${marker.authorId}`;
+
+    console.log('Opa =>', marker.authorId);
+
+    databaseInstance
+      .collection("users")
+      .where("id", "==", marker.authorId)
+      .get()
+      .then(querySnapshot => {
+        if (querySnapshot.empty) return false;
+        querySnapshot.forEach(snapshot => {
+          if (snapshot.data()) {
+            databaseInstance
+              .collection("users")
+              .doc(snapshot.id)
+              .set(
+                {
+                  messages: firebase.firestore.FieldValue.arrayUnion({
+                    email: currentUser.email,
+                    id: currentUser.uid,
+                    chatId,
+                    name: currentUser.name || ""
+                  })
+                },
+                { merge: true }
+              );
+          }
+        });
+      })
+      .catch(console.log);
+
+    databaseInstance
+      .collection("users")
+      .where("id", "==", currentUser.uid)
+      .get()
+      .then(querySnapshot => {
+        if (querySnapshot.empty) return false;
+        querySnapshot.forEach(snapshot => {
+          if (snapshot.data()) {
+            databaseInstance
+              .collection("users")
+              .doc(snapshot.id)
+              .set(
+                {
+                  messages: firebase.firestore.FieldValue.arrayUnion({
+                    email: "email@gmail.com",
+                    id: marker.authorId,
+                    chatId,
+                    name: "A pessoa"
+                  })
+                },
+                { merge: true }
+              );
+          }
+        });
+      })
+      .catch(console.log);
 
     databaseInstance
       .collection("users")
@@ -75,16 +142,6 @@ const MapContainer = ({ google }) => {
         });
       })
       .catch(console.log);
-
-    dispatch({
-      type: "setPinOpened",
-      pinOpened: marker
-    });
-
-    dispatch({
-      type: "setReceiverId",
-      receiverId: marker.authorId
-    });
   };
 
   return (
