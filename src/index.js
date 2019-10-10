@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import history from "./utils/history";
 
 // Components
 import App from "./components/App";
@@ -61,7 +60,7 @@ ReactDOM.render(
   <FirebaseAuthProvider firebase={firebase} {...firebaseConfig}>
     <FirebaseAuthConsumer>
       {firebaseProps => (
-        <Router history={history}>
+        <Router>
           <StateProvider initialState={initialState} reducer={reducer}>
             <App firebaseprops={firebaseProps} />
           </StateProvider>
