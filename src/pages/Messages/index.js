@@ -39,13 +39,13 @@ const Messages = ({ history, ...props }) => {
       Mensagens
       <ul>
         {localChats &&
-          localChats.map(({ email, id }, index) => (
+          localChats.map(({ email, chatId }, index) => (
             <li
               key={index}
               onClick={() => {
                 dispatch({
-                  type: "setReceiverId",
-                  receiverId: id
+                  type: "setChatId",
+                  chatId
                 });
                 history.push('/chat')
               }}

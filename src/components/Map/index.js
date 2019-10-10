@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
-import { useStateValue } from '../../state';
+import { useStateValue } from "../../state";
+import firebase from "firebase/app";
 
 // Components
 import MapPanel from "./MapPanel";
@@ -26,27 +27,64 @@ const MapContainer = ({ google }) => {
   const [markers, setMarkers] = useState([]);
   const [activeMarker, setActiveMarker] = useState({});
   const [initialCoords, setInitialCoords] = useState({ lat: 20, lng: 20 });
-  const [_, dispatch] = useStateValue();
+  const [{ chatId }, dispatch] = useStateValue();
+  const currentUser = firebase.auth().currentUser;
+  const databaseInstance = firebase.firestore();
   useEffect(() => {
     getGeolocation().then(res => setInitialCoords(res));
     getPosts().then(posts => {
       setMarkers([...markers, ...posts]);
     });
   }, []);
-  
 
   const openMarker = marker => {
-    
     setActiveMarker(marker);
-    dispatch({
-      type: 'setPinOpened',
-      pinOpened: marker
-    })
+
+    const ownId = currentUser.uid;
+    const newChatId = `${currentUser.uid}${marker.authorId}`;
+
+    databaseInstance
+      .collection("users")
+      .where("id", "==", ownId)
+      .get()
+      .then(querySnapshot => {
+        if (querySnapshot.empty) return false;
+        querySnapshot.forEach(snapshot => {
+          if (snapshot.data()) {
+            const { messages } = snapshot.data();
+            const chatsExistents = messages.filter(item => {
+              return item.id === marker.authorId;
+            });
+            if (chatsExistents.length > 1) {
+              dispatch({
+                type: "setChatId",
+                chatId: chatsExistents[0].chatId
+              });
+            } else {
+              databaseInstance
+                .collection("chats")
+                .doc(newChatId)
+                .set({ messages: [] });
+
+                dispatch({
+                  type: "setChatId",
+                  chatId: newChatId
+                });
+            }
+          }
+        });
+      })
+      .catch(console.log);
 
     dispatch({
-      type: 'setReceiverId',
+      type: "setPinOpened",
+      pinOpened: marker
+    });
+
+    dispatch({
+      type: "setReceiverId",
       receiverId: marker.authorId
-    })
+    });
   };
 
   return (

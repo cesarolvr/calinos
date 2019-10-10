@@ -9,13 +9,12 @@ import "./Chat.scss";
 import { useStateValue } from "../../state";
 
 const Chat = () => {
-  const [{ receiverId }, dispatch] = useStateValue();
+  const [{ receiverId, chatId }, dispatch] = useStateValue();
   const [localMessages, setLocalMessages] = useState([]);
   const currentUser = firebase.auth().currentUser;
 
-  const initTalk = ({ receiverId }) => {
+  const initTalk = () => {
     const databaseInstance = firebase.firestore();
-    const chatId = `${receiverId}${currentUser.uid}`;
 
     databaseInstance
       .collection("chats")
@@ -30,9 +29,8 @@ const Chat = () => {
       });
   };
 
-  const chatListener = ({ receiverId }) => {
+  const chatListener = () => {
     const databaseInstance = firebase.firestore();
-    const chatId = `${currentUser.uid}${receiverId}`;
 
     databaseInstance
       .collection("chats")
@@ -48,7 +46,6 @@ const Chat = () => {
 
   const sendMessage = ({ text }, { receiverId }) => {
     const databaseInstance = firebase.firestore();
-    const chatId = `${receiverId}${currentUser.uid}`;
 
     const message = {
       receiverId,
@@ -93,6 +90,7 @@ const Chat = () => {
                   messages: firebase.firestore.FieldValue.arrayUnion({
                     email: currentUser.email,
                     id: currentUser.uid,
+                    chatId,
                     name: currentUser.name || ""
                   })
                 },
@@ -119,6 +117,7 @@ const Chat = () => {
                   messages: firebase.firestore.FieldValue.arrayUnion({
                     email: "email@gmail.com",
                     id: receiverId,
+                    chatId,
                     name: "A pessoa"
                   })
                 },
@@ -131,8 +130,8 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    initTalk({ receiverId });
-    chatListener({ receiverId });
+    initTalk();
+    chatListener();
   }, []);
 
   return (

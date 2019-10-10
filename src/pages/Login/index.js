@@ -33,7 +33,7 @@ const Login = props => {
               .add({
                 email: email,
                 id: user.uid,
-                nome: "Usuário"
+                name: "Usuário"
               })
               .then(docRef => {
                 console.log("User registered with ID: ", docRef.id);
@@ -58,7 +58,7 @@ const Login = props => {
               .add({
                 email: user.email,
                 id: user.uid,
-                nome: user.displayName
+                name: user.displayName
               })
               .then(docRef => {
                 console.log("User registered with ID: ", docRef.id);
