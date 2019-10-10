@@ -13,6 +13,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Post from "../pages/Post";
 import Chat from "../pages/Chat";
+import Messages from "../pages/Messages";
 import NotFound from "../pages/NotFound";
 
 const Routes = () => {
@@ -54,11 +55,17 @@ const Routes = () => {
                 authed={isAuthed(firebaseProps)}
                 component={Post}
               />
-               <PrivatedRoute
+              <PrivatedRoute
                 exact
                 path="/chat"
                 authed={isAuthed(firebaseProps)}
                 component={Chat}
+              />
+              <PrivatedRoute
+                exact
+                path="/messages"
+                authed={isAuthed(firebaseProps)}
+                component={Messages}
               />
               <Route path="/not-found" exact={true} component={NotFound} />
               <Redirect from="*" to="/not-found" />

@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // Firebase
 import firebase from "firebase/app";
 
 import logo from "../../assets/images/logo-lettering.svg";
 
-import './Menu.scss'
+import "./Menu.scss";
 
 const Menu = () => {
   const logout = () => {
@@ -18,7 +19,7 @@ const Menu = () => {
       </div>
       <ul className="nav-list">
         <li className="item">Procurar meu pet</li>
-        <li className="item">Mensagens</li>
+        <Link className="item" to="/messages">Mensagens</Link>
         <li className="item">Perfil</li>
         <li className="item">Ajustes</li>
         <li className="item" onClick={logout}>

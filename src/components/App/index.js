@@ -32,6 +32,7 @@ const App = ({ firebaseprops, location }) => {
         "-pin-opened": !!pinOpened
       })}
     >
+      <Link className="item" to="/messages">Mensagens</Link>
       {isAuthed(firebaseprops) && isHomepage && (
         <>
           <Link className="create-post" to="/post"></Link>
