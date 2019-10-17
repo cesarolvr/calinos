@@ -50,102 +50,12 @@ const MapContainer = ({ google }) => {
       type: "setReceiverId",
       receiverId: marker.authorId
     });
-
-    const ownId = currentUser.uid;
-    const newChatId = `${currentUser.uid}${marker.authorId}`;
-
-    databaseInstance
-      .collection("users")
-      .where("id", "==", marker.authorId)
-      .get()
-      .then(querySnapshot => {
-        if (querySnapshot.empty) return false;
-        querySnapshot.forEach(snapshot => {
-          if (snapshot.data()) {
-            databaseInstance
-              .collection("users")
-              .doc(snapshot.id)
-              .set(
-                {
-                  messages: firebase.firestore.FieldValue.arrayUnion({
-                    email: currentUser.email,
-                    id: currentUser.uid,
-                    chatId,
-                    name: currentUser.name || ""
-                  })
-                },
-                { merge: true }
-              );
-          }
-        });
-      })
-      .catch(console.log);
-
-    databaseInstance
-      .collection("users")
-      .where("id", "==", currentUser.uid)
-      .get()
-      .then(querySnapshot => {
-        if (querySnapshot.empty) return false;
-        querySnapshot.forEach(snapshot => {
-          if (snapshot.data()) {
-            databaseInstance
-              .collection("users")
-              .doc(snapshot.id)
-              .set(
-                {
-                  messages: firebase.firestore.FieldValue.arrayUnion({
-                    email: "",
-                    id: marker.authorId,
-                    chatId,
-                    name: ""
-                  })
-                },
-                { merge: true }
-              );
-          }
-        });
-      })
-      .catch(console.log);
-
-    databaseInstance
-      .collection("users")
-      .where("id", "==", ownId)
-      .get()
-      .then(querySnapshot => {
-        if (querySnapshot.empty) return false;
-        querySnapshot.forEach(snapshot => {
-          if (snapshot.data()) {
-            const { messages } = snapshot.data();
-            const chatsExistents = messages.filter(item => {
-              return item.id === marker.authorId;
-            });
-            if (chatsExistents.length > 1) {
-              dispatch({
-                type: "setChatId",
-                chatId: chatsExistents[0].chatId
-              });
-            } else {
-              databaseInstance
-                .collection("chats")
-                .doc(newChatId)
-                .set({ messages: [] });
-
-              dispatch({
-                type: "setChatId",
-                chatId: newChatId
-              });
-            }
-          }
-        });
-      })
-      .catch(console.log);
   };
 
   return (
     <>
       <MapPanel {...activeMarker} />
-      <div className="button-back"></div>
+      <div className="button-back" onClick={() => openMarker(false)}></div>
       <Map
         google={google}
         zoom={25}

@@ -1,5 +1,6 @@
 .map {
   .button-back {
+    display: none;
     width: 20px;
     height: 20px;
     position: fixed;
@@ -8,5 +9,11 @@
     z-index: 40;
     background: url(../../assets/images/arrow-back.svg) center center no-repeat / 100%;
 
+  }
+}
+
+.-pin-opened {
+  .button-back {
+    display: block;
   }
 }
