@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="20px" viewBox="0 0 22 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>arrow-right</title>
+    <desc>Created with Sketch.</desc>
+    <g id="UI-Aplicativo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Menu-aberto" transform="translate(-295.000000, -131.000000)" stroke="#000000" stroke-width="2">
+            <g id="🖼-Icon/S-placeholder" transform="translate(307.000000, 142.000000) rotate(180.000000) translate(-307.000000, -142.000000) translate(288.000000, 120.000000)">
+                <g id="arrow-right" transform="translate(10.000000, 14.000000)">
+                    <path d="M0,9 L20,9" id="Shape"></path>
+                    <polyline id="Shape" points="12.5 0 20 9 12.5 18"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

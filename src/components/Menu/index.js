@@ -21,13 +21,12 @@ const Menu = ({ history, toggleMenu }) => {
   };
   return (
     <div className="menu">
-      <div className="logo">
-        <img src={logo} alt="" />
-      </div>
+      <h1 className="title">Menu</h1>
       <ul className="nav-list">
         <li className="item">Procurar meu pet</li>
         <li className="item" onClick={() => to("/messages")}>
           Mensagens
+          <span className="notification">3</span>
         </li>
         <li className="item">Perfil</li>
         <li className="item">Ajustes</li>
@@ -37,8 +36,10 @@ const Menu = ({ history, toggleMenu }) => {
       </ul>
       <div className="profile">
         <img src="" alt="" className="photo" />
-        <p className="name">Cesar</p>
-        <div className="description">Dono do vinil</div>
+        <div className="info">
+          <p className="name">Cesar</p>
+          <div className="description">Dono do vinil</div>
+        </div>
       </div>
     </div>
   );

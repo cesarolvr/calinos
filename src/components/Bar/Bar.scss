@@ -22,6 +22,10 @@
       height: 23px;
       border-radius: 50%;
       background: #ddd;
+
+      &.paw {
+        background: url(../../assets/images/paw-icon.svg) center center no-repeat / 100%;
+      }
     }
   }
 }

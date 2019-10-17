@@ -7,16 +7,8 @@ import "./Bar.scss";
 const Bar = () => (
   <div className="bar">
     <ul className="bar-list">
-      <li className="item">
-        <Link className="link" to="/home">
-          Home
-        </Link>
-      </li>
-      <li className="item">
-        <Link className="link" to="/feed">
-          Feed
-        </Link>
-      </li>
+      <Link className="item link paw" to="/home"></Link>
+      <Link className="item link" to="/feed"></Link>
       <li className="item" />
       <li className="item" />
     </ul>

@@ -145,6 +145,7 @@ const MapContainer = ({ google }) => {
   return (
     <>
       <MapPanel {...activeMarker} />
+      <div className="button-back"></div>
       <Map
         google={google}
         zoom={25}

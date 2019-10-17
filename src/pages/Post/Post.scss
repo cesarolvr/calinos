@@ -1,14 +1,17 @@
-.post {
-  padding: 20px 30px;
-
-  .form {
-    .box {
-      padding-left: 0;
-      padding-right: 0;
+.panel {
+  &.post {
+    padding: 20px 30px;
+    overflow: scroll;
+  
+    .form {
+      .box {
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
   }
-}
-
-.preview {
-  width: 150px;
+  
+  .preview {
+    width: 150px;
+  }
 }

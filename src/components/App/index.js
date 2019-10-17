@@ -41,7 +41,7 @@ const App = ({ firebaseprops, location }) => {
     >
       {isAuthed(firebaseprops) && isHomepage && (
         <>
-          <Link className="create-post" to="/post"></Link>
+          <Link className="create-post" to="/post">Alertar</Link>
           <div className="menu-toggle" onClick={toggleMenu} />
           <Menu toggleMenu={toggleMenu} />
         </>

@@ -6,8 +6,8 @@
   bottom: 200px;
   z-index: 34;
   width: 100%;
-  box-shadow: 0 5px 10px rgba(168, 174, 201, 0.3);
-  padding: 30px;
+  box-shadow: 0 0px 10px rgba(168, 174, 201, 0.3);
+  padding: 30px 30px 80px;
 
   img {
     width: 100px;
@@ -15,5 +15,24 @@
   
   &.-active {
     display: block;
+  }
+}
+
+.-pin-opened {
+  .map-panel {
+    bottom: -20px;
+    height: 70%;
+  }
+
+  .bar {
+    bottom: 62%;
+
+    .bar-list {
+      opacity: .1;
+    }
+  }
+
+  .create-post, .menu-toggle {
+    display: none;
   }
 }
