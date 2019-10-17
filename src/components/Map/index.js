@@ -30,7 +30,7 @@ const MapContainer = ({ google }) => {
   const currentUser = firebase.auth().currentUser;
   const databaseInstance = firebase.firestore();
   const [{ chatId, receiverId }, dispatch] = useStateValue();
-  
+
   useEffect(() => {
     getGeolocation().then(res => setInitialCoords(res));
     getPosts().then(posts => {
@@ -53,8 +53,6 @@ const MapContainer = ({ google }) => {
 
     const ownId = currentUser.uid;
     const newChatId = `${currentUser.uid}${marker.authorId}`;
-
-    console.log('Opa =>', marker.authorId);
 
     databaseInstance
       .collection("users")
@@ -97,10 +95,10 @@ const MapContainer = ({ google }) => {
               .set(
                 {
                   messages: firebase.firestore.FieldValue.arrayUnion({
-                    email: "email@gmail.com",
+                    email: "",
                     id: marker.authorId,
                     chatId,
-                    name: "A pessoa"
+                    name: ""
                   })
                 },
                 { merge: true }
@@ -133,10 +131,10 @@ const MapContainer = ({ google }) => {
                 .doc(newChatId)
                 .set({ messages: [] });
 
-                dispatch({
-                  type: "setChatId",
-                  chatId: newChatId
-                });
+              dispatch({
+                type: "setChatId",
+                chatId: newChatId
+              });
             }
           }
         });
@@ -149,7 +147,7 @@ const MapContainer = ({ google }) => {
       <MapPanel {...activeMarker} />
       <Map
         google={google}
-        zoom={18}
+        zoom={25}
         style={{
           width: "100%",
           height: "100%"

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 // Firebase
 import firebase from "firebase/app";
@@ -8,9 +9,15 @@ import logo from "../../assets/images/logo-lettering.svg";
 
 import "./Menu.scss";
 
-const Menu = () => {
+const Menu = ({ history, toggleMenu }) => {
   const logout = () => {
+    toggleMenu();
     firebase.auth().signOut();
+  };
+
+  const to = route => {
+    toggleMenu();
+    history.push(route);
   };
   return (
     <div className="menu">
@@ -19,7 +26,9 @@ const Menu = () => {
       </div>
       <ul className="nav-list">
         <li className="item">Procurar meu pet</li>
-        <Link className="item" to="/messages">Mensagens</Link>
+        <li className="item" onClick={() => to("/messages")}>
+          Mensagens
+        </li>
         <li className="item">Perfil</li>
         <li className="item">Ajustes</li>
         <li className="item" onClick={logout}>
@@ -35,4 +44,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default withRouter(Menu);

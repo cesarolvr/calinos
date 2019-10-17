@@ -1,138 +1,10 @@
-import React, { useEffect, useState } from "react";
-import firebase from "firebase/app";
+import React from "react";
 import { Formik } from "formik";
 
 // Style
 import "./Chat.scss";
 
-// State
-import { useStateValue } from "../../state";
-
 const Chat = () => {
-  const [{ receiverId, chatId }, dispatch] = useStateValue();
-  const [localMessages, setLocalMessages] = useState([]);
-  const currentUser = firebase.auth().currentUser;
-
-  const initTalk = () => {
-    const databaseInstance = firebase.firestore();
-
-    databaseInstance
-      .collection("chats")
-      .doc(chatId)
-      .get()
-      .then(doc => {
-        if (!doc || !doc.data()) return;
-        const currentMessages = doc.data().messages;
-        if (currentMessages && currentMessages.length > 0) {
-          setLocalMessages([...currentMessages, ...localMessages]);
-        }
-      });
-  };
-
-  const chatListener = () => {
-    const databaseInstance = firebase.firestore();
-
-    databaseInstance
-      .collection("chats")
-      .doc(chatId)
-      .onSnapshot(doc => {
-        if (!doc || !doc.data()) return;
-        const currentMessages = doc.data().messages;
-        if (currentMessages && currentMessages.length > 0) {
-          setLocalMessages([...currentMessages, ...localMessages]);
-        }
-      });
-  };
-
-  const sendMessage = ({ text }, { receiverId }) => {
-    const databaseInstance = firebase.firestore();
-
-    const message = {
-      receiverId,
-      message: text,
-      senderId: currentUser.uid,
-      date: new Date().getTime()
-    };
-
-    databaseInstance
-      .collection("chats")
-      .doc(chatId)
-      .get()
-      .then(doc => {
-        if (!doc || !doc.data()) {
-          databaseInstance
-            .collection("chats")
-            .doc(chatId)
-            .set({ messages: [] });
-        } else {
-          databaseInstance
-            .collection("chats")
-            .doc(chatId)
-            .update({
-              messages: firebase.firestore.FieldValue.arrayUnion(message)
-            });
-        }
-      });
-
-    databaseInstance
-      .collection("users")
-      .where("id", "==", receiverId)
-      .get()
-      .then(querySnapshot => {
-        if (querySnapshot.empty) return false;
-        querySnapshot.forEach(snapshot => {
-          if (snapshot.data()) {
-            databaseInstance
-              .collection("users")
-              .doc(snapshot.id)
-              .set(
-                {
-                  messages: firebase.firestore.FieldValue.arrayUnion({
-                    email: currentUser.email,
-                    id: currentUser.uid,
-                    chatId,
-                    name: currentUser.name || ""
-                  })
-                },
-                { merge: true }
-              );
-          }
-        });
-      })
-      .catch(console.log);
-
-    databaseInstance
-      .collection("users")
-      .where("id", "==", currentUser.uid)
-      .get()
-      .then(querySnapshot => {
-        if (querySnapshot.empty) return false;
-        querySnapshot.forEach(snapshot => {
-          if (snapshot.data()) {
-            databaseInstance
-              .collection("users")
-              .doc(snapshot.id)
-              .set(
-                {
-                  messages: firebase.firestore.FieldValue.arrayUnion({
-                    email: "email@gmail.com",
-                    id: receiverId,
-                    chatId,
-                    name: "A pessoa"
-                  })
-                },
-                { merge: true }
-              );
-          }
-        });
-      })
-      .catch(console.log);
-  };
-
-  useEffect(() => {
-    initTalk();
-    chatListener();
-  }, []);
 
   return (
     <div className="panel chat">
@@ -148,7 +20,8 @@ const Chat = () => {
         }}
         onSubmit={(values, {}) => {
           const payload = values;
-          sendMessage(payload, { receiverId });
+          console.log(payload);
+          
         }}
       >
         {({
@@ -182,13 +55,10 @@ const Chat = () => {
         )}
       </Formik>
       <ul>
-        {localMessages &&
-          localMessages.map(({ message, date }, index) => (
-            <li key={index}>
-              <small>{date}</small>
-              <h3>{message}</h3>
-            </li>
-          ))}
+        <li>
+          <small>Small</small>
+          <h3>Message</h3>
+        </li>
       </ul>
     </div>
   );

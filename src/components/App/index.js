@@ -25,6 +25,13 @@ const App = ({ firebaseprops, location }) => {
 
   const isHomepage = isHome(location.pathname);
 
+  const toggleMenu = () => {
+    dispatch({
+      type: "setMenuOpened",
+      menuOpened: !menuOpened
+    });
+  };
+
   return (
     <div
       className={classNames("page", {
@@ -32,20 +39,11 @@ const App = ({ firebaseprops, location }) => {
         "-pin-opened": !!pinOpened
       })}
     >
-      <Link className="item" to="/messages">Mensagens</Link>
       {isAuthed(firebaseprops) && isHomepage && (
         <>
           <Link className="create-post" to="/post"></Link>
-          <div
-            className="menu-toggle"
-            onClick={() => {
-              dispatch({
-                type: "setMenuOpened",
-                menuOpened: !menuOpened
-              });
-            }}
-          />
-          <Menu />
+          <div className="menu-toggle" onClick={toggleMenu} />
+          <Menu toggleMenu={toggleMenu} />
         </>
       )}
       <div className="page-holder">
