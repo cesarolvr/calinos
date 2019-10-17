@@ -1,13 +1,29 @@
 .page {
   &.register {
-    background-color: #f6f6f6;
+    background-color: #0FA5A3;
     height: 100vh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    padding: 20px 40px;
     align-items: center;
     justify-content: space-between;
+
+    .banner {
+      width: 100%;
+      height: 30%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url(../../assets/images/banner-register.svg) bottom center no-repeat;
+      background-size: 130% auto;
+
+      .title {
+        width: 100%;
+        padding: 0px 30px;
+        color: white;
+      }
+    }
 
     .logo {
       margin: 10px 0 0px;
@@ -15,14 +31,53 @@
 
     .form {
       margin: 0;
+      padding: 10px 30px;
 
       .box {
         margin-bottom: 10px;
+        background: none;
+        padding: 0;
+      }
+
+      .input {
+        background: none;
+        color: white;
+
+        &::placeholder {
+          color: #FFFFFF;
+        }
+      }
+
+      .label {
+        color: white;
+
+        @media screen and (max-width: 400px) {
+          font-size: 14px;
+        }
       }
 
       .button {
         margin-bottom: 0px;
+        background: white;
+        color: #0FA5A3;
+
+        @media screen and (max-width: 400px) {
+          font-size: 16px;
+        }
       }
+    }
+    .register {
+      font-size: 14px;
+      margin: 10px auto 30px;
+      color: white;
+
+      @media screen and (max-width: 400px) {
+        font-size: 12px;
+      }
+    }
+
+    .link {
+      color: #FFFFFF;
     }
   }
 }

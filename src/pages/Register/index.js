@@ -9,9 +9,6 @@ import firebase from "firebase/app";
 // Style
 import "./Register.scss";
 
-// Components
-import Logo from "../../components/Logo";
-
 const Register = props => {
   const reallyDisconnected = R.path(
     ["firebaseprops", "firebase", "auth"],
@@ -48,9 +45,13 @@ const Register = props => {
   if (!reallyDisconnected) return null;
   return (
     <div className="page register">
-      <Logo />
+      <div className="banner">
+        <h1 className="title">
+          Crie uma <br/> conta
+        </h1>
+      </div>
       <Formik
-        initialValues={{ email: "", password: "", name:"" }}
+        initialValues={{ email: "", password: "", name: "" }}
         validate={values => {
           let errors = {};
           if (!values.email) {
@@ -84,7 +85,7 @@ const Register = props => {
         }) => (
           <form className="form" onSubmit={handleSubmit}>
             <div className="box">
-            <div className="input-wrapper">
+              <div className="input-wrapper">
                 <label className="label">Nome</label>
                 <input
                   type="text"
@@ -127,9 +128,9 @@ const Register = props => {
             <button className="button" type="submit" disabled={isSubmitting}>
               Criar conta
             </button>
-            <button className="button -secondary" type="button">
+            {/* <button className="button -secondary" type="button">
               Criar com Google
-            </button>
+            </button> */}
           </form>
         )}
       </Formik>

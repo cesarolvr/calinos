@@ -12,7 +12,7 @@ import { signIn, signInGoogle } from "../../api/auth/login";
 // Styles
 import "./Login.scss";
 
-import logo from '../../assets/images/logo-icon.svg'
+import logo from "../../assets/images/logo-icon.svg";
 
 const Login = props => {
   const db = firebase.firestore();
@@ -76,7 +76,7 @@ const Login = props => {
   return (
     <div className="page login">
       <div className="banner">
-        <img src={logo} className="logo" alt=""/>
+        <img src={logo} className="logo" alt="" />
       </div>
       <Formik
         initialValues={{ email: "", password: "" }}
@@ -123,8 +123,13 @@ const Login = props => {
                   value={values.email}
                   placeholder="email@example.com"
                 />
+                {errors.email && touched.email && errors.email && (
+                  <span className="error">
+                    {errors.email && touched.email && errors.email}
+                  </span>
+                )}
               </div>
-              {errors.email && touched.email && errors.email}
+
               <div className="input-wrapper">
                 <label className="label">Senha</label>
                 <input
@@ -137,8 +142,12 @@ const Login = props => {
                   placeholder="*********"
                 />
               </div>
+              {errors.email && touched.email && errors.email && (
+                <span className="error">
+                  {errors.password && touched.password && errors.password}
+                </span>
+              )}
             </div>
-            {errors.password && touched.password && errors.password}
             <button className="button" type="submit" disabled={isSubmitting}>
               Entrar
             </button>
