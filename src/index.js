@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, HashRouter } from "react-router-dom";
 
 // Components
 import App from "./components/App";
@@ -69,9 +69,11 @@ ReactDOM.render(
     <FirebaseAuthConsumer>
       {firebaseProps => (
         <Router>
-          <StateProvider initialState={initialState} reducer={reducer}>
-            <App firebaseprops={firebaseProps} />
-          </StateProvider>
+          <HashRouter basename="/">
+            <StateProvider initialState={initialState} reducer={reducer}>
+              <App firebaseprops={firebaseProps} />
+            </StateProvider>
+          </HashRouter>
         </Router>
       )}
     </FirebaseAuthConsumer>
