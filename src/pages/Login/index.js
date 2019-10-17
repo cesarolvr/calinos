@@ -12,8 +12,7 @@ import { signIn, signInGoogle } from "../../api/auth/login";
 // Styles
 import "./Login.scss";
 
-// Components
-import Logo from "../../components/Logo";
+import logo from '../../assets/images/logo-icon.svg'
 
 const Login = props => {
   const db = firebase.firestore();
@@ -46,37 +45,39 @@ const Login = props => {
       })
       .catch(err => console.log(err));
   };
-  const signInWithGoogle = () => {
-    signInGoogle()
-      .then(result => {
-        const { user } = result;
-        const citiesRef = db.collection("users");
-        const query = citiesRef.where("email", "==", user.email);
-        query.get().then(querySnapshot => {
-          if (querySnapshot.empty) {
-            db.collection("users")
-              .add({
-                email: user.email,
-                id: user.uid,
-                name: user.displayName
-              })
-              .then(docRef => {
-                console.log("User registered with ID: ", docRef.id);
-              })
-              .catch(error => {
-                console.error("Error on register user: ", error);
-              });
-          }
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
+  // const signInWithGoogle = () => {
+  //   signInGoogle()
+  //     .then(result => {
+  //       const { user } = result;
+  //       const citiesRef = db.collection("users");
+  //       const query = citiesRef.where("email", "==", user.email);
+  //       query.get().then(querySnapshot => {
+  //         if (querySnapshot.empty) {
+  //           db.collection("users")
+  //             .add({
+  //               email: user.email,
+  //               id: user.uid,
+  //               name: user.displayName
+  //             })
+  //             .then(docRef => {
+  //               console.log("User registered with ID: ", docRef.id);
+  //             })
+  //             .catch(error => {
+  //               console.error("Error on register user: ", error);
+  //             });
+  //         }
+  //       });
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // };
   if (!reallyDisconnected) return null;
   return (
     <div className="page login">
-      <Logo />
+      <div className="banner">
+        <img src={logo} className="logo" alt=""/>
+      </div>
       <Formik
         initialValues={{ email: "", password: "" }}
         validate={values => {
@@ -108,7 +109,6 @@ const Login = props => {
           handleBlur,
           handleSubmit,
           isSubmitting
-          /* and other goodies */
         }) => (
           <form className="form" onSubmit={handleSubmit}>
             <div className="box">
@@ -142,17 +142,16 @@ const Login = props => {
             <button className="button" type="submit" disabled={isSubmitting}>
               Entrar
             </button>
-            <button
+            {/* <button
               type="button"
               className="button -secondary"
               onClick={signInWithGoogle}
             >
               Entrar com Google
-            </button>
+            </button> */}
           </form>
         )}
       </Formik>
-
       <p className="register">
         Não tem uma conta?
         <Link className="link" to="/register">
