@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
+import classNames from "classnames";
 
 // State
 import { useStateValue } from "../../state";
@@ -14,14 +15,21 @@ import "./Chat.scss";
 const Chat = () => {
   const [{ pinOpened }, dispatch] = useStateValue();
   const [localMessages, setLocalMessages] = useState([]);
+  const currentUser = firebase.auth().currentUser;
   const db = firebase.firestore();
-  const hasMessages = localMessages.length > 0;
+  const hasMessages = localMessages && localMessages.length > 0;
   const { id } = pinOpened;
 
   const sendMessage = message => {
+    var days = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'];
+    const date = `${days[new Date().getDay()]}, ${new Date().getHours()}:${new Date().getMinutes()}`
     const newMessage = {
       ...message,
-      date: new Date()
+      sendedAt: {
+        date,
+        at: new Date()
+      },
+      authorId: currentUser.uid
     };
     db.collection("chats")
       .doc(id)
@@ -54,11 +62,15 @@ const Chat = () => {
       <div className="artboard">
         {hasMessages ? (
           <ul className="message-list">
-            {localMessages.map(({ text, ...props }, index) => {
-              console.log(props);
-
+            {localMessages.map(({ text, authorId, sendedAt }, index) => {
               return (
-                <li className="message" key={index}>
+                <li
+                  className={classNames("message", {
+                    "-me": authorId === currentUser.uid
+                  })}
+                  key={index}
+                >
+                  <span>{sendedAt.date}</span>
                   <h3>{text}</h3>
                 </li>
               );
