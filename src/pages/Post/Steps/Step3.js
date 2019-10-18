@@ -1,6 +1,5 @@
 import React from "react";
 
-import { getCurrentUser } from "../../../api/auth/login";
 import getGeolocation from "../../../utils/geolocation";
 
 // Firebase
@@ -30,8 +29,6 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
     }
   };
   const uploadFile = () => {
-    // nextStep()
-    const user = getCurrentUser();
     const db = firebase.firestore();
     const storageRef = firebase.storage().ref();
     const userId = firebase.auth().currentUser.uid;
@@ -54,8 +51,7 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
             if (i === photos.length - 1) {
               getGeolocation().then(l => {
                 db.collection("posts")
-                  .doc()
-                  .set({
+                  .add({
                     ...formValue,
                     local: {
                       ...formValue.local,
@@ -64,10 +60,17 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
                         lng: l.lng
                       }
                     },
-                    authorId: user.uid,
+                    authorId: userId,
                     photos: [...newPhoto]
                   })
-                  .then(nextStep);
+                  .then(({ id }) => {
+                    db.collection("chats")
+                      .doc(id)
+                      .set({
+                        messages: []
+                      });
+                    nextStep()
+                  });
               });
             }
           });

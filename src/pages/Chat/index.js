@@ -2,11 +2,24 @@ import React from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
 
+// State
+import { useStateValue } from "../../state";
+
 // Style
 import "./Chat.scss";
 
 const Chat = () => {
+  const [{ pinOpened }, dispatch] = useStateValue();
   const hasMessages = false;
+  const sendMessage = message => {
+    console.log(message, pinOpened);
+    
+    // db.collection("chats")
+    // .doc(id)
+    // .set({
+    //   messages: []
+    // });
+  }
   return (
     <div className="panel chat">
       <div className="header">
@@ -41,7 +54,7 @@ const Chat = () => {
         }}
         onSubmit={(values, {}) => {
           const payload = values;
-          console.log(payload);
+          sendMessage(payload)
         }}
       >
         {({
@@ -49,8 +62,6 @@ const Chat = () => {
           handleChange,
           handleBlur,
           handleSubmit,
-          errors,
-          touched
         }) => (
           <form className="form" onSubmit={handleSubmit}>
             <div className="input-wrapper">
