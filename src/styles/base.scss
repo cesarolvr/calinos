@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'sans-serif';
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, Roboto, 'sans-serif';
 }
 
 body {
@@ -19,6 +19,10 @@ a {
   color: black;
   text-decoration: none;
   margin: 0 4px;
+}
+
+h1 {
+  letter-spacing: 0.02em;
 }
 
 .button {
@@ -67,28 +71,36 @@ a {
 }
 
 .label {
-  font-size: 14px;
+  font-size: 16px;
   color: #A7A7A7;
   margin-bottom: 5px;
+  font-weight: normal;
 }
 
-.input {
+.input, select, .textarea {
   font-size: 18px;
   color: black;
+  background: none;
   padding: 0;
   font-weight: 700;
   width: 100%;
   padding: 10px 0;
   border: none;
-  border-bottom: 2px solid transparent;
+  border-bottom: 2px solid #eeeeee;
 
   &:focus {
    outline: none;
-   border-bottom-color: #eeeeee; 
+   border-bottom-color: #ccc; 
   }
 
   &::placeholder {
     color: #ddd;
     font-weight: 400;
   }
+}
+
+.textarea {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
 }

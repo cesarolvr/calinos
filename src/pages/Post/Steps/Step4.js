@@ -3,19 +3,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Step4 = () => (
-  <div className="panel post">
-    <h1>Feito!</h1>
-    <p className="description">
-      A notícia sobre seu bichinho foi postada para pessoas ao redor e para seu
-      amigos.
-    </p>
-    <p className="description">
-      Você pode compartilhar em outras redes para obter um alcance maior.
-    </p>
-    <button className="button">Compartilhar</button>
-    <Link className="link" to="/home">
-      Voltar para home
-    </Link>
+  <div className="panel post -final">
+    <div className="banner"></div>
+    <div className="content">
+      <h1 className="title">Feito!</h1>
+      <p className="description">
+        A notícia sobre seu bichinho foi postada para pessoas ao redor e para
+        seu amigos.
+      </p>
+      <button className="button share">Compartilhar</button>
+      <Link className="button to-home" to="/home">
+        Voltar para home
+      </Link>
+    </div>
   </div>
 );
 

@@ -30,6 +30,7 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
     }
   };
   const uploadFile = () => {
+    // nextStep()
     const user = getCurrentUser();
     const db = firebase.firestore();
     const storageRef = firebase.storage().ref();
@@ -72,53 +73,46 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
           });
         }
       );
-
-      // .then(({ state, metadata }) => {
-      //   storageRef.getDownloadURL().then(console.log);
-
-      // if (state !== "success") return;
-      // newPhoto.push(metadata.fullPath);
-      // if (i === photos.length - 1) {
-      //   getGeolocation().then(l => {
-      //     db.collection("posts")
-      //       .doc()
-      //       .set({
-      //         ...formValue,
-      //         local: {
-      //           ...formValue.local,
-      //           pin: {
-      //             lat: l.lat,
-      //             lng: l.lng
-      //           }
-      //         },
-      //         authorId: user.uid,
-      //         photos: [...newPhoto]
-      //       })
-      //       .then(nextStep);
-      //   });
-      // }
-      // });
     }
   };
   return (
-    <div className="panel post">
-      <h1>Adicione fotos do seu bichinho</h1>
-      <input
-        type="file"
-        name="animalImage"
-        accept="image/*"
-        onChange={readFile}
-      />
-      {photos.map(({ blob }, index) => {
-        return <img src={blob} alt="" key={index} className="preview" />;
-      })}
+    <div className="panel post -photo">
+      <div className="content">
+        <h1 className="title">Adicione fotos do seu bichinho</h1>
+        <div className="gallery">
+          {photos.map(({ blob }, index) => {
+            return (
+              <div className="photo-item">
+                <div className="delete-photo"></div>
+                <div className="image-wrapper">
+                  <img src={blob} alt="" key={index} className="image" />;
+                </div>
+              </div>
+            );
+          })}
+          <div className="photo-item add">
+            <input
+              type="file"
+              name="animalImage"
+              accept="image/*"
+              onChange={readFile}
+            />
+          </div>
+        </div>
 
-      <button type="button" className="button -secondary" onClick={prevStep}>
-        Voltar
-      </button>
-      <button className="button" onClick={uploadFile}>
-        Próximo
-      </button>
+        <div className="step-control">
+          <button
+            type="button"
+            className="button -secondary prev"
+            onClick={prevStep}
+          >
+            Voltar
+          </button>
+          <button className="button next" onClick={uploadFile}>
+            Próximo
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
