@@ -7,6 +7,10 @@ import firebase from "firebase/app";
 
 const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
   const { photos = [] } = formValue;
+  const userId = firebase.auth().currentUser.uid;
+
+  // Todo: refatorar isso passando para o state
+  let newPhoto = [];
   const readFile = e => {
     e.preventDefault();
     const input = e.target;
@@ -28,11 +32,35 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
       reader.readAsDataURL(input.files[0]);
     }
   };
-  const uploadFile = () => {
+  const createPost = () => {
     const db = firebase.firestore();
+    getGeolocation().then(location => {
+      db.collection("posts")
+        .add({
+          ...formValue,
+          local: {
+            ...formValue.local,
+            pin: {
+              lat: location.lat,
+              lng: location.lng
+            }
+          },
+          authorId: userId,
+          photos: [...newPhoto]
+        })
+        .then(({ id }) => {
+          db.collection("chats")
+            .doc(id)
+            .set({
+              messages: []
+            });
+          nextStep();
+        })
+        .catch(console.log);
+    });
+  };
+  const uploadFile = () => {
     const storageRef = firebase.storage().ref();
-    const userId = firebase.auth().currentUser.uid;
-    let newPhoto = [];
     if (photos.length === 0) return;
     for (let i = 0; i < photos.length; i++) {
       const fileName = `pic-${Math.floor(Math.random() * 1000000000)}`;
@@ -49,29 +77,7 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
           uploadTask.snapshot.ref.getDownloadURL().then(url => {
             newPhoto.push(url);
             if (i === photos.length - 1) {
-              getGeolocation().then(l => {
-                db.collection("posts")
-                  .add({
-                    ...formValue,
-                    local: {
-                      ...formValue.local,
-                      pin: {
-                        lat: l.lat,
-                        lng: l.lng
-                      }
-                    },
-                    authorId: userId,
-                    photos: [...newPhoto]
-                  })
-                  .then(({ id }) => {
-                    db.collection("chats")
-                      .doc(id)
-                      .set({
-                        messages: []
-                      });
-                    nextStep()
-                  });
-              });
+              createPost();
             }
           });
         }
