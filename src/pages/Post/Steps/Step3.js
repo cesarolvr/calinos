@@ -34,6 +34,7 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
   };
   const createPost = () => {
     const db = firebase.firestore();
+    const postId = `${Math.floor(Math.random() * 1000000000)}`;
     getGeolocation().then(location => {
       db.collection("posts")
         .add({
@@ -46,11 +47,12 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
             }
           },
           authorId: userId,
-          photos: [...newPhoto]
+          photos: [...newPhoto],
+          id: postId
         })
-        .then(({ id }) => {
+        .then(() => {
           db.collection("chats")
-            .doc(id)
+            .doc(postId)
             .set({
               messages: []
             });

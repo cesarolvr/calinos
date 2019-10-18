@@ -9,10 +9,6 @@
     flex-direction: column-reverse;
   }
 
-  .form {
-    height: auto;
-  }
-
   .header {
     height: 120px;
     width: 100%;
@@ -41,9 +37,20 @@
   }
 
   .artboard {
+    position: relative;
     height: 100%;
     width: 100%;
     padding: 0px 30px;
+    z-index: 28;
+
+    > .message-list {
+      height: 100%;
+      overflow: scroll;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 150px;
+      justify-content: flex-end;
+    }
   }
 
   .actions {
@@ -82,6 +89,9 @@
     position: absolute;
     padding: 30px;
     bottom: 0;
+    height: auto;
+    z-index: 30;
+    background: #FAFAFA;
     > .input-wrapper {
       width: 100%;
       display: flex;

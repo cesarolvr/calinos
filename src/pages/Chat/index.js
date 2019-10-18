@@ -1,25 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
 
 // State
 import { useStateValue } from "../../state";
 
+// Firebase
+import firebase from "firebase/app";
+
 // Style
 import "./Chat.scss";
 
 const Chat = () => {
   const [{ pinOpened }, dispatch] = useStateValue();
-  const hasMessages = false;
+  const [localMessages, setLocalMessages] = useState([]);
+  const db = firebase.firestore();
+  const hasMessages = localMessages.length > 0;
+  const { id } = pinOpened;
+
   const sendMessage = message => {
-    console.log(message, pinOpened);
-    
-    // db.collection("chats")
-    // .doc(id)
-    // .set({
-    //   messages: []
-    // });
-  }
+    const newMessage = {
+      ...message,
+      date: new Date()
+    };
+    db.collection("chats")
+      .doc(id)
+      .update({
+        messages: firebase.firestore.FieldValue.arrayUnion(newMessage)
+      });
+  };
+
+  const chatListener = () => {
+    db.collection("chats")
+      .doc(id)
+      .onSnapshot(doc => {
+        if (!doc || !doc.data()) return;
+        const messagesUpdated = doc.data().messages;
+        setLocalMessages(messagesUpdated);
+      });
+  };
+
+  useEffect(() => {
+    chatListener();
+  }, []);
+
+  console.log(localMessages);
   return (
     <div className="panel chat">
       <div className="header">
@@ -29,9 +54,15 @@ const Chat = () => {
       <div className="artboard">
         {hasMessages ? (
           <ul className="message-list">
-            <li className="message">
-              <h3>Oi Maria, eu vi o Fred!</h3>
-            </li>
+            {localMessages.map(({ text, ...props }, index) => {
+              console.log(props);
+
+              return (
+                <li className="message" key={index}>
+                  <h3>{text}</h3>
+                </li>
+              );
+            })}
           </ul>
         ) : (
           <div className="actions">
@@ -54,15 +85,10 @@ const Chat = () => {
         }}
         onSubmit={(values, {}) => {
           const payload = values;
-          sendMessage(payload)
+          sendMessage(payload);
         }}
       >
-        {({
-          values,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-        }) => (
+        {({ values, handleChange, handleBlur, handleSubmit }) => (
           <form className="form" onSubmit={handleSubmit}>
             <div className="input-wrapper">
               <input
