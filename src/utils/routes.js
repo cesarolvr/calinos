@@ -45,6 +45,12 @@ const Routes = () => {
               />
               <PrivatedRoute
                 exact
+                path="/"
+                authed={isAuthed(firebaseProps)}
+                component={Home}
+              />
+              <PrivatedRoute
+                exact
                 path="/feed"
                 authed={isAuthed(firebaseProps)}
                 component={Feed}

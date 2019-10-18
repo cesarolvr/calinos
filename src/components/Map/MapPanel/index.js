@@ -5,7 +5,7 @@ import Glide from "@glidejs/glide";
 
 import "./MapPanel.scss";
 
-const MapPanel = ({ animal, photos }) => {
+const MapPanel = ({ animal, photos = [] }) => {
   const active = !!animal;
   if (!active) return null;
   const { breed = "", color = "", name = "", size = "" } = animal;
@@ -41,6 +41,17 @@ const MapPanel = ({ animal, photos }) => {
               </li>
             ))}
           </ul>
+          <div className="glide__bullets" data-glide-el="controls[nav]">
+            {photos.map((item, index) => {
+              return (
+                <button
+                  key={index}
+                  className="glide__bullet"
+                  data-glide-dir={`=${index}`}
+                ></button>
+              );
+            })}
+          </div>
         </div>
       </div>
 

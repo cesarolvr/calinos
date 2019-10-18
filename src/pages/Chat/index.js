@@ -1,22 +1,34 @@
 import React from "react";
 import { Formik } from "formik";
+import { Link } from "react-router-dom";
 
 // Style
 import "./Chat.scss";
 
 const Chat = () => {
+  const hasMessages = false;
   return (
     <div className="panel chat">
       <div className="header">
-        <div className="back"></div>
+        <Link className="back" to="/home"></Link>
         <h2 className="name">Vamos achar o Fred!</h2>
       </div>
       <div className="artboard">
-        <ul>
-          <li>
-            <h3>Oi Maria, eu vi o Fred!</h3>
-          </li>
-        </ul>
+        {hasMessages ? (
+          <ul className="message-list">
+            <li className="message">
+              <h3>Oi Maria, eu vi o Fred!</h3>
+            </li>
+          </ul>
+        ) : (
+          <div className="actions">
+            <h3 className="title">
+              Como você <br /> quer ajudar Maria?
+            </h3>
+            <button className="button find">Informar que achou Fred</button>
+            <button className="button share">Compatilhar a notícia</button>
+          </div>
+        )}
       </div>
       <Formik
         initialValues={{ text: "" }}
@@ -41,24 +53,20 @@ const Chat = () => {
           touched
         }) => (
           <form className="form" onSubmit={handleSubmit}>
-            <div className="box">
-              <div className="input-wrapper">
-                <label className="label">Mensagem</label>
-                <input
-                  type="text"
-                  name="text"
-                  className="input"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.email}
-                  placeholder="Digite uma mensagem"
-                />
-                {errors.text && touched.text && errors.text}
-              </div>
+            <div className="input-wrapper">
+              <input
+                type="text"
+                name="text"
+                className="input"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+                placeholder="Digite uma mensagem"
+              />
+              <button className="button send" type="submit">
+                Enviar
+              </button>
             </div>
-            <button className="button" type="submit">
-              Enviar
-            </button>
           </form>
         )}
       </Formik>

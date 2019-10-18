@@ -64,19 +64,20 @@ const MapContainer = ({ google }) => {
         center={initialCoords}
       >
         <Marker
-          title={"Me"}
+          title={"Eu"}
           name={"Eu"}
           icon={pinMe}
           position={initialCoords}
         />
         {markers.map((marker, index) => {
-          const { local } = marker;
+          const local = marker.local;
+          const animal = marker.animal
           if (!local.pin) return null;
           return (
             <Marker
               title={"Me"}
               key={index}
-              name={"Eu"}
+              name={animal.name}
               onClick={() => openMarker(marker)}
               icon={pin}
               position={{

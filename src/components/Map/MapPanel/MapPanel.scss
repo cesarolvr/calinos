@@ -7,7 +7,7 @@
   z-index: 34;
   width: 100%;
   box-shadow: 0 0px 10px rgba(168, 174, 201, 0.3);
-  padding: 30px 30px 80px;
+  padding: 30px 30px 50px;
   overflow: scroll;
 
   .title {
@@ -69,6 +69,11 @@
   .map-panel {
     bottom: -20px;
     height: 70%;
+
+    @media screen and (max-width: 400px) {
+      height: 80%;
+      padding: 25px 30px 40px;
+    }
   }
 
   .bar {
@@ -92,7 +97,11 @@
   border-radius: 26px;
   margin: 30px 0px 15px;
   background: #eee;
-  
+  position: relative;
+
+  @media screen and (max-width: 400px) {
+    height: 150px;
+  }
 
   .glide__track {
     background: #eee;
@@ -109,6 +118,34 @@
         width: 100%;
         min-width: 100%;
         min-height: 100%;
+      }
+    }
+  }
+
+  .glide__bullets {
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: auto;
+
+    > .glide__bullet {
+      background: white;
+      opacity: .4;
+      width: 8px;
+      height: 8px;
+      margin: 0px 3px;
+      border-radius: 50%;
+      padding: 0;
+      border: none;
+
+      &--active {
+        // background: black;
+        opacity: 1;
       }
     }
   }

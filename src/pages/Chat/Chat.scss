@@ -1,8 +1,117 @@
 .panel.chat {
-  overflow: scroll;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #FAFAFA;
 
   ul {
     display: flex;
     flex-direction: column-reverse;
+  }
+
+  .form {
+    height: auto;
+  }
+
+  .header {
+    height: 120px;
+    width: 100%;
+    padding: 10px 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > .name {
+      margin: 0;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    > .back {
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 18px;
+      height: 18px;
+      background: url(../../assets/images/arrow-back.svg) center center no-repeat / contain;
+    }
+  }
+
+  .artboard {
+    height: 100%;
+    width: 100%;
+    padding: 0px 30px;
+  }
+
+  .actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10%;
+    padding: 30px;
+
+    > .title {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 24px;
+      margin-bottom: 20px;
+    }
+
+    > .button {
+      font-weight: normal;
+      padding: 18px 20px;
+
+      &.find {
+        background: #DC1D48;
+      }
+
+      &.share {
+        background: #F0F0F0;
+        color: black;
+      }
+    }
+  }
+
+  .form {
+    position: absolute;
+    padding: 30px;
+    bottom: 0;
+    > .input-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      box-shadow: 0 0px 10px rgba(168, 174, 201, 0.3);
+      border-radius: 13px;
+      height: 60px;
+
+      > input {
+        width: 75%;
+        height: 100%;
+        padding: 10px;
+        border: none;
+        font-size: 16px;
+
+        &::placeholder {
+          font-size: 16px;
+        }
+      }
+
+      > .send {
+        width:25%;
+        height: 100%;
+        margin: auto;
+        border-radius: 13px;
+        font-weight: normal;
+        padding: 10px 0px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
   }
 }
