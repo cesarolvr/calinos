@@ -1,11 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
 // Firebase
 import firebase from "firebase/app";
-
-import logo from "../../assets/images/logo-lettering.svg";
 
 import "./Menu.scss";
 

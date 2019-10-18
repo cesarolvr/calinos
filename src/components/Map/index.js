@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import { useStateValue } from "../../state";
-import firebase from "firebase/app";
 
 // Components
 import MapPanel from "./MapPanel";
@@ -27,9 +26,7 @@ const MapContainer = ({ google }) => {
   const [markers, setMarkers] = useState([]);
   const [activeMarker, setActiveMarker] = useState({});
   const [initialCoords, setInitialCoords] = useState({ lat: 20, lng: 20 });
-  const currentUser = firebase.auth().currentUser;
-  const databaseInstance = firebase.firestore();
-  const [{ chatId, receiverId }, dispatch] = useStateValue();
+  const [_, dispatch] = useStateValue();
 
   useEffect(() => {
     getGeolocation().then(res => setInitialCoords(res));

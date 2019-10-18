@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import firebase from "firebase/app";
 
 // Api
-import { signIn, signInGoogle } from "../../api/auth/login";
+import { signIn } from "../../api/auth/login";
 
 // Styles
 import "./Login.scss";
