@@ -5,10 +5,19 @@ import { Formik } from "formik";
 import "./Chat.scss";
 
 const Chat = () => {
-
   return (
     <div className="panel chat">
-      Chat
+      <div className="header">
+        <div className="back"></div>
+        <h2 className="name">Vamos achar o Fred!</h2>
+      </div>
+      <div className="artboard">
+        <ul>
+          <li>
+            <h3>Oi Maria, eu vi o Fred!</h3>
+          </li>
+        </ul>
+      </div>
       <Formik
         initialValues={{ text: "" }}
         validate={values => {
@@ -21,7 +30,6 @@ const Chat = () => {
         onSubmit={(values, {}) => {
           const payload = values;
           console.log(payload);
-          
         }}
       >
         {({
@@ -54,12 +62,6 @@ const Chat = () => {
           </form>
         )}
       </Formik>
-      <ul>
-        <li>
-          <small>Small</small>
-          <h3>Message</h3>
-        </li>
-      </ul>
     </div>
   );
 };
