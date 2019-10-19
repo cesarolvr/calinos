@@ -1,5 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
+import classNames from "classnames";
 import * as R from "ramda";
 import { Link } from "react-router-dom";
 
@@ -45,49 +46,30 @@ const Login = props => {
       })
       .catch(err => console.log(err));
   };
-  // const signInWithGoogle = () => {
-  //   signInGoogle()
-  //     .then(result => {
-  //       const { user } = result;
-  //       const citiesRef = db.collection("users");
-  //       const query = citiesRef.where("email", "==", user.email);
-  //       query.get().then(querySnapshot => {
-  //         if (querySnapshot.empty) {
-  //           db.collection("users")
-  //             .add({
-  //               email: user.email,
-  //               id: user.uid,
-  //               name: user.displayName
-  //             })
-  //             .then(docRef => {
-  //               console.log("User registered with ID: ", docRef.id);
-  //             })
-  //             .catch(error => {
-  //               console.error("Error on register user: ", error);
-  //             });
-  //         }
-  //       });
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // };
   if (!reallyDisconnected) return null;
   return (
     <div className="page login">
       <div className="banner">
         <img src={logo} className="logo" alt="" />
+        <p className="register">
+          <Link className="link" to="/register">
+            Cadastre-se
+          </Link>
+        </p>
       </div>
       <Formik
         initialValues={{ email: "", password: "" }}
         validate={values => {
           let errors = {};
+          if (!values.password) {
+            errors.password = "Obrigatório";
+          }
           if (!values.email) {
-            errors.email = "Required";
+            errors.email = "Obrigatório";
           } else if (
             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
           ) {
-            errors.email = "Invalid email address";
+            errors.email = "Email inválido";
           }
           return errors;
         }}
@@ -108,65 +90,60 @@ const Login = props => {
           handleChange,
           handleBlur,
           handleSubmit,
-          isSubmitting
-        }) => (
-          <form className="form" onSubmit={handleSubmit}>
-            <div className="box">
-              <div className="input-wrapper">
-                <label className="label">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  className="input"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.email}
-                  placeholder="email@example.com"
-                />
-                {errors.email && touched.email && errors.email && (
-                  <span className="error">
-                    {errors.email && touched.email && errors.email}
-                  </span>
-                )}
-              </div>
+          isValid
+        }) => {
+          // console.log(isValid);
+          return (
+            <form className="form" onSubmit={handleSubmit}>
+              <div className="box">
+                <div className="input-wrapper">
+                  <label className="label">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    className="input"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.email}
+                    placeholder="email@example.com"
+                  />
+                  {errors.email && touched.email && errors.email && (
+                    <span className="error">
+                      {errors.email && touched.email && errors.email}
+                    </span>
+                  )}
+                </div>
 
-              <div className="input-wrapper">
-                <label className="label">Senha</label>
-                <input
-                  type="password"
-                  name="password"
-                  className="input"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.password}
-                  placeholder="*********"
-                />
+                <div className="input-wrapper">
+                  <label className="label">Senha</label>
+                  <input
+                    type="password"
+                    name="password"
+                    className="input"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.password}
+                    placeholder="*********"
+                  />
+                  {errors.password && touched.password && errors.password && (
+                    <span className="error">
+                      {errors.password && touched.password && errors.password}
+                    </span>
+                  )}
+                </div>
               </div>
-              {errors.email && touched.email && errors.email && (
-                <span className="error">
-                  {errors.password && touched.password && errors.password}
-                </span>
-              )}
-            </div>
-            <button className="button" type="submit" disabled={isSubmitting}>
-              Entrar
-            </button>
-            {/* <button
-              type="button"
-              className="button -secondary"
-              onClick={signInWithGoogle}
-            >
-              Entrar com Google
-            </button> */}
-          </form>
-        )}
+              <button
+                className={classNames("button", {
+                  "-disabled": !isValid
+                })}
+                type="submit"
+              >
+                Entrar
+              </button>
+            </form>
+          );
+        }}
       </Formik>
-      <p className="register">
-        Não tem uma conta?
-        <Link className="link" to="/register">
-          Cadastre-se
-        </Link>
-      </p>
     </div>
   );
 };

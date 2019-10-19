@@ -3,6 +3,14 @@
   font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, Roboto, 'sans-serif';
 }
 
+/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -57,12 +65,16 @@ h1 {
   align-items: flex-start;
   flex-direction: column;
   margin-bottom: 30px;
+  position: relative;
 
   > span {
     font-size: 12px;
-    color: #000000;
-    font-weight: bold;
+    color: black;
+    font-weight: normal;
     margin: 10px 0;
+    position: absolute;
+    right: 0;
+    margin-top: 0;
   }
 
   &:last-of-type {
