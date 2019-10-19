@@ -41,11 +41,13 @@ const App = ({ firebaseprops, location }) => {
     >
       {isAuthed(firebaseprops) && isHomepage && (
         <>
-          <Link className="create-post" to="/post">Alertar</Link>
+          <Link className="create-post" to="/post">
+            Alertar
+          </Link>
           <div className="menu-toggle" onClick={toggleMenu} />
-          <Menu toggleMenu={toggleMenu} />
         </>
       )}
+      <Menu toggleMenu={toggleMenu} />
       <div className="page-holder">
         <Routes />
         {isAuthed(firebaseprops) && isHomepage && <Bar />}
