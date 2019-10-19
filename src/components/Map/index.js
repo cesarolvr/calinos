@@ -28,6 +28,16 @@ const MapContainer = ({ google }) => {
   const [initialCoords, setInitialCoords] = useState({ lat: 20, lng: 20 });
   const [_, dispatch] = useStateValue();
 
+  const getLocation = () => {
+    return getGeolocation().then(res => setInitialCoords(res));
+  }
+
+  const getPublications = () => {
+    return getPosts().then(posts => {
+      setMarkers([...markers, ...posts]);
+    });
+  }
+
   useEffect(() => {
     dispatch({
       type: "setPinOpened",
@@ -35,10 +45,8 @@ const MapContainer = ({ google }) => {
     });
     
     setActiveMarker(false);
-    getGeolocation().then(res => setInitialCoords(res));
-    getPosts().then(posts => {
-      setMarkers([...markers, ...posts]);
-    });
+    getLocation()
+    getPublications()
   }, []);
 
   const openMarker = marker => {
