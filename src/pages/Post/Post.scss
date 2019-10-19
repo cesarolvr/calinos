@@ -59,6 +59,10 @@
     > .next {
       padding: 10px 20px;
       background: #dc1d48;
+
+      &.-disabled {
+        background: #ddd;
+      }
     }
   }
 
@@ -120,7 +124,8 @@
       &.cancel {
         background: none;
         padding: 0;
-        color: #ccc;
+        color: black;
+        font-weight: normal;
         box-shadow: none;
       }
     }

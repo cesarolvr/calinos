@@ -1,5 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
+import classNames from "classnames";
 
 const Step2 = ({ nextStep, prevStep, setFormValue, formValue }) => (
   <div className="panel post -local">
@@ -13,6 +14,16 @@ const Step2 = ({ nextStep, prevStep, setFormValue, formValue }) => (
             lat: 0,
             lng: 0
           }
+        }}
+        validate={values => {
+          let errors = {};
+          if (!values.street) {
+            errors.street = "Obrigatório";
+          }
+          if (!values.reference) {
+            errors.reference = "Obrigatório";
+          }
+          return errors;
         }}
         onSubmit={values => {
           setFormValue({
@@ -28,7 +39,8 @@ const Step2 = ({ nextStep, prevStep, setFormValue, formValue }) => (
           touched,
           handleChange,
           handleBlur,
-          handleSubmit
+          handleSubmit,
+          isValid
         }) => (
           <>
             <h1 className="title">Sobre o local de desaparecimento</h1>
@@ -45,8 +57,12 @@ const Step2 = ({ nextStep, prevStep, setFormValue, formValue }) => (
                     value={values.street}
                     placeholder="Rua Tal, 94"
                   />
+                  {errors.street && touched.street && errors.street && (
+                    <span className="error">
+                      {errors.street && touched.street && errors.street}
+                    </span>
+                  )}
                 </div>
-                {errors.name && touched.name && errors.name}
                 <div className="input-wrapper">
                   <label className="label">Ponto de referência</label>
                   <input
@@ -58,9 +74,18 @@ const Step2 = ({ nextStep, prevStep, setFormValue, formValue }) => (
                     value={values.reference}
                     placeholder="Próximo ao parque"
                   />
+                  {errors.reference &&
+                    touched.reference &&
+                    errors.reference && (
+                      <span className="error">
+                        {errors.reference &&
+                          touched.reference &&
+                          errors.reference}
+                      </span>
+                    )}
                 </div>
                 <div className="input-wrapper">
-                  <label className="label">Ponto de referência</label>
+                  <label className="label">Comentário adicional</label>
                   <textarea
                     type="text"
                     name="comment"
@@ -70,6 +95,11 @@ const Step2 = ({ nextStep, prevStep, setFormValue, formValue }) => (
                     value={values.comment}
                     placeholder="Próximo ao parque"
                   ></textarea>
+                  {errors.comment && touched.comment && errors.comment && (
+                    <span className="error">
+                      {errors.comment && touched.comment && errors.comment}
+                    </span>
+                  )}
                 </div>
               </div>
               {errors.password && touched.password && errors.password}
@@ -81,7 +111,12 @@ const Step2 = ({ nextStep, prevStep, setFormValue, formValue }) => (
                 >
                   Voltar
                 </button>
-                <button className="button next" type="submit">
+                <button
+                  className={classNames("button next", {
+                    "-disabled": !isValid
+                  })}
+                  type="submit"
+                >
                   Próximo
                 </button>
               </div>
