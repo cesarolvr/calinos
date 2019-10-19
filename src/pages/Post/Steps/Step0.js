@@ -1,6 +1,7 @@
 import React from "react";
+import { withRouter } from "react-router";
 
-const Step0 = ({ nextStep }) => (
+const Step0 = ({ nextStep, history }) => (
   <div className="panel post -intro">
     <div className="banner"></div>
     <div className="content">
@@ -12,8 +13,16 @@ const Step0 = ({ nextStep }) => (
       <button className="button" onClick={nextStep}>
         Começar
       </button>
+      <button
+        className="button cancel"
+        onClick={() => {
+          history.goBack();
+        }}
+      >
+        Cancelar
+      </button>
     </div>
   </div>
 );
 
-export default Step0;
+export default withRouter(Step0);
