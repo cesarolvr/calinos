@@ -22,12 +22,17 @@
     > .back {
       position: absolute;
       left: 30px;
+      border: none;
       top: 0;
       bottom: 0;
       margin: auto;
       width: 18px;
       height: 18px;
       background: url(../../assets/images/arrow-back.svg) center center no-repeat / contain;
+
+      &:focus {
+        border: none;
+      }
     }
   }
 
@@ -79,7 +84,7 @@
 
         &.-me {
           margin-left: auto;
-          background: #F0F0F0;
+          background: #f0f0f0;
           color: black;
         }
       }
@@ -150,7 +155,7 @@
         width: 25%;
         height: 100%;
         margin: auto;
-        background: #0FA5A3;
+        background: #0fa5a3;
         border-radius: 13px;
         font-weight: normal;
         padding: 10px 0px;

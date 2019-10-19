@@ -1,0 +1,26 @@
+.panel {
+  &.messages {
+   
+   > .menu-toggle {
+     position: relative;
+     display: block;
+     left: 0;
+     top: 0;
+     margin-top: 40px;
+     margin-left: 30px;
+     box-shadow: none;
+     width: 18px;
+     height: 18px;
+     background-size: 100%;
+     border-radius: 0;
+   }
+
+   > .content {
+     height: auto;
+      > .title {
+        margin-top: 10px;
+        font-size: 28px;
+      }
+   }
+  }
+}

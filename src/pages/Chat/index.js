@@ -12,7 +12,7 @@ import firebase from "firebase/app";
 // Style
 import "./Chat.scss";
 
-const Chat = () => {
+const Chat = ({ history }) => {
   const [{ pinOpened }, dispatch] = useStateValue();
   const [localMessages, setLocalMessages] = useState([]);
   const currentUser = firebase.auth().currentUser;
@@ -21,8 +21,10 @@ const Chat = () => {
   const { id } = pinOpened;
 
   const sendMessage = message => {
-    var days = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'];
-    const date = `${days[new Date().getDay()]}, ${new Date().getHours()}:${new Date().getMinutes()}`
+    var days = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"];
+    const date = `${
+      days[new Date().getDay()]
+    }, ${new Date().getHours()}:${new Date().getMinutes()}`;
     const newMessage = {
       ...message,
       sendedAt: {
@@ -52,11 +54,15 @@ const Chat = () => {
     chatListener();
   }, []);
 
-  console.log(localMessages);
   return (
     <div className="panel chat">
       <div className="header">
-        <Link className="back" to="/home"></Link>
+        <button
+          className="back"
+          onClick={() => {
+            history.goBack();
+          }}
+        ></button>
         <h2 className="name">Vamos achar o Fred!</h2>
       </div>
       <div className="artboard">

@@ -28,7 +28,6 @@ import { firebaseConfig } from "./consts";
 
 const initialState = {
   pinOpened: false,
-  receiverId: "",
 };
 
 const reducer = (state, action) => {
@@ -43,12 +42,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         menuOpened: action.menuOpened
-      };
-
-    case "setReceiverId":
-      return {
-        ...state,
-        receiverId: action.receiverId
       };
 
     default:
