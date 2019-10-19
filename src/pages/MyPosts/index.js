@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import Bar from "../../components/Bar";
 import MenuButton from "../../components/MenuButton";
 
-// State 
+// State
 import { useStateValue } from "../../state";
 
 // Styles
@@ -39,7 +39,7 @@ const MyPosts = ({ history }) => {
     dispatch({
       type: "setPinOpened",
       pinOpened: marker
-    })
+    });
     history.push("/chat");
   };
 
@@ -48,11 +48,25 @@ const MyPosts = ({ history }) => {
       <MenuButton />
       <div className="content">
         <h1 className="title">Publicações</h1>
-        <ul>
+        <ul className="post-list">
           {myPosts.map((item, index) => {
             return (
-              <li key={index} onClick={() => setChat(item)}>
-                <h3>Opa</h3>
+              <li className="post" key={index} onClick={() => setChat(item)}>
+                <div className="photo"></div>
+                <div className="info">
+                  <h3 className="title">Opa</h3>
+                  <p className="description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                  </p>
+                  <div className="details">
+                    <p className="detail">
+                      <span>15</span> ups
+                    </p>
+                    <p className="detail">
+                      <span>29</span> mensagens
+                    </p>
+                  </div>
+                </div>
               </li>
             );
           })}
