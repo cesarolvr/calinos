@@ -11,17 +11,32 @@
     .banner {
       width: 100%;
       height: 30%;
+      min-height: 192px;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
       background: url(../../assets/images/banner-register.svg) bottom center no-repeat;
       background-size: 130% auto;
 
       .title {
         width: 100%;
         padding: 0px 30px;
+        margin-top: 50px;
         color: white;
+      }
+
+      .register {
+        position: absolute;
+        right: 30px;
+        top: 30px;
+
+        .link {
+          font-size: 18px;
+          font-weight: normal;
+          letter-spacing: .03em;
+        }
       }
     }
 
@@ -32,6 +47,10 @@
     .form {
       margin: 0;
       padding: 10px 30px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
       .box {
         margin-bottom: 10px;
@@ -39,12 +58,20 @@
         padding: 0;
       }
 
-      .input {
+
+      .input-wrapper {
+        .error {
+          color: white;
+        }
+      }
+
+      .input, .textarea {
         background: none;
         color: white;
+        border-bottom: 1px solid #34bcba;
 
         &::placeholder {
-          color: #FFFFFF;
+          color: rgba(255, 255, 255, .3);
         }
       }
 
@@ -57,7 +84,8 @@
       }
 
       .button {
-        margin-bottom: 0px;
+        // margin-bottom: 0px;
+        margin-top: 30px;
         background: white;
         color: #0FA5A3;
 

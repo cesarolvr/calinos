@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 import * as R from "ramda";
+import classNames from "classnames";
 import { Link } from "react-router-dom";
 
 // Firebase
@@ -47,19 +48,30 @@ const Register = props => {
     <div className="page register">
       <div className="banner">
         <h1 className="title">
-          Crie uma <br/> conta
+          Crie uma <br /> conta
         </h1>
+        <p className="register">
+          <Link className="link" to="/login">
+            Login
+          </Link>
+        </p>
       </div>
       <Formik
         initialValues={{ email: "", password: "", name: "" }}
         validate={values => {
           let errors = {};
+          if (!values.name) {
+            errors.name = "Obrigatório";
+          }
+          if (!values.password) {
+            errors.password = "Obrigatório";
+          }
           if (!values.email) {
-            errors.email = "Required";
+            errors.email = "Obrigatório";
           } else if (
             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
           ) {
-            errors.email = "Invalid email address";
+            errors.email = "Email inválido";
           }
           return errors;
         }}
@@ -81,7 +93,7 @@ const Register = props => {
           handleChange,
           handleBlur,
           handleSubmit,
-          isSubmitting
+          isValid
         }) => (
           <form className="form" onSubmit={handleSubmit}>
             <div className="box">
@@ -96,7 +108,11 @@ const Register = props => {
                   value={values.name}
                   placeholder="João Silva"
                 />
-                {errors.name && touched.name && errors.name}
+                {errors.name && touched.name && errors.name && (
+                  <span className="error">
+                    {errors.name && touched.name && errors.name}
+                  </span>
+                )}
               </div>
               <div className="input-wrapper">
                 <label className="label">Email</label>
@@ -109,7 +125,11 @@ const Register = props => {
                   value={values.email}
                   placeholder="email@example.com"
                 />
-                {errors.email && touched.email && errors.email}
+                {errors.email && touched.email && errors.email && (
+                  <span className="error">
+                    {errors.email && touched.email && errors.email}
+                  </span>
+                )}
               </div>
               <div className="input-wrapper">
                 <label className="label">Senha</label>
@@ -122,25 +142,24 @@ const Register = props => {
                   value={values.password}
                   placeholder="*********"
                 />
-                {errors.password && touched.password && errors.password}
+                {errors.password && touched.password && errors.password && (
+                  <span className="error">
+                    {errors.password && touched.password && errors.password}
+                  </span>
+                )}
               </div>
             </div>
-            <button className="button" type="submit" disabled={isSubmitting}>
+            <button
+              className={classNames("button", {
+                "-disabled": !isValid
+              })}
+              type="submit"
+            >
               Criar conta
             </button>
-            {/* <button className="button -secondary" type="button">
-              Criar com Google
-            </button> */}
           </form>
         )}
       </Formik>
-
-      <p className="register">
-        Já tem uma conta?
-        <Link className="link" to="/login">
-          Login
-        </Link>
-      </p>
     </div>
   );
 };
