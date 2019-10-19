@@ -29,6 +29,12 @@ const MapContainer = ({ google }) => {
   const [_, dispatch] = useStateValue();
 
   useEffect(() => {
+    dispatch({
+      type: "setPinOpened",
+      pinOpened: false
+    });
+    
+    setActiveMarker(false);
     getGeolocation().then(res => setInitialCoords(res));
     getPosts().then(posts => {
       setMarkers([...markers, ...posts]);
@@ -55,7 +61,7 @@ const MapContainer = ({ google }) => {
       <div className="button-back" onClick={() => openMarker(false)}></div>
       <Map
         google={google}
-        zoom={25}
+        zoom={9}
         style={{
           width: "100%",
           height: "100%"

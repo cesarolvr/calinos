@@ -70,8 +70,9 @@ const Chat = () => {
                   })}
                   key={index}
                 >
-                  <span>{sendedAt.date}</span>
-                  <h3>{text}</h3>
+                  <h4 className="name">Giovanna</h4>
+                  <h3 className="text">{text}</h3>
+                  <span className="hour">{sendedAt.date}</span>
                 </li>
               );
             })}
