@@ -84,10 +84,14 @@
       }
 
       .button {
-        // margin-bottom: 0px;
         margin-top: 30px;
         background: white;
         color: #0FA5A3;
+
+        &.-disabled {
+          background: #139392;
+          color: #2daeac
+        }
 
         @media screen and (max-width: 400px) {
           font-size: 16px;
