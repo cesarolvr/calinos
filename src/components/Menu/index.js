@@ -21,8 +21,8 @@ const Menu = ({ history, toggleMenu }) => {
       <h1 className="title">Menu</h1>
       <ul className="nav-list">
         <li className="item">Procurar meu pet</li>
-        <li className="item" onClick={() => to("/messages")}>
-          Mensagens
+        <li className="item" onClick={() => to("/my-posts")}>
+          Meus posts
           <span className="notification">3</span>
         </li>
         <li className="item">Perfil</li>

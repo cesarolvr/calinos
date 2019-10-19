@@ -11,6 +11,12 @@
   border-radius: 26px;
   box-shadow: 0 5px 10px rgba(168, 174, 201, 0.3);
 
+  &.-fixed {
+    bottom: 0;
+    border-radius: 0;
+    width: 100%;
+  }
+
   > .bar-list {
     display: flex;
     align-items: center;
