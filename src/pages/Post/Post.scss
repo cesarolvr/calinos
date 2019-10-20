@@ -165,7 +165,7 @@
         justify-content: center;
 
         &:after {
-          content: '';
+          content: "";
           width: 100%;
           height: 100%;
           background: url(../../assets/images/more.svg) center center no-repeat / 30%;
@@ -210,9 +210,9 @@
           height: 100%;
           border-radius: 26px;
           > .image {
-            min-width: 100%;
             min-height: 100%;
             width: 100%;
+            object-fit: cover;
           }
         }
 
@@ -270,16 +270,16 @@
           font-size: 14px;
         }
       }
-      
+
       .share {
         font-weight: normal;
-        background: #DC1D48;
+        background: #dc1d48;
         margin-bottom: 5px;
       }
 
       .to-home {
         font-weight: normal;
-        background: #EAEAEA;
+        background: #eaeaea;
         color: black;
       }
     }

@@ -11,6 +11,7 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
 
   // Todo: refatorar isso passando para o state
   let newPhoto = [];
+
   const readFile = e => {
     e.preventDefault();
     const input = e.target;
@@ -32,6 +33,7 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
       reader.readAsDataURL(input.files[0]);
     }
   };
+
   const createPost = () => {
     const db = firebase.firestore();
     const postId = `${Math.floor(Math.random() * 1000000000)}`;
@@ -61,6 +63,7 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
         .catch(console.log);
     });
   };
+
   const uploadFile = () => {
     const storageRef = firebase.storage().ref();
     if (photos.length === 0) return;
@@ -86,6 +89,19 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
       );
     }
   };
+
+  const removePhoto = photo => {
+    const currentPhotos = [...photos];
+    const newPhotos = currentPhotos.filter((item, index) => {
+      if (index !== photo) return item;
+      return null;
+    });
+    setFormValue({
+      ...formValue,
+      photos: [...newPhotos]
+    });
+  };
+
   return (
     <div className="panel post -photo">
       <div className="content">
@@ -93,10 +109,13 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
         <div className="gallery">
           {photos.map(({ blob }, index) => {
             return (
-              <div className="photo-item">
-                <div className="delete-photo"></div>
+              <div className="photo-item" key={index}>
+                <div
+                  className="delete-photo"
+                  onClick={() => removePhoto(index)}
+                ></div>
                 <div className="image-wrapper">
-                  <img src={blob} alt="" key={index} className="image" />;
+                  <img src={blob} alt="" className="image" />;
                 </div>
               </div>
             );
