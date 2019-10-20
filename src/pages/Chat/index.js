@@ -18,10 +18,10 @@ const Chat = ({ history }) => {
   const currentUser = firebase.auth().currentUser;
   const db = firebase.firestore();
   const hasMessages = localMessages && localMessages.length > 0;
-  const { id } = pinOpened;
+  const { id, animal } = pinOpened;
+  const days = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"];
 
   const sendMessage = message => {
-    var days = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"];
     const date = `${
       days[new Date().getDay()]
     }, ${new Date().getHours()}:${new Date().getMinutes()}`;
@@ -50,9 +50,30 @@ const Chat = ({ history }) => {
       });
   };
 
+  const isFounded = () => {
+    const date = `${
+      days[new Date().getDay()]
+    }, ${new Date().getHours()}:${new Date().getMinutes()}`;
+    const newMessage = {
+      text: `Eu encontrei o ${animal.name}`,
+      sendedAt: {
+        date,
+        at: new Date()
+      },
+      authorId: currentUser.uid
+    };
+    db.collection("chats")
+      .doc(id)
+      .update({
+        messages: firebase.firestore.FieldValue.arrayUnion(newMessage)
+      });
+  };
+
   useEffect(() => {
     chatListener();
   }, []);
+
+  if (!pinOpened) return;
 
   return (
     <div className="panel chat">
@@ -88,7 +109,9 @@ const Chat = ({ history }) => {
             <h3 className="title">
               Como você <br /> quer ajudar Maria?
             </h3>
-            <button className="button find">Informar que achou Fred</button>
+            <button className="button find" onClick={isFounded}>
+              Informar que achou Fred
+            </button>
             <button className="button share">Compatilhar a notícia</button>
           </div>
         )}

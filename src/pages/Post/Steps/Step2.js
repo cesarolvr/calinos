@@ -93,7 +93,7 @@ const Step2 = ({ nextStep, prevStep, setFormValue, formValue }) => (
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.comment}
-                    placeholder="Próximo ao parque"
+                    placeholder="O animal estava um pouco assustado e usava uma coleira preta"
                   ></textarea>
                   {errors.comment && touched.comment && errors.comment && (
                     <span className="error">
