@@ -15,16 +15,16 @@ const Step2 = ({ nextStep, prevStep, setFormValue, formValue }) => (
             lng: 0
           }
         }}
-        // validate={values => {
-        //   let errors = {};
-        //   if (!values.street) {
-        //     errors.street = "Obrigatório";
-        //   }
-        //   if (!values.reference) {
-        //     errors.reference = "Obrigatório";
-        //   }
-        //   return errors;
-        // }}
+        validate={values => {
+          let errors = {};
+          if (!values.street) {
+            errors.street = "Obrigatório";
+          }
+          if (!values.reference) {
+            errors.reference = "Obrigatório";
+          }
+          return errors;
+        }}
         onSubmit={values => {
           setFormValue({
             ...formValue,

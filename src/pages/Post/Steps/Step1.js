@@ -12,22 +12,22 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => (
           color: "",
           size: ""
         }}
-        // validate={values => {
-        //   let errors = {};
-        //   if (!values.name) {
-        //     errors.name = "Obrigatório";
-        //   }
-        //   if (!values.breed) {
-        //     errors.breed = "Selecione uma raça";
-        //   }
-        //   if (!values.color) {
-        //     errors.color = "Selecione uma cor";
-        //   }
-        //   if (!values.size) {
-        //     errors.size = "Selecione o porte do animal";
-        //   }
-        //   return errors;
-        // }}
+        validate={values => {
+          let errors = {};
+          if (!values.name) {
+            errors.name = "Obrigatório";
+          }
+          if (!values.breed) {
+            errors.breed = "Selecione uma raça";
+          }
+          if (!values.color) {
+            errors.color = "Selecione uma cor";
+          }
+          if (!values.size) {
+            errors.size = "Selecione o porte do animal";
+          }
+          return errors;
+        }}
         onSubmit={values => {
           setFormValue({
             ...formValue,
