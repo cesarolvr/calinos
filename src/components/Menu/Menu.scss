@@ -15,7 +15,7 @@
   > .title {
     font-size: 30px;
     margin-top: 0;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 
   > .nav-list {
@@ -24,9 +24,9 @@
     flex-direction: column;
     align-items: flex-start;
     > .item {
-      margin: 14px 0;
+      margin: 17px 0;
       font-size: 18px;
-      font-weight: bold;
+      font-weight: normal;
       position: relative;
 
       > .notification {

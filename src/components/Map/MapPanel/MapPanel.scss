@@ -68,19 +68,18 @@
 .-pin-opened {
   .map-panel {
     bottom: -20px;
-    height: 70%;
+    height: 80%;
 
     @media screen and (max-width: 400px) {
-      height: 80%;
       padding: 25px 30px 40px;
     }
   }
 
   .bar {
-    bottom: 62%;
+    bottom: 72%;
 
     .bar-list {
-      opacity: 0.1;
+      opacity: 0;
     }
   }
 
