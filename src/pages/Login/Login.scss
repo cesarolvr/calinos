@@ -1,5 +1,6 @@
 .login {
   height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -7,14 +8,30 @@
 
   .banner {
     width: 100%;
-    height: 55%;
-    min-height: 352px;
+    height: 352px;
     flex-shrink: 0;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
-    background: url(../../assets/images/login-illustration.svg) bottom center no-repeat;
-    background-size: 100% 100%;
+    background-color: #1b5063;
+
+    > .ambient {
+      width: 100%;
+      height: 352px;
+      background: url(../../assets/images/login-illustration.svg) top center no-repeat;
+      background-size: 100%;
+      background-color: white;
+    }
+
+    > .people {
+      position: absolute;
+      width: 280px;
+      bottom: 0px;
+
+      > img {
+        width: 100%;
+      }
+    }
   }
 
   .register {
@@ -26,7 +43,7 @@
 
     .link {
       font-weight: 400;
-      letter-spacing: .03em;
+      letter-spacing: 0.03em;
       color: white;
     }
     @media screen and (max-width: 400px) {
@@ -46,6 +63,8 @@
     margin: 0px;
     height: 100%;
     justify-content: center;
+    background: white;
+    z-index: 30;
 
     .box {
       padding: 0;
@@ -78,7 +97,7 @@
       // margin-top: 0;
       margin-bottom: 0;
       font-size: 18px;
-      background: #0FA5A3;
+      background: #0fa5a3;
 
       &.-disabled {
         background: #ccc;
@@ -89,6 +108,4 @@
       }
     }
   }
-
-  
 }

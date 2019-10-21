@@ -1,0 +1,32 @@
+.wrapper {
+  &.-loading {
+    .login {
+      .form {
+        display: none;
+      }
+
+      .banner {
+        transform: translateY(100%);
+        transition: transform .3s ease;
+
+        > .logo, > .register {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &.-loaded {
+    .login {
+      // background-color: #1b5063;
+
+      .banner {
+        transform: translateY(0%);
+
+        // > .logo, > .register {
+        //   display: none;
+        // }
+      }
+    }
+  }
+}

@@ -28,7 +28,8 @@ import { firebaseConfig } from "./consts";
 
 const initialState = {
   pinOpened: false,
-  isLoading: false
+  isLoading: false,
+  aplicationLoaded: true
 };
 
 const reducer = (state, action) => {
@@ -43,6 +44,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         menuOpened: action.menuOpened
+      };
+
+    case "setAplicationLoaded":
+      return {
+        ...state,
+        aplicationLoaded: action.aplicationLoaded
       };
 
     case "isLoading":

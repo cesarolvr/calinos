@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { withRouter } from "react-router";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
@@ -15,13 +15,17 @@ import Menu from "../../components/Menu";
 
 // Styles
 import "./App.scss";
+import "./LoginAnimation.scss";
 
 // Utils
 import { isAuthed } from "../../utils/auth";
 import isHome from "../../utils/isHome";
 
 const App = ({ firebaseprops, location }) => {
-  const [{ pinOpened, menuOpened }, dispatch] = useStateValue();
+  const [
+    { pinOpened, menuOpened, aplicationLoaded },
+    dispatch
+  ] = useStateValue();
 
   const isHomepage = isHome(location.pathname);
 
@@ -32,11 +36,26 @@ const App = ({ firebaseprops, location }) => {
     });
   };
 
+  const triggerAnimation = () => {
+    dispatch({
+      type: "setAplicationLoaded",
+      aplicationLoaded: !aplicationLoaded
+    });
+  };
+
+  useEffect(() => {
+    // setTimeout(() => {
+    //   triggerAnimation();
+    // }, 2000);
+  }, []);
+
   return (
     <div
-      className={classNames("page", {
+      className={classNames("wrapper", {
         "-opened": menuOpened,
-        "-pin-opened": !!pinOpened
+        "-pin-opened": !!pinOpened,
+        "-loaded": !!aplicationLoaded,
+        "-loading": !aplicationLoaded
       })}
     >
       {isAuthed(firebaseprops) && isHomepage && (

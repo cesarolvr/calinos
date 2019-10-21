@@ -14,6 +14,7 @@ import { signIn } from "../../api/auth/login";
 import "./Login.scss";
 
 import logo from "../../assets/images/logo-icon.svg";
+import illustrationPeople from "../../assets/images/login-illustration-content.svg";
 
 const Login = props => {
   const db = firebase.firestore();
@@ -50,6 +51,11 @@ const Login = props => {
   return (
     <div className="page login">
       <div className="banner">
+        <div className="ambient">
+        </div>
+        <div className="people">
+          <img src={illustrationPeople} alt="" />
+        </div>
         <img src={logo} className="logo" alt="" />
         <p className="register">
           <Link className="link" to="/register">
