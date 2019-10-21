@@ -1,16 +1,40 @@
 .wrapper {
+
+  .banner {
+    transition: height .3s ease;
+
+    .people {
+      transition: transform .3s ease, scale .3s ease;
+    }
+
+    > .logo{
+      transition: opacity .3s ease, transform .3s ease;
+    }
+
+    > .register {
+      transition: opacity .3s ease .1s, transform .3s ease .1s;
+    }
+  }
+
   &.-loading {
     .login {
       .form {
-        display: none;
+        opacity: 0;
+        pointer-events: none;
       }
 
       .banner {
-        transform: translateY(100%);
-        transition: transform .3s ease;
+        // transform: translateY(100%);
+        height: 125%;
 
         > .logo, > .register {
-          display: none;
+          opacity: 0;
+          pointer-events: none;
+          transform: translateY(0px)
+        }
+
+        > .people {
+          transform: scale(0.9) translateY(-180px)
         }
       }
     }
@@ -21,11 +45,17 @@
       // background-color: #1b5063;
 
       .banner {
-        transform: translateY(0%);
+        // transform: translateY(0%);
 
-        // > .logo, > .register {
-        //   display: none;
+        // > .people {
+        //   transform: scale(1) translateY(0px)
         // }
+
+        > .logo, > .register {
+          transform: translateY(-10px);
+          opacity: 1;
+          pointer-events: auto;
+        }
       }
     }
   }

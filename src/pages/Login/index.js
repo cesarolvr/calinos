@@ -10,13 +10,17 @@ import firebase from "firebase/app";
 // Api
 import { signIn } from "../../api/auth/login";
 
+import { useStateValue } from "../../state";
+
 // Styles
 import "./Login.scss";
 
 import logo from "../../assets/images/logo-icon.svg";
 import illustrationPeople from "../../assets/images/login-illustration-content.svg";
+import illustrationAmbient from "../../assets/images/login-illustration.svg";
 
 const Login = props => {
+  const [{ aplicationLoaded }, dispatch] = useStateValue();
   const db = firebase.firestore();
   const reallyDisconnected = R.path(
     ["firebaseprops", "firebase", "auth"],
@@ -47,11 +51,18 @@ const Login = props => {
       })
       .catch(err => console.log(err));
   };
+  const toggleLoad = () => {
+    dispatch({
+      type: "setAplicationLoaded",
+      aplicationLoaded: !aplicationLoaded
+    });
+  };
   if (!reallyDisconnected) return null;
   return (
     <div className="page login">
-      <div className="banner">
+      <div className="banner" onClick={toggleLoad}>
         <div className="ambient">
+          <img src={illustrationAmbient} alt="" />
         </div>
         <div className="people">
           <img src={illustrationPeople} alt="" />

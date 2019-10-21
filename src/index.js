@@ -29,7 +29,7 @@ import { firebaseConfig } from "./consts";
 const initialState = {
   pinOpened: false,
   isLoading: false,
-  aplicationLoaded: true
+  aplicationLoaded: false
 };
 
 const reducer = (state, action) => {
