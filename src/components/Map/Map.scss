@@ -1,6 +1,5 @@
 .map {
   .button-back {
-    display: none;
     width: 20px;
     height: 20px;
     position: fixed;
@@ -8,12 +7,18 @@
     left: 30px;
     z-index: 40;
     background: url(../../assets/images/arrow-back.svg) center center no-repeat / 100%;
-
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 }
 
 .-pin-opened {
   .button-back {
-    display: block;
+    transform: translateY(0px);
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0.1s;
   }
 }

@@ -9,13 +9,12 @@
   box-shadow: 0 0px 10px rgba(168, 174, 201, 0.3);
   padding: 30px 30px 50px;
   overflow: scroll;
-  transition: .3s transform ease-out;
+  transition: 0.3s transform ease-out;
   will-change: transform;
 
   @media screen and (max-width: 400px) {
     padding: 25px 30px 40px;
   }
-  
 
   .title {
     margin-top: 0;
@@ -64,21 +63,31 @@
     width: 100%;
     display: inline-block;
     text-align: center;
-    background: #DC1D48;
+    background: #dc1d48;
   }
 
   &.-active {
     transform: translateY(calc(-100% + 20px));
-    transition-timing-function: cubic-bezier(0.4, 1.14, 0.56, 1.27);
-    transition-duration: .3s;
+    transition-timing-function: cubic-bezier(0.11, 1.13, 0.47, 1);
+    transition-duration: 0.3s;
   }
 }
 
-.-pin-opened {
+.create-post {
+  transition: transform 0.2s ease .06s, opacity 0.2s ease .1s;
+  pointer-events: auto;
+}
+.menu-toggle {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  pointer-events: auto;
+}
 
+.-pin-opened {
   .create-post,
   .menu-toggle {
-    display: none;
+    transform: translateY(-50px);
+    opacity: 0;
+    pointer-events: none;
   }
 }
 
@@ -98,7 +107,7 @@
   .glide__track {
     background: #eee;
   }
-  
+
   .glide__slides {
     margin-top: 0;
     display: flex;
@@ -127,7 +136,7 @@
 
     > .glide__bullet {
       background: white;
-      opacity: .4;
+      opacity: 0.4;
       width: 8px;
       height: 8px;
       margin: 0px 3px;

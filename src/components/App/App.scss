@@ -65,7 +65,8 @@
     }
 
     > .create-post {
-      display: none;
+      opacity: 0;
+      pointer-events: none;
     }
 
     > .menu-toggle {
