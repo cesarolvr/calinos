@@ -14,7 +14,7 @@ import firebase from "firebase/app";
 import "./Register.scss";
 
 const Register = ({ history, ...props }) => {
-  const [{ aplicationLoaded }, dispatch] = useStateValue();
+  // const [{ aplicationLoaded }, dispatch] = useStateValue();
   const reallyDisconnected = R.path(
     ["firebaseprops", "firebase", "auth"],
     props
@@ -59,10 +59,10 @@ const Register = ({ history, ...props }) => {
             className="link"
             onClick={() => {
               history.push('/login');
-              dispatch({
-                type: "setAplicationLoaded",
-                aplicationLoaded: !aplicationLoaded
-              });
+              // dispatch({
+              //   type: "setAplicationLoaded",
+              //   aplicationLoaded: !aplicationLoaded
+              // });
             }}
           >
             Login

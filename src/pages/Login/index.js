@@ -64,11 +64,11 @@ const Login = props => {
       <div className="logo-loading">
         <img src={logoLoading} alt="" />
       </div>
-      <div className="banner" onClick={toggleLoad}>
+      <div className="banner">
         <div className="ambient">
           <img src={illustrationAmbient} alt="" />
         </div>
-        <div className="people">
+        <div className="people" onClick={toggleLoad}>
           <img src={illustrationPeople} alt="" />
         </div>
         <img src={logo} className="logo" alt="" />
