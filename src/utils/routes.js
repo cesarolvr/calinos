@@ -1,5 +1,6 @@
 import { Route, Redirect, Switch } from "react-router-dom";
 import React, { Fragment } from "react";
+import { CSSTransition } from "react-transition-group";
 
 // Firebase
 import { FirebaseAuthConsumer } from "@react-firebase/auth";
@@ -22,60 +23,60 @@ const Routes = () => {
       {firebaseProps => {
         return (
           <Fragment>
-            <Switch>
-              <OwnRoute
-                exact
-                path="/login"
-                authed={isAuthed(firebaseProps)}
-                component={Login}
-                firebaseprops={firebaseProps}
-              />
-              <OwnRoute
-                exact
-                path="/register"
-                authed={isAuthed(firebaseProps)}
-                component={Register}
-                firebaseprops={firebaseProps}
-              />
-              <PrivatedRoute
-                exact
-                path="/home"
-                authed={isAuthed(firebaseProps)}
-                component={Home}
-              />
-              <PrivatedRoute
-                exact
-                path="/"
-                authed={isAuthed(firebaseProps)}
-                component={Home}
-              />
-              <PrivatedRoute
-                exact
-                path="/feed"
-                authed={isAuthed(firebaseProps)}
-                component={Feed}
-              />
-              <PrivatedRoute
-                exact
-                path="/post"
-                authed={isAuthed(firebaseProps)}
-                component={Post}
-              />
-              <PrivatedRoute
-                exact
-                path="/chat"
-                authed={isAuthed(firebaseProps)}
-                component={Chat}
-              />
-              <PrivatedRoute
-                exact
-                path="/my-posts"
-                authed={isAuthed(firebaseProps)}
-                component={MyPosts}
-              />
-              <Route path="/not-found" exact={true} component={NotFound} />
-              <Redirect from="*" to="/not-found" />
-            </Switch>
+            {/* <Switch> */}
+            <OwnRoute
+              exact
+              path="/login"
+              authed={isAuthed(firebaseProps)}
+              component={Login}
+              firebaseprops={firebaseProps}
+            />
+            <OwnRoute
+              exact
+              path="/register"
+              authed={isAuthed(firebaseProps)}
+              component={Register}
+              firebaseprops={firebaseProps}
+            />
+            <PrivatedRoute
+              exact
+              path="/home"
+              authed={isAuthed(firebaseProps)}
+              component={Home}
+            />
+            <PrivatedRoute
+              exact
+              path="/"
+              authed={isAuthed(firebaseProps)}
+              component={Home}
+            />
+            <PrivatedRoute
+              exact
+              path="/feed"
+              authed={isAuthed(firebaseProps)}
+              component={Feed}
+            />
+            <PrivatedRoute
+              exact
+              path="/post"
+              authed={isAuthed(firebaseProps)}
+              component={Post}
+            />
+            <PrivatedRoute
+              exact
+              path="/chat"
+              authed={isAuthed(firebaseProps)}
+              component={Chat}
+            />
+            <PrivatedRoute
+              exact
+              path="/my-posts"
+              authed={isAuthed(firebaseProps)}
+              component={MyPosts}
+            />
+            <OwnRoute path="/not-found" exact={true} component={NotFound} />
+            <Redirect from="*" to="/not-found" />
+            {/* </Switch> */}
           </Fragment>
         );
       }}
@@ -83,33 +84,50 @@ const Routes = () => {
   );
 };
 
-const OwnRoute = ({ component: Component, authed, ...rest }) => {
+const OwnRoute = ({ component: Component, authed, path, ...rest }) => {
   return (
-    <Route
-      {...rest}
-      render={props =>
-        authed ? (
-          <Redirect to={{ pathname: "/home" }} />
-        ) : (
-          <Component {...props} {...rest} />
-        )
-      }
-    />
+    <Route {...rest} key={path} path={path}>
+      {({ match, ...props }) => {
+        return (
+          <CSSTransition
+            in={match != null}
+            timeout={300}
+            classNames="page"
+            unmountOnExit
+          >
+            {authed ? (
+              <Redirect to={{ pathname: "/home" }} />
+            ) : (
+              <Component {...props} {...rest} />
+            )}
+          </CSSTransition>
+        );
+      }}
+    </Route>
   );
 };
 
 const PrivatedRoute = ({ component: Component, authed, ...rest }) => {
+  // console.log('PrivatedRoute');
   return (
-    <Route
-      {...rest}
-      render={props =>
-        authed ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to={{ pathname: "/login" }} />
-        )
-      }
-    />
+    <Route {...rest}>
+      {({ match, ...props }) => {
+        return (
+          <CSSTransition
+            in={match != null}
+            timeout={300}
+            classNames="page"
+            unmountOnExit
+          >
+            {authed ? (
+              <Component {...props} {...rest} />
+            ) : (
+              <Redirect to={{ pathname: "/login" }} />
+            )}
+          </CSSTransition>
+        );
+      }}
+    </Route>
   );
 };
 

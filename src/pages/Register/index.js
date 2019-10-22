@@ -10,6 +10,8 @@ import { useStateValue } from "../../state";
 // Firebase
 import firebase from "firebase/app";
 
+import Page from "../Page";
+
 // Style
 import "./Register.scss";
 
@@ -49,7 +51,7 @@ const Register = ({ history, ...props }) => {
   };
   if (!reallyDisconnected) return null;
   return (
-    <div className="page register">
+    <Page name="register">
       <div className="banner">
         <h1 className="title">
           Crie uma <br /> conta
@@ -59,10 +61,6 @@ const Register = ({ history, ...props }) => {
             className="link"
             onClick={() => {
               history.push('/login');
-              // dispatch({
-              //   type: "setAplicationLoaded",
-              //   aplicationLoaded: !aplicationLoaded
-              // });
             }}
           >
             Login
@@ -173,7 +171,7 @@ const Register = ({ history, ...props }) => {
           </form>
         )}
       </Formik>
-    </div>
+    </Page>
   );
 };
 

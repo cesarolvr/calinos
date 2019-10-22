@@ -30,29 +30,27 @@ const MapContainer = ({ google }) => {
 
   const getLocation = () => {
     return getGeolocation().then(res => setInitialCoords(res));
-  }
+  };
 
   const getPublications = () => {
     return getPosts().then(posts => {
       setMarkers([...markers, ...posts]);
     });
-  }
+  };
 
   useEffect(() => {
     dispatch({
       type: "setPinOpened",
       pinOpened: false
     });
-    
+
     setActiveMarker(false);
-    getLocation()
-    getPublications()
+    getLocation();
+    getPublications();
   }, []);
 
   const openMarker = marker => {
-    
     setActiveMarker(marker);
-
     dispatch({
       type: "setPinOpened",
       pinOpened: marker
@@ -81,7 +79,7 @@ const MapContainer = ({ google }) => {
         />
         {markers.map((marker, index) => {
           const local = marker.local;
-          const animal = marker.animal
+          const animal = marker.animal;
           if (!local.pin) return null;
           return (
             <Marker

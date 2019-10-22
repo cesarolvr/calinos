@@ -2,7 +2,14 @@ import React from "react";
 import { Formik } from "formik";
 import classNames from "classnames";
 import * as R from "ramda";
-import { Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink
+} from "react-router-dom";
+
+import Page from "../Page";
 
 // Firebase
 import firebase from "firebase/app";
@@ -60,7 +67,7 @@ const Login = props => {
   };
   if (!reallyDisconnected) return null;
   return (
-    <div className="page login">
+    <Page name="login">
       <div className="logo-loading">
         <img src={logoLoading} alt="" />
       </div>
@@ -73,9 +80,12 @@ const Login = props => {
         </div>
         <img src={logo} className="logo" alt="" />
         <p className="register">
-          <Link className="link" to="/register">
+          <Link key="/register" as={NavLink} className="link" to="/register">
             Cadastre-se
           </Link>
+          {/* <Link className="link" to="/register">
+            Cadastre-se
+          </Link> */}
         </p>
       </div>
       <Formik
@@ -164,7 +174,7 @@ const Login = props => {
           );
         }}
       </Formik>
-    </div>
+    </Page>
   );
 };
 
