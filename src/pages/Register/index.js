@@ -1,8 +1,11 @@
 import React from "react";
 import { Formik } from "formik";
+import { withRouter } from "react-router";
 import * as R from "ramda";
 import classNames from "classnames";
-import { Link } from "react-router-dom";
+
+// State
+import { useStateValue } from "../../state";
 
 // Firebase
 import firebase from "firebase/app";
@@ -10,7 +13,8 @@ import firebase from "firebase/app";
 // Style
 import "./Register.scss";
 
-const Register = props => {
+const Register = ({ history, ...props }) => {
+  const [{ aplicationLoaded }, dispatch] = useStateValue();
   const reallyDisconnected = R.path(
     ["firebaseprops", "firebase", "auth"],
     props
@@ -51,9 +55,18 @@ const Register = props => {
           Crie uma <br /> conta
         </h1>
         <p className="register">
-          <Link className="link" to="/login">
+          <a
+            className="link"
+            onClick={() => {
+              history.push('/login');
+              dispatch({
+                type: "setAplicationLoaded",
+                aplicationLoaded: !aplicationLoaded
+              });
+            }}
+          >
             Login
-          </Link>
+          </a>
         </p>
       </div>
       <Formik
@@ -164,4 +177,4 @@ const Register = props => {
   );
 };
 
-export default Register;
+export default withRouter(Register);
