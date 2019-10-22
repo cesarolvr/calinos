@@ -108,7 +108,6 @@ const OwnRoute = ({ component: Component, authed, path, ...rest }) => {
 };
 
 const PrivatedRoute = ({ component: Component, authed, ...rest }) => {
-  console.log('PrivatedRoute');
   return (
     <Route {...rest}>
       {({ match, ...props }) => {
