@@ -61,10 +61,10 @@ const Login = props => {
   if (!reallyDisconnected) return null;
   return (
     <div className="page login">
-      <div className="banner" onClick={toggleLoad}>
       <div className="logo-loading">
-          <img src={logoLoading} alt="" />
-        </div>
+        <img src={logoLoading} alt="" />
+      </div>
+      <div className="banner" onClick={toggleLoad}>
         <div className="ambient">
           <img src={illustrationAmbient} alt="" />
         </div>

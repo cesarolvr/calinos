@@ -1,21 +1,29 @@
 .wrapper {
-  .banner {
-    transition: height 0.3s ease-in-out;
+  .login {
+    background: #1b5063;
 
-    .people {
-      transition: transform 0.3s ease-in-out, scale 0.3s ease-in-out;
+    .form {
+      transition: transform 0.3s ease-in-out;
     }
 
-    > .logo {
-      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    .banner {
+      transition: transform 0.3s ease-in-out;
+
+      .people {
+        transition: transform 0.3s ease-in-out, scale 0.3s ease-in-out;
+      }
+
+      > .logo {
+        transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+      }
+
+      > .register {
+        transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+      }
     }
 
     > .logo-loading {
       transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    }
-
-    > .register {
-      transition: opacity 0.3s ease-in-out 0.1s, transform 0.3s ease-in-out 0.1s;
     }
   }
 
@@ -30,11 +38,11 @@
   .button {
     transition: opacity 0.3s ease 0.4s, transform 0.3s ease 0.4s;
   }
-  
 
   &.-loading {
     .login {
       .form {
+        transform: translateY(430px);
         .input-wrapper,
         .button {
           opacity: 0;
@@ -44,7 +52,7 @@
       }
 
       .banner {
-        height: 125%;
+        transform: translateY(430px);
 
         > .logo,
         > .register {
@@ -53,15 +61,15 @@
           transform: translateY(0px);
         }
 
-        .logo-loading {
-          transform: translateY(0px) scale(0.7);
-          opacity: 1;
-          pointer-events: auto;
-        }
-
         > .people {
           transform: scale(0.9) translateY(-180px);
         }
+      }
+
+      .logo-loading {
+        transform: translateY(0px) scale(0.7);
+        opacity: 1;
+        pointer-events: auto;
       }
     }
   }
@@ -80,16 +88,22 @@
       .banner {
         > .logo,
         > .register {
+          transition-duration: .3s;
+          transition-delay: .2s;
           transform: translateY(-10px);
           opacity: 1;
           pointer-events: auto;
         }
 
-        .logo-loading {
-          transform: translateY(-80px) scale(0.7);
-          opacity: 0;
-          pointer-events: auto;
+        > .register {
+          transition-delay: .3s;
         }
+      }
+
+      .logo-loading {
+        transform: translateY(-80px) scale(0.7);
+        opacity: 0;
+        pointer-events: auto;
       }
     }
   }

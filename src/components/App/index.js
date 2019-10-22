@@ -46,7 +46,7 @@ const App = ({ firebaseprops, location }) => {
   useEffect(() => {
     setTimeout(() => {
       triggerAnimation();
-    }, 500);
+    }, 1000);
   }, []);
 
   return (
