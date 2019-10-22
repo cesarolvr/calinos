@@ -73,7 +73,7 @@ const Chat = ({ history }) => {
     chatListener();
   }, []);
 
-  if (!pinOpened) return;
+  if (!pinOpened) return null;
 
   return (
     <div className="panel chat">
