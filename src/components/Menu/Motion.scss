@@ -1,0 +1,36 @@
+.menu {
+  .title,
+  .nav-list .item,
+  .profile {
+    transform: translateX(-20px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition-duration: 0s;
+    opacity: 0;
+  }
+
+  .title {
+    transition-delay: 0.1s;
+  }
+
+  .profile {
+    transition-delay: 0.5s;
+  }
+
+  @for $i from 1 through 5 {
+    .item:nth-of-type(5n + #{$i}) {
+      transition-delay: #{$i / 12}s;
+    }
+  }
+}
+
+.-opened {
+  .menu {
+    .nav-list .item,
+    .title,
+    .profile {
+      transform: translateX(0px);
+      opacity: 1;
+      transition-duration: .3s;
+    }
+  }
+}

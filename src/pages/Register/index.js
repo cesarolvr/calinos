@@ -4,9 +4,6 @@ import { withRouter } from "react-router";
 import * as R from "ramda";
 import classNames from "classnames";
 
-// State
-import { useStateValue } from "../../state";
-
 // Firebase
 import firebase from "firebase/app";
 

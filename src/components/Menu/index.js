@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import firebase from "firebase/app";
 
 import "./Menu.scss";
+import "./Motion.scss";
 
 const Menu = ({ history, toggleMenu }) => {
   const logout = () => {

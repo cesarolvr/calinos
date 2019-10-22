@@ -31,6 +31,7 @@
 .page-holder {
   width: 100%;
   height: 100%;
+  transition: transform .3s ease;
 }
 
 .wrapper {
@@ -60,7 +61,8 @@
     }
 
     > .menu {
-      left: 0;
+      transform: translateX(0%);
+      pointer-events: auto;
     }
 
     > .create-post {
