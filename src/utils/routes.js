@@ -75,7 +75,7 @@ const Routes = () => {
               component={MyPosts}
             />
             <OwnRoute path="/not-found" exact={true} component={NotFound} />
-            <Redirect from="*" to="/not-found" />
+            <Redirect from="*" to="/home" />
             {/* </Switch> */}
           </Fragment>
         );
@@ -91,7 +91,7 @@ const OwnRoute = ({ component: Component, authed, path, ...rest }) => {
         return (
           <CSSTransition
             in={match != null}
-            timeout={300}
+            timeout={100}
             classNames="page"
             unmountOnExit
           >
@@ -115,7 +115,7 @@ const PrivatedRoute = ({ component: Component, authed, ...rest }) => {
         return (
           <CSSTransition
             in={match != null}
-            timeout={300}
+            timeout={100}
             classNames="page"
             unmountOnExit
           >

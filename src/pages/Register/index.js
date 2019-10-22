@@ -14,6 +14,7 @@ import Page from "../Page";
 
 // Style
 import "./Register.scss";
+import "./Motion.scss";
 
 const Register = ({ history, ...props }) => {
   // const [{ aplicationLoaded }, dispatch] = useStateValue();
