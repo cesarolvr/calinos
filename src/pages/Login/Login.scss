@@ -42,6 +42,18 @@
         width: 100%;
       }
     }
+
+    > .logo-loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: 60% auto auto auto;
+      width: 181px;
+      transform: scale(0.7);
+      height: 52px;
+    }
   }
 
   .register {

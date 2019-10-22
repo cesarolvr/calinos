@@ -18,6 +18,7 @@ import "./Login.scss";
 import logo from "../../assets/images/logo-icon.svg";
 import illustrationPeople from "../../assets/images/login-illustration-content.svg";
 import illustrationAmbient from "../../assets/images/login-illustration.svg";
+import logoLoading from "../../assets/images/logo-full.svg";
 
 const Login = props => {
   const [{ aplicationLoaded }, dispatch] = useStateValue();
@@ -61,6 +62,9 @@ const Login = props => {
   return (
     <div className="page login">
       <div className="banner" onClick={toggleLoad}>
+      <div className="logo-loading">
+          <img src={logoLoading} alt="" />
+        </div>
         <div className="ambient">
           <img src={illustrationAmbient} alt="" />
         </div>
@@ -109,7 +113,6 @@ const Login = props => {
           handleSubmit,
           isValid
         }) => {
-          // console.log(isValid);
           return (
             <form className="form" onSubmit={handleSubmit}>
               <div className="box">
