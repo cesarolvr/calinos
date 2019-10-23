@@ -25,7 +25,7 @@ const Chat = ({ history }) => {
     const date = `${
       days[new Date().getDay()]
     }, ${new Date().getHours()}:${new Date().getMinutes()}`;
-    
+
     const newMessage = {
       ...message,
       sendedAt: {
@@ -87,25 +87,27 @@ const Chat = ({ history }) => {
             history.goBack();
           }}
         ></button>
-        <h2 className="name">{ animal.name }</h2>
+        <h2 className="name">{animal.name}</h2>
       </div>
       <div className="artboard">
         {hasMessages ? (
           <ul className="message-list">
-            {localMessages.map(({ text, authorId, sendedAt, authorName = 'Usuário' }, index) => {
-              return (
-                <li
-                  className={classNames("message", {
-                    "-me": authorId === currentUser.uid
-                  })}
-                  key={index}
-                >
-                  <h4 className="name">{authorName}</h4>
-                  <h3 className="text">{text}</h3>
-                  <span className="hour">{sendedAt.date}</span>
-                </li>
-              );
-            })}
+            {localMessages.map(
+              ({ text, authorId, sendedAt, authorName = "Usuário" }, index) => {
+                return (
+                  <li
+                    className={classNames("message", {
+                      "-me": authorId === currentUser.uid
+                    })}
+                    key={index}
+                  >
+                    <h4 className="name">{authorName}</h4>
+                    <h3 className="text">{text}</h3>
+                    <span className="hour">{sendedAt.date}</span>
+                  </li>
+                );
+              }
+            )}
           </ul>
         ) : (
           <div className="actions">
@@ -115,7 +117,23 @@ const Chat = ({ history }) => {
             <button className="button find" onClick={isFounded}>
               Informar que achou Fred
             </button>
-            <button className="button share">Compatilhar a notícia</button>
+            <button
+              className="button share"
+              onClick={() => {
+                if (navigator.share) {
+                  navigator
+                    .share({
+                      title: "Testing Share",
+                      text: "Check out Web Fundamentals — it rocks!",
+                      url: "https://developers.google.com/web"
+                    })
+                    .then(() => console.log("Successful share"))
+                    .catch(error => console.log("Error sharing", error));
+                }
+              }}
+            >
+              Compatilhar a notícia
+            </button>
           </div>
         )}
       </div>
@@ -128,11 +146,10 @@ const Chat = ({ history }) => {
           }
           return errors;
         }}
-        onSubmit={(values, {resetForm}) => {
-          
+        onSubmit={(values, { resetForm }) => {
           const payload = values;
           sendMessage(payload);
-          resetForm({})
+          resetForm({});
         }}
       >
         {({ values, handleChange, handleBlur, handleSubmit }) => {
@@ -145,7 +162,7 @@ const Chat = ({ history }) => {
                   className="input"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.text || ''}
+                  value={values.text || ""}
                   placeholder="Digite uma mensagem"
                 />
                 <button className="button send" type="submit">
@@ -153,7 +170,7 @@ const Chat = ({ history }) => {
                 </button>
               </div>
             </form>
-          )
+          );
         }}
       </Formik>
     </div>
