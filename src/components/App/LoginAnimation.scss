@@ -3,11 +3,11 @@
     background: #1b5063;
 
     .form {
-      transition: transform 0.3s ease-in-out;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease;
     }
 
     .banner {
-      transition: transform 0.3s ease-in-out;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease;
 
       .people {
         transition: transform 0.3s ease-in-out, scale 0.3s ease-in-out;
@@ -25,6 +25,11 @@
     > .logo-loading {
       transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
+
+
+    // &.page-enter {
+    //   border: 1px solid red;
+    // }
   }
 
   .input-wrapper {
@@ -104,6 +109,62 @@
         transform: translateY(-80px) scale(0.7);
         opacity: 0;
         pointer-events: auto;
+      }
+    }
+
+
+    .login {
+      &.page-enter, &.page-enter-active {
+        .form {
+          transform: translateY(30px);
+          opacity: 0;
+          .input-wrapper,
+          .button {
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+          }
+        }
+  
+        .banner {
+          transform: translateY(30px);
+          opacity: 0;
+  
+          > .logo,
+          > .register {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(0px);
+          }
+        }
+  
+        .logo-loading {
+          opacity: 0;
+        }
+      }
+      &.page-enter-done {
+        .form {
+          transform: translateY(0px);
+          opacity: 1;
+          .input-wrapper,
+          .button {
+            opacity: 1;
+            transform: translateY(0px);
+            pointer-events: none;
+          }
+        }
+  
+        .banner {
+          transform: translateY(0px);
+          opacity: 1;
+  
+          > .logo,
+          > .register {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(-10px);
+          }
+        }
       }
     }
   }
