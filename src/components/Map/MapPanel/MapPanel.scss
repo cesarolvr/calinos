@@ -7,20 +7,81 @@
   height: 80%;
   top: 100%;
   box-shadow: 0 0px 10px rgba(168, 174, 201, 0.3);
-  padding: 30px 30px 50px;
-  overflow: scroll;
+  overflow: hidden;
   transition: 0.3s transform ease-out;
   will-change: transform;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 
-  @media screen and (max-width: 400px) {
-    padding: 25px 30px 40px;
+  .panel-content {
+    padding: 0px 30px 100px;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    @media screen and (max-width: 400px) {
+      padding: 0px 30px 80px;
+    }
   }
 
   .title {
     margin-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    padding-top: 30px;
+    padding-bottom: 5px;
     font-size: 27px;
     font-weight: 800;
+    position: sticky;
+    top: -10px;
+    background: white;
+    z-index: 10;
+
+    @media screen and (max-width: 400px) {
+      padding-top: 20px;
+    }
+  }
+
+  .subtitle {
+    font-size: 16px;
+    margin-bottom: 15px;
+    position: relative;
+
+    @media screen and (max-width: 400px) {
+      font-size: 14px;
+    }
+  }
+
+  .paragraph {
+    font-size: 16px;
+    margin: 0;
+
+    @media screen and (max-width: 400px) {
+      font-size: 14px;
+    }
+  }
+
+  .block-content {
+    margin-bottom: 30px;
+
+    .subtitle {
+      padding-left: 20px;
+      font-weight: normal;
+      &:before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #ddd;
+        border-radius: 50%;
+        bottom: 0;
+        top: 0;
+        left: 0px;
+        margin: auto;
+      }
+    }
+
+    .paragraph {
+      font-weight: bold;
+    }
   }
 
   .info {
@@ -48,15 +109,32 @@
   }
 
   .comment {
-    font-size: 16px;
-    line-height: 21px;
-    margin-bottom: 15px;
+    font-size: 20px;
+    line-height: 31px;
+    margin-bottom: 25px;
     display: inline-block;
+    padding-left: 10px;
+    position: relative;
+    font-weight: 400;
+    font-style: italic;
+    color: black;
 
-    @media screen and (max-width: 400px) {
-      font-size: 14px;
-      line-height: 18px;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -5px;
+      height: 90%;
+      width: 1px;
+      margin: auto;
+      background-color: #ddd;
     }
+
+    // @media screen and (max-width: 400px) {
+    //   font-size: 14px;
+    //   line-height: 18px;
+    // }
   }
 
   .help {
@@ -64,10 +142,15 @@
     display: inline-block;
     text-align: center;
     background: #dc1d48;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    border-radius: 0;
+    margin-bottom: 0;
   }
 
   &.-active {
-    transform: translateY(calc(-100% + 20px));
+    transform: translateY(calc(-100%));
     transition-timing-function: cubic-bezier(0.11, 1.13, 0.47, 1);
     transition-duration: 0.3s;
   }
