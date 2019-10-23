@@ -60,7 +60,9 @@ const MapContainer = ({ google }) => {
   return (
     <>
       <MapPanel {...activeMarker} />
-      <div className="button-back" onClick={() => openMarker(false)}></div>
+      <div className="button-back" onClick={() => openMarker(false)}>
+        <div className="icon"></div>
+      </div>
       <Map
         google={google}
         zoom={9}

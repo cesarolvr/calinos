@@ -1,24 +1,47 @@
 .map {
   .button-back {
-    width: 20px;
-    height: 20px;
+    width: 100vw;
     position: fixed;
-    top: 70px;
-    left: 30px;
-    z-index: 40;
-    background: url(../../assets/images/arrow-back.svg) center center no-repeat / 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 30;
     opacity: 0;
     pointer-events: none;
-    transform: translateY(20px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    .icon {
+      transform: translateY(20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      background: url(../../assets/images/arrow-back.svg) center center no-repeat / 100%;
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      top: 70px;
+      left: 30px;
+      opacity: 0;
+    }
   }
 }
 
 .-pin-opened {
   .button-back {
-    transform: translateY(0px);
     opacity: 1;
     pointer-events: auto;
-    transition-delay: 0.1s;
+    .icon {
+      opacity: 1;
+      transform: translateY(0px);
+      transition-delay: 0.1s;
+    }
+
+    // &:before {
+    //   content: "";
+    //   width: 100vw;
+    //   height: 100vh;
+    //   position: fixed;
+    //   top: 0;
+    //   left: 0;
+    //   right: 0;
+    //   bottom: 0;
+    //   background: red;
+    // }
   }
 }
