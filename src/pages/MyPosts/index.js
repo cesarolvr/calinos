@@ -34,6 +34,7 @@ const MyPosts = ({ history }) => {
   useEffect(() => {
     getMyPosts();
   }, []);
+  
 
   const setChat = marker => {
     dispatch({
@@ -50,22 +51,34 @@ const MyPosts = ({ history }) => {
         <h1 className="title">Publicações</h1>
         <ul className="post-list">
           {myPosts.map((item, index) => {
+            const { animal = {}, local = {}, photos = [] } = item;
+            const {
+              name = ''
+            } = animal
+            const {
+              comment = ''
+            } = local
+
+            console.log(item);
+            
             return (
               <li className="post" key={index} onClick={() => setChat(item)}>
-                <div className="photo"></div>
+                <div className="photo">
+                  <img src={photos[0]} alt=""/>
+                </div>
                 <div className="info">
-                  <h3 className="title">Opa</h3>
+                  <h3 className="title">{ name }</h3>
                   <p className="description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    {comment}
                   </p>
-                  <div className="details">
+                  {/* <div className="details">
                     <p className="detail">
                       <span>15</span> ups
                     </p>
                     <p className="detail">
                       <span>29</span> mensagens
                     </p>
-                  </div>
+                  </div> */}
                 </div>
               </li>
             );

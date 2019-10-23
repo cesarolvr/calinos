@@ -12,8 +12,6 @@ const MapPanel = ({ animal = {}, photos = [], local = {} }) => {
   const { breed = "", color = "", name = "", size = "" } = animal;
   const { comment = "", reference = "", street = "" } = local;
 
-  console.log(local);
-
   useEffect(() => {
     if (hasContent) {
       new Glide(".slider", {
