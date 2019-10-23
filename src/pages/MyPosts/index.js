@@ -58,8 +58,6 @@ const MyPosts = ({ history }) => {
             const {
               comment = ''
             } = local
-
-            console.log(item);
             
             return (
               <li className="post" key={index} onClick={() => setChat(item)}>

@@ -18,20 +18,22 @@ const Chat = ({ history }) => {
   const currentUser = firebase.auth().currentUser;
   const db = firebase.firestore();
   const hasMessages = localMessages && localMessages.length > 0;
-  const { id, animal } = pinOpened;
+  const { id, animal = {} } = pinOpened;
   const days = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"];
 
   const sendMessage = message => {
     const date = `${
       days[new Date().getDay()]
     }, ${new Date().getHours()}:${new Date().getMinutes()}`;
+    
     const newMessage = {
       ...message,
       sendedAt: {
         date,
         at: new Date()
       },
-      authorId: currentUser.uid
+      authorId: currentUser.uid,
+      authorName: currentUser.displayName
     };
     db.collection("chats")
       .doc(id)
@@ -60,7 +62,8 @@ const Chat = ({ history }) => {
         date,
         at: new Date()
       },
-      authorId: currentUser.uid
+      authorId: currentUser.uid,
+      authorName: currentUser.displayName
     };
     db.collection("chats")
       .doc(id)
@@ -84,12 +87,12 @@ const Chat = ({ history }) => {
             history.goBack();
           }}
         ></button>
-        <h2 className="name">Vamos achar o Fred!</h2>
+        <h2 className="name">{ animal.name }</h2>
       </div>
       <div className="artboard">
         {hasMessages ? (
           <ul className="message-list">
-            {localMessages.map(({ text, authorId, sendedAt }, index) => {
+            {localMessages.map(({ text, authorId, sendedAt, authorName = 'Usuário' }, index) => {
               return (
                 <li
                   className={classNames("message", {
@@ -97,7 +100,7 @@ const Chat = ({ history }) => {
                   })}
                   key={index}
                 >
-                  <h4 className="name">Giovanna</h4>
+                  <h4 className="name">{authorName}</h4>
                   <h3 className="text">{text}</h3>
                   <span className="hour">{sendedAt.date}</span>
                 </li>
@@ -125,29 +128,33 @@ const Chat = ({ history }) => {
           }
           return errors;
         }}
-        onSubmit={(values, {}) => {
+        onSubmit={(values, {resetForm}) => {
+          
           const payload = values;
           sendMessage(payload);
+          resetForm({})
         }}
       >
-        {({ values, handleChange, handleBlur, handleSubmit }) => (
-          <form className="form" onSubmit={handleSubmit}>
-            <div className="input-wrapper">
-              <input
-                type="text"
-                name="text"
-                className="input"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-                placeholder="Digite uma mensagem"
-              />
-              <button className="button send" type="submit">
-                Enviar
-              </button>
-            </div>
-          </form>
-        )}
+        {({ values, handleChange, handleBlur, handleSubmit }) => {
+          return (
+            <form className="form" onSubmit={handleSubmit}>
+              <div className="input-wrapper">
+                <input
+                  type="text"
+                  name="text"
+                  className="input"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.text || ''}
+                  placeholder="Digite uma mensagem"
+                />
+                <button className="button send" type="submit">
+                  Enviar
+                </button>
+              </div>
+            </form>
+          )
+        }}
       </Formik>
     </div>
   );
