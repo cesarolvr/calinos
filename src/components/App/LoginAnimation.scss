@@ -26,22 +26,20 @@
       transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
 
-
     // &.page-enter {
     //   border: 1px solid red;
     // }
-  }
+    .input-wrapper {
+      transition: opacity 0.3s ease-in-out 0.25s, transform 0.3s ease-in-out 0.25s;
 
-  .input-wrapper {
-    transition: opacity 0.3s ease-in-out 0.25s, transform 0.3s ease-in-out 0.25s;
-
-    &:last-of-type {
-      transition-delay: 0.3s;
+      &:last-of-type {
+        transition-delay: 0.3s;
+      }
     }
-  }
 
-  .button {
-    transition: opacity 0.3s ease 0.4s, transform 0.3s ease 0.4s;
+    .button {
+      transition: opacity 0.3s ease 0.4s, transform 0.3s ease 0.4s;
+    }
   }
 
   &.-loading {
@@ -93,15 +91,15 @@
       .banner {
         > .logo,
         > .register {
-          transition-duration: .3s;
-          transition-delay: .2s;
+          transition-duration: 0.3s;
+          transition-delay: 0.2s;
           transform: translateY(-10px);
           opacity: 1;
           pointer-events: auto;
         }
 
         > .register {
-          transition-delay: .3s;
+          transition-delay: 0.3s;
         }
       }
 
@@ -112,9 +110,9 @@
       }
     }
 
-
     .login {
-      &.page-enter, &.page-enter-active {
+      &.page-enter,
+      &.page-enter-active {
         .form {
           transform: translateY(30px);
           opacity: 0;
@@ -125,11 +123,11 @@
             pointer-events: none;
           }
         }
-  
+
         .banner {
           transform: translateY(30px);
           opacity: 0;
-  
+
           > .logo,
           > .register {
             opacity: 0;
@@ -137,7 +135,7 @@
             transform: translateY(0px);
           }
         }
-  
+
         .logo-loading {
           opacity: 0;
         }
@@ -150,14 +148,14 @@
           .button {
             opacity: 1;
             transform: translateY(0px);
-            pointer-events: none;
+            pointer-events: auto;
           }
         }
-  
+
         .banner {
           transform: translateY(0px);
           opacity: 1;
-  
+
           > .logo,
           > .register {
             opacity: 1;

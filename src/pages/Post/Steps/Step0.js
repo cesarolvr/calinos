@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router";
 
 const Step0 = ({ nextStep, history }) => (
-  <div className="panel post -intro">
+  <div className="page panel post -intro">
     <div className="banner"></div>
     <div className="content">
       <h1 className="title">Vamos lá!</h1>

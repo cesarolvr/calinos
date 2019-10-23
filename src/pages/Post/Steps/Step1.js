@@ -3,7 +3,7 @@ import { Formik, Field } from "formik";
 import classNames from 'classnames'
 
 const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => (
-  <div className="panel post -animal">
+  <div className="panel page post -animal">
     <div className="content">
       <Formik
         initialValues={{

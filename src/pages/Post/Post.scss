@@ -11,6 +11,7 @@
     width: 0;
     height: 2px;
     background: #dc1d48;
+    transition: width .3s ease;
   }
 
   .content {
@@ -84,6 +85,7 @@
     line-height: 28px;
   }
 
+  
   &.-intro {
     > .content {
       height: auto;
@@ -282,6 +284,47 @@
         background: #eaeaea;
         color: black;
       }
+    }
+  }
+
+  &.page-enter {
+    .banner {
+      transform: translateY(-30px);
+      opacity: 0;
+    }
+
+    .title, .description, .button {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+  }
+
+  .title, .description, .button, .banner {
+    transition: transform .3s ease, opacity .3s ease;
+    transition-delay: .5s;
+  }
+
+  .banner {
+    transition-delay: .4s;
+  }
+
+  .description {
+    transition-delay: .6s;
+  }
+
+  .button {
+    transition-delay: .7s;
+  }
+
+  &.page-enter-done {
+    .banner {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+
+    .title, .description, .button {
+      transform: translateY(0px);
+      opacity: 1;
     }
   }
 }

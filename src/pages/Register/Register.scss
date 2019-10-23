@@ -1,6 +1,6 @@
 .page {
   &.register {
-    background-color: #0FA5A3;
+    background-color: #0fa5a3;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -22,7 +22,7 @@
 
       .title {
         width: 100%;
-        padding: 0px 30px;
+        padding: 0px 40px;
         margin-top: 50px;
         color: white;
       }
@@ -35,7 +35,7 @@
         .link {
           font-size: 18px;
           font-weight: normal;
-          letter-spacing: .03em;
+          letter-spacing: 0.03em;
         }
       }
     }
@@ -46,7 +46,7 @@
 
     .form {
       margin: 0;
-      padding: 10px 30px;
+      padding: 10px 40px;
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -58,20 +58,20 @@
         padding: 0;
       }
 
-
       .input-wrapper {
         .error {
           color: white;
         }
       }
 
-      .input, .textarea {
+      .input,
+      .textarea {
         background: none;
         color: white;
         border-bottom: 1px solid #34bcba;
 
         &::placeholder {
-          color: rgba(255, 255, 255, .3);
+          color: rgba(255, 255, 255, 0.3);
         }
       }
 
@@ -86,11 +86,11 @@
       .button {
         margin-top: 30px;
         background: white;
-        color: #0FA5A3;
+        color: #0fa5a3;
 
         &.-disabled {
           background: #139392;
-          color: #2daeac
+          color: #2daeac;
         }
 
         @media screen and (max-width: 400px) {
@@ -109,7 +109,7 @@
     }
 
     .link {
-      color: #FFFFFF;
+      color: #ffffff;
     }
   }
 }
