@@ -44,7 +44,6 @@ const Post = () => {
 
   return (
     <>
-      <div className={`progress-bar -step-${step}`}></div>
       <CSSTransition in={!!step} timeout={200} classNames="panel">
         {R.cond([
           [R.equals(0), R.always(<Step0 nextStep={nextStep} />)],
@@ -89,6 +88,7 @@ const Post = () => {
           [R.T, R.always(null)]
         ])(step)}
       </CSSTransition>
+      <div className={`progress-bar -step-${step}`}></div>
     </>
   );
 };
