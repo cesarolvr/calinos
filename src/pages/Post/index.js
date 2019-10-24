@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import * as R from "ramda";
 
+import { CSSTransition } from "react-transition-group";
+
 import "./Post.scss";
 
 // Steps
@@ -41,7 +43,7 @@ const Post = () => {
   };
 
   return (
-    <>
+    <CSSTransition in={step} timeout={200} classNames="panel">
     {
       R.cond([
         [R.equals(0), R.always(<Step0 nextStep={nextStep} />)],
@@ -50,6 +52,7 @@ const Post = () => {
           R.always(
             <Step1
               step={step}
+              setStep={setStep}
               prevStep={prevStep}
               nextStep={nextStep}
               formValue={formValue}
@@ -85,7 +88,7 @@ const Post = () => {
         [R.T, R.always(null)]
       ])(step)
     }
-    </>
+    </CSSTransition>
   )
 };
 
