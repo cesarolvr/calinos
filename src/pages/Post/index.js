@@ -43,53 +43,54 @@ const Post = () => {
   };
 
   return (
-    <CSSTransition in={step} timeout={200} classNames="panel">
-    {
-      R.cond([
-        [R.equals(0), R.always(<Step0 nextStep={nextStep} />)],
-        [
-          R.equals(1),
-          R.always(
-            <Step1
-              step={step}
-              setStep={setStep}
-              prevStep={prevStep}
-              nextStep={nextStep}
-              formValue={formValue}
-              setFormValue={setFormValue}
-            />
-          )
-        ],
-        [
-          R.equals(2),
-          R.always(
-            <Step2
-              step={step}
-              nextStep={nextStep}
-              prevStep={prevStep}
-              setFormValue={setFormValue}
-              formValue={formValue}
-            />
-          )
-        ],
-        [
-          R.equals(3),
-          R.always(
-            <Step3
-              step={step}
-              nextStep={nextStep}
-              prevStep={prevStep}
-              setFormValue={setFormValue}
-              formValue={formValue}
-            />
-          )
-        ],
-        [R.equals(4), R.always(<Step4 />)],
-        [R.T, R.always(null)]
-      ])(step)
-    }
-    </CSSTransition>
-  )
+    <>
+      <div className={`progress-bar -step-${step}`}></div>
+      <CSSTransition in={!!step} timeout={200} classNames="panel">
+        {R.cond([
+          [R.equals(0), R.always(<Step0 nextStep={nextStep} />)],
+          [
+            R.equals(1),
+            R.always(
+              <Step1
+                step={step}
+                setStep={setStep}
+                prevStep={prevStep}
+                nextStep={nextStep}
+                formValue={formValue}
+                setFormValue={setFormValue}
+              />
+            )
+          ],
+          [
+            R.equals(2),
+            R.always(
+              <Step2
+                step={step}
+                nextStep={nextStep}
+                prevStep={prevStep}
+                setFormValue={setFormValue}
+                formValue={formValue}
+              />
+            )
+          ],
+          [
+            R.equals(3),
+            R.always(
+              <Step3
+                step={step}
+                nextStep={nextStep}
+                prevStep={prevStep}
+                setFormValue={setFormValue}
+                formValue={formValue}
+              />
+            )
+          ],
+          [R.equals(4), R.always(<Step4 />)],
+          [R.T, R.always(null)]
+        ])(step)}
+      </CSSTransition>
+    </>
+  );
 };
 
 export default Post;

@@ -2,6 +2,11 @@ import React from "react";
 import { Formik, Field } from "formik";
 import classNames from "classnames";
 
+// Utils
+import getBreed from "../../../utils/getBreed";
+
+const breeds = getBreed("dog");
+
 const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => {
   return (
     <div className="panel post -animal">
@@ -72,7 +77,13 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => {
                       <label className="label">Raça</label>
                       <Field component="select" name="breed" className="input">
                         <option value="">Selecionar</option>
-                        <option value="Labrador">Labrador</option>
+                        {breeds.map(({ name }, index) => {
+                          return (
+                            <option key={index} value={name}>
+                              {name}
+                            </option>
+                          );
+                        })}
                         <option value="Poodle">Poodle</option>
                         <option value="Bulldog">Bulldog</option>
                       </Field>

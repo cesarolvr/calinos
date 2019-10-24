@@ -3,17 +3,6 @@
   padding: 0;
   overflow: scroll;
 
-  &:before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #dc1d48;
-    transition: width .3s ease;
-  }
-
   .content {
     padding: 20px 30px;
     height: 100%;
@@ -85,7 +74,6 @@
     line-height: 28px;
   }
 
-  
   &.-intro {
     > .content {
       height: auto;
@@ -134,10 +122,7 @@
   }
 
   &.-animal {
-    &:before {
-      width: 25%;
-    }
-
+   
     .box {
       padding-top: 10px;
       padding-bottom: 0px;
@@ -145,15 +130,9 @@
   }
 
   &.-local {
-    &:before {
-      width: 50%;
-    }
   }
 
   &.-photo {
-    &:before {
-      width: 75%;
-    }
 
     .add {
       overflow: hidden;
@@ -293,27 +272,32 @@
       opacity: 0;
     }
 
-    .title, .description, .button {
+    .title,
+    .description,
+    .button {
       transform: translateY(30px);
       opacity: 0;
     }
   }
 
-  .title, .description, .button, .banner {
-    transition: transform .3s ease, opacity .3s ease;
-    transition-delay: .5s;
+  .title,
+  .description,
+  .button,
+  .banner {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition-delay: 0.5s;
   }
 
   .banner {
-    transition-delay: .4s;
+    transition-delay: 0.4s;
   }
 
   .description {
-    transition-delay: .6s;
+    transition-delay: 0.6s;
   }
 
   .button {
-    transition-delay: .7s;
+    transition-delay: 0.7s;
   }
 
   &.page-enter-done {
@@ -322,9 +306,38 @@
       opacity: 1;
     }
 
-    .title, .description, .button {
+    .title,
+    .description,
+    .button {
       transform: translateY(0px);
       opacity: 1;
     }
   }
+}
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #dc1d48;
+  transition: width 0.3s ease;
+
+  &.-step-1 {
+    width: 25%;
+  }
+
+  &.-step-2 {
+    width: 50%;
+  }
+
+  &.-step-3 {
+    width: 75%;
+  }
+
+  &.-step-4 {
+    width: 100%;
+  }
+
 }
