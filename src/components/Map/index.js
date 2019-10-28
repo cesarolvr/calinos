@@ -89,7 +89,12 @@ const MapContainer = ({ google }) => {
               title={"Me"}
               key={index}
               name={animal.name}
-              onClick={() => openMarker(marker)}
+              onClick={(item) => {
+                console.log(initialCoords);
+                setInitialCoords(initialCoords)
+                
+                openMarker(marker)
+              }}
               icon={pin}
               position={{
                 lat: local.pin.lat,

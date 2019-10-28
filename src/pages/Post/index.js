@@ -5,6 +5,9 @@ import { CSSTransition } from "react-transition-group";
 
 import "./Post.scss";
 
+// Firebase
+import firebase from "firebase/app";
+
 // Steps
 import Step0 from "./Steps/Step0";
 import Step1 from "./Steps/Step1";
@@ -14,6 +17,7 @@ import Step4 from "./Steps/Step4";
 
 const Post = () => {
   const [step, setStep] = useState(0);
+  const currentUser = firebase.auth().currentUser;
 
   // TODO: transferir essa model para outro canto
   const [formValue, setFormValue] = useState({
@@ -32,7 +36,9 @@ const Post = () => {
         lng: 0
       }
     },
-    photos: []
+    photos: [],
+    ownerId: currentUser.uid,
+    ownerName: currentUser.displayName,
   });
 
   const nextStep = () => {

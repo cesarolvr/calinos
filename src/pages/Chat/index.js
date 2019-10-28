@@ -18,7 +18,7 @@ const Chat = ({ history }) => {
   const currentUser = firebase.auth().currentUser;
   const db = firebase.firestore();
   const hasMessages = localMessages && localMessages.length > 0;
-  const { id, animal = {} } = pinOpened;
+  const { id, animal = {}, ownerName = '' } = pinOpened;
   const days = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"];
 
   const sendMessage = message => {
@@ -112,10 +112,10 @@ const Chat = ({ history }) => {
         ) : (
           <div className="actions">
             <h3 className="title">
-              Como você <br /> quer ajudar Maria?
+              Como você <br /> quer ajudar {ownerName.split(' ')[0]}?
             </h3>
             <button className="button find" onClick={isFounded}>
-              Informar que achou Fred
+              Informar que achou {animal.name}
             </button>
             <button
               className="button share"
