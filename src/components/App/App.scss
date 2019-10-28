@@ -29,12 +29,16 @@
 }
 
 .page-holder {
+  overflow: hidden;
   width: 100%;
   height: 100%;
-  transition: transform .3s ease;
+  transition: transform .3s ease, border-radius .3s ease;
+  background: white;
+  border-radius: 0px;
 }
 
 .wrapper {
+  background-color: #1B5063;
   .menu-toggle {
     width: 50px;
     height: 50px;
@@ -50,9 +54,8 @@
 
   &.-opened {
     .page-holder {
-      transform: scale(0.8) translateX(60%);
+      transform: scale(0.8) translateX(70%);
       border-radius: 30px;
-      overflow: hidden;
 
       > .home {
         pointer-events: none;
@@ -75,6 +78,8 @@
       background: url(../../assets/images/arrow-back.svg) center center no-repeat / 40% 50%;
       background-color: transparent;
       box-shadow: none;
+      opacity: 0;
+      pointer-events: none;
     }
   }
 }

@@ -67,7 +67,14 @@ const App = ({ firebaseprops, location }) => {
         </>
       )}
       <Menu toggleMenu={toggleMenu} />
-      <div className="page-holder">
+      <div
+        className="page-holder"
+        onClick={() => {
+          if (menuOpened) {
+            toggleMenu();
+          }
+        }}
+      >
         <Routes />
         {isAuthed(firebaseprops) && isHomepage && <Bar />}
       </div>

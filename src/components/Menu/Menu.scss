@@ -1,6 +1,5 @@
 .menu {
   position: fixed;
-  background: white;
   z-index: 31;
   left: 0;
   top: 0;
@@ -10,15 +9,17 @@
   padding: 0 0 0 30px;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-between;
   transform: translateX(-100%);
   transition: transform .3s ease;
   pointer-events: none;
 
   > .title {
-    font-size: 30px;
-    margin-top: 0;
+    font-size: 28px;
+    margin-top: 40px;
     margin-bottom: 30px;
+    color: white;
+    font-weight: 600;
   }
 
   > .nav-list {
@@ -26,18 +27,21 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding-left: 30px;
 
     > .item {
       margin: 17px 0;
       font-size: 20px;
       font-weight: normal;
       position: relative;
+      color: white;
 
-      > .notification {
+      > .icon {
         position: absolute;
-        width: 20px;
-        height: 20px;
-        background: #dc1d48;
+        width: 15px;
+        height: 15px;
+        background: white;
+        opacity: .2;
         color: white;
         display: flex;
         align-items: center;
@@ -48,21 +52,23 @@
         border-radius: 26px;
         top: 0;
         bottom: 0;
-        left: 105%;
-      }
-
-      @media screen and (max-width: 400px) {
-        font-size: 18px;
+        right: auto;
+        margin: auto;
+        left: -30px;
       }
     }
   }
 
   > .profile {
     display: flex;
+    color: white;
+    margin-bottom: 40px;
+
     > .photo {
       width: 40px;
       height: 40px;
       background: #eee;
+      opacity: .2;
       display: block;
       border-radius: 50%;
     }

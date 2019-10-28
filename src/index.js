@@ -26,11 +26,11 @@ import "firebase/storage";
 // Consts
 import { firebaseConfig } from "./consts";
 
-const initialState = {
-  pinOpened: false,
-  isLoading: false,
-  aplicationLoaded: false
-};
+  const initialState = {
+    pinOpened: false,
+    isLoading: false,
+    aplicationLoaded: false
+  };
 
 const reducer = (state, action) => {
   switch (action.type) {
