@@ -78,10 +78,11 @@
     > .content {
       height: auto;
       display: block;
+      position: relative;
     }
     .banner {
       width: 100%;
-      height: 50%;
+      height: 47%;
       flex-shrink: 0;
       display: flex;
       align-items: center;
@@ -98,25 +99,51 @@
     }
 
     .description {
-      font-size: 17px;
-      line-height: 25px;
+      font-size: 16px;
+      line-height: 22px;
       padding: 0px 20px;
+      margin-top: 0;
+      margin-bottom: 10px;
+      
+      &:last-of-type {
+        margin-bottom: 30px;
+      }
+    }
+
+    .title {
       margin-top: 0;
     }
 
     .button {
       background: #dc1d48;
-      font-weight: normal;
-      font-size: 18px;
-      width: auto;
-      padding: 15px 40px;
-      margin-bottom: 20px;
+      font-weight: 400;
+      font-size: 16px;
+      width: 200px;
+      padding: 12px 30px;
+      margin-top: 0;
+      margin-bottom: 12px;
+      
       &.cancel {
-        background: none;
-        padding: 0;
-        color: black;
-        font-weight: normal;
+        background: url(../../assets/images/close.svg) bottom center no-repeat;
+        background-size: 100% auto;
+        z-index: 40;
         box-shadow: none;
+        position: fixed;
+        top: 30px;
+        right: 30px;
+        width: 20px;
+        height: 20px;
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
+      }
+
+      &.-option-2 {
+        background-color: #8F1331;
+      }
+
+      &:last-of-type {
+        margin-bottom: 10px;
       }
     }
   }
@@ -127,9 +154,6 @@
       padding-top: 10px;
       padding-bottom: 0px;
     }
-  }
-
-  &.-local {
   }
 
   &.-photo {
@@ -236,8 +260,8 @@
       }
 
       .description {
-        font-size: 17px;
-        line-height: 25px;
+        font-size: 16px;
+        line-height: 22px;
         padding: 0px 20px;
       }
 
