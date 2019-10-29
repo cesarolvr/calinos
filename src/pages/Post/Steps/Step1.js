@@ -13,6 +13,7 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => {
       <div className="content">
         <Formik
           initialValues={{
+            type: "",
             name: "",
             breed: "",
             color: "",
@@ -31,6 +32,9 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => {
             }
             if (!values.size) {
               errors.size = "Selecione o porte do animal";
+            }
+            if (!values.type) {
+              errors.type = "Selecione o tipo do animal";
             }
             return errors;
           }}
@@ -57,7 +61,20 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => {
                 <form className="form" onSubmit={handleSubmit} noValidate>
                   <div className="box">
                     <div className="input-wrapper">
-                      <label className="label">Name</label>
+                      <label className="label">Tipo do bichinho</label>
+                      <Field component="select" name="type" className="input">
+                        <option value="">Selecionar</option>
+                        <option value="Cachorro">Cachorro</option>
+                        <option value="Gato">Gato</option>
+                      </Field>
+                      {errors.type && touched.type && errors.type && (
+                        <span className="error">
+                          {errors.type && touched.type && errors.type}
+                        </span>
+                      )}
+                    </div>
+                    <div className="input-wrapper">
+                      <label className="label">Nome</label>
                       <input
                         type="text"
                         name="name"
@@ -84,8 +101,6 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => {
                             </option>
                           );
                         })}
-                        <option value="Poodle">Poodle</option>
-                        <option value="Bulldog">Bulldog</option>
                       </Field>
                       {errors.breed && touched.breed && errors.breed && (
                         <span className="error">

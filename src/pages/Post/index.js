@@ -21,11 +21,13 @@ const Post = () => {
 
   // TODO: transferir essa model para outro canto
   const [formValue, setFormValue] = useState({
+    postType: "",
     animal: {
       name: "",
       breed: "",
       color: "",
-      size: ""
+      size: "",
+      type: ""
     },
     local: {
       street: "",
@@ -38,7 +40,7 @@ const Post = () => {
     },
     photos: [],
     ownerId: currentUser.uid,
-    ownerName: currentUser.displayName,
+    ownerName: currentUser.displayName
   });
 
   const nextStep = () => {
