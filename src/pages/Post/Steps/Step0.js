@@ -32,6 +32,7 @@ const Step0 = ({ nextStep, history, prevStep, formValue, setFormValue }) => (
           ...formValue,
           postType: 'abandoned'
         });
+        nextStep();
       }}>
         Vi o animal na rua
       </button>
