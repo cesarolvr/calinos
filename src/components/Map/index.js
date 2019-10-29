@@ -66,7 +66,7 @@ const MapContainer = ({ google }) => {
       </div>
       <Map
         google={google}
-        zoom={9}
+        zoom={15}
         disableDefaultUI={true}
         style={{
           width: "100%",

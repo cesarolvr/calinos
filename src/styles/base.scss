@@ -11,6 +11,10 @@ input:-webkit-autofill:active  {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
+input, button, textarea, select {
+  -webkit-appearance: none;
+}
+
 body {
   margin: 0;
   padding: 0;
