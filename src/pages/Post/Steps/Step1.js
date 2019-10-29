@@ -5,8 +5,6 @@ import classNames from "classnames";
 // Utils
 import getBreed from "../../../utils/getBreed";
 
-const breeds = getBreed("dog");
-
 const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => {
   return (
     <div className="panel post -animal">
@@ -55,6 +53,7 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => {
             handleSubmit,
             isValid
           }) => {
+            const { type } = values;
             return (
               <>
                 <h1 className="title">Sobre o animal</h1>
@@ -94,13 +93,15 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => {
                       <label className="label">Raça</label>
                       <Field component="select" name="breed" className="input">
                         <option value="">Selecionar</option>
-                        {breeds.map(({ name }, index) => {
-                          return (
-                            <option key={index} value={name}>
-                              {name}
-                            </option>
-                          );
-                        })}
+                        {getBreed(type === "cat" ? "cat" : "dog").map(
+                          ({ name }, index) => {
+                            return (
+                              <option key={index} value={name}>
+                                {name}
+                              </option>
+                            );
+                          }
+                        )}
                       </Field>
                       {errors.breed && touched.breed && errors.breed && (
                         <span className="error">
