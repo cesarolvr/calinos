@@ -6,7 +6,7 @@ const Step0 = ({ nextStep, history, prevStep, formValue, setFormValue }) => (
     <div className="banner"></div>
     <div className="content">
       <button
-        className="button cancel"
+        className="cancel"
         onClick={() => {
           history.goBack();
         }}

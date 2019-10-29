@@ -59,30 +59,7 @@
     }
   }
 
-  .block-content {
-    margin-bottom: 30px;
-
-    .subtitle {
-      padding-left: 20px;
-      font-weight: normal;
-      &:before {
-        content: "";
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background-color: #ddd;
-        border-radius: 50%;
-        bottom: 0;
-        top: 0;
-        left: 0px;
-        margin: auto;
-      }
-    }
-
-    .paragraph {
-      font-weight: bold;
-    }
-  }
+  
 
   .info {
     font-size: 16px;

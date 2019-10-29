@@ -2,6 +2,7 @@
   height: 100%;
   padding: 0;
   overflow: scroll;
+  overflow-x: hidden;
 
   .content {
     padding: 20px 30px;
@@ -9,6 +10,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    .description {
+      font-size: 18px;
+      line-height: 22px;
+
+      @media screen and (max-width: 400px) {
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
   }
 
   .step-control {
@@ -99,12 +109,10 @@
     }
 
     .description {
-      font-size: 16px;
-      line-height: 22px;
       padding: 0px 20px;
       margin-top: 0;
       margin-bottom: 10px;
-      
+
       &:last-of-type {
         margin-bottom: 25px;
       }
@@ -112,6 +120,22 @@
 
     .title {
       margin-top: 0;
+    }
+
+    .cancel {
+      background: url(../../assets/images/close.svg) bottom center no-repeat;
+      background-size: 100% auto;
+      z-index: 40;
+      box-shadow: none;
+      position: fixed;
+      top: 30px;
+      border: none;
+      right: 30px;
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      margin: 0;
+      border-radius: 0;
     }
 
     .button {
@@ -122,24 +146,9 @@
       padding: 12px 30px;
       margin-top: 0;
       margin-bottom: 12px;
-      
-      &.cancel {
-        background: url(../../assets/images/close.svg) bottom center no-repeat;
-        background-size: 100% auto;
-        z-index: 40;
-        box-shadow: none;
-        position: fixed;
-        top: 30px;
-        right: 30px;
-        width: 20px;
-        height: 20px;
-        padding: 0;
-        margin: 0;
-        border-radius: 0;
-      }
 
       &.-option-2 {
-        background-color: #8F1331;
+        background-color: #8f1331;
       }
 
       &:last-of-type {
@@ -149,7 +158,6 @@
   }
 
   &.-animal {
-   
     .box {
       padding-top: 10px;
       padding-bottom: 0px;
@@ -157,7 +165,6 @@
   }
 
   &.-photo {
-
     .add {
       overflow: hidden;
       cursor: pointer;
@@ -260,8 +267,6 @@
       }
 
       .description {
-        font-size: 16px;
-        line-height: 22px;
         padding: 0px 20px;
       }
 
@@ -296,6 +301,11 @@
       opacity: 0;
     }
 
+    .cancel {
+      transform: translateY(-30px);
+      opacity: 0;
+    }
+
     .title,
     .description,
     .button {
@@ -307,7 +317,8 @@
   .title,
   .description,
   .button,
-  .banner {
+  .banner,
+  .cancel {
     transition: transform 0.3s ease, opacity 0.3s ease;
     transition-delay: 0.5s;
   }
@@ -332,7 +343,8 @@
 
     .title,
     .description,
-    .button {
+    .button,
+    .cancel {
       transform: translateY(0px);
       opacity: 1;
     }
@@ -363,5 +375,4 @@
   &.-step-4 {
     width: 100%;
   }
-
 }

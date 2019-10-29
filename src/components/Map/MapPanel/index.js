@@ -64,14 +64,14 @@ const MapPanel = ({ animal = {}, photos = [], local = {} }) => {
 
             <p className="comment">{comment}</p>
 
-            <div className="block-content reference">
+            {/* <div className="block-content reference">
               <h3 className="subtitle">O ponto de referência</h3>
               <p className="paragraph">{reference}</p>
             </div>
             <div className="block-content street">
               <h3 className="subtitle">Último contato</h3>
               <p className="paragraph">{street}</p>
-            </div>
+            </div> */}
           </div>
 
           <Link className="button help" to="/chat">
