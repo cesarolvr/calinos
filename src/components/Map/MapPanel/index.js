@@ -62,6 +62,13 @@ const MapPanel = ({ animal = {}, photos = [], local = {} }) => {
               </div>
             </div>
 
+            <p className="info breed">
+              A raça do {name} é um <strong>{breed}</strong>
+            </p>
+            <p className="info size">
+              {name} é um animal de <strong>{size.toLowerCase()}</strong> porte
+            </p>
+
             <p className="comment">{comment}</p>
 
             {/* <div className="block-content reference">
