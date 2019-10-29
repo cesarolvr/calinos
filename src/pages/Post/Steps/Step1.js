@@ -64,8 +64,8 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => {
                       <label className="label">Tipo do bichinho</label>
                       <Field component="select" name="type" className="input">
                         <option value="">Selecionar</option>
-                        <option value="Cachorro">Cachorro</option>
-                        <option value="Gato">Gato</option>
+                        <option value="dog">Cachorro</option>
+                        <option value="cat">Gato</option>
                       </Field>
                       {errors.type && touched.type && errors.type && (
                         <span className="error">

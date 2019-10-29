@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router";
 
-const Step0 = ({ nextStep, history }) => (
+const Step0 = ({ nextStep, history, prevStep, formValue, setFormValue }) => (
   <div className="page panel post -intro">
     <div className="banner"></div>
     <div className="content">
@@ -13,16 +13,26 @@ const Step0 = ({ nextStep, history }) => (
       ></button>
       <h1 className="title">Vamos lá!</h1>
       <p className="description">
-        Para que possamos achar juntos o seu bichinho, precisamos do maior
-        número de informações possíveis.
+        Para que seu bichinho possa ser achado, precisamos de alguns dados.
       </p>
       <p className="description">
-        O bichinho é seu ou você apenas viu um animal perdido na rua?
+        O animal é seu ou você apenas o viu perdido na rua?
       </p>
-      <button className="button -option-1" onClick={nextStep}>
+      <button className="button -option-1" onClick={() => {
+        setFormValue({
+          ...formValue,
+          postType: 'lost'
+        });
+        nextStep();
+      }}>
         O animal é meu
       </button>
-      <button className="button -option-2" onClick={nextStep}>
+      <button className="button -option-2" onClick={() => {
+        setFormValue({
+          ...formValue,
+          postType: 'abandoned'
+        });
+      }}>
         Vi o animal na rua
       </button>
     </div>

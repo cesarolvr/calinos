@@ -54,7 +54,19 @@ const Post = () => {
     <>
       <CSSTransition in={!!step} timeout={200} classNames="panel">
         {R.cond([
-          [R.equals(0), R.always(<Step0 nextStep={nextStep} />)],
+          [
+            R.equals(0),
+            R.always(
+              <Step0
+                nextStep={nextStep}
+                setStep={setStep}
+                prevStep={prevStep}
+                nextStep={nextStep}
+                formValue={formValue}
+                setFormValue={setFormValue}
+              />
+            )
+          ],
           [
             R.equals(1),
             R.always(

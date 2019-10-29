@@ -19,7 +19,8 @@ import "./Map.scss";
 import { getPosts } from "../../api/database";
 
 // Assets
-import pin from "../../assets/images/pin.svg";
+import pinLost from "../../assets/images/pin-lost.svg";
+import pinAbandoned from "../../assets/images/pin-abandoned.svg";
 import pinMe from "../../assets/images/pinMe.svg";
 
 const MapContainer = ({ google }) => {
@@ -82,6 +83,7 @@ const MapContainer = ({ google }) => {
         />
         {markers.map((marker, index) => {
           const local = marker.local;
+          const postType = marker.postType;
           const animal = marker.animal;
           if (!local.pin) return null;
           return (
@@ -90,7 +92,7 @@ const MapContainer = ({ google }) => {
               key={index}
               name={animal.name}
               onClick={() => openMarker(marker)}
-              icon={pin}
+              icon={postType === "lost" ? pinLost : pinAbandoned}
               position={{
                 lat: local.pin.lat,
                 lng: local.pin.lng
