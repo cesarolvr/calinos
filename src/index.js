@@ -26,11 +26,12 @@ import "firebase/storage";
 // Consts
 import { firebaseConfig } from "./consts";
 
-  const initialState = {
-    pinOpened: false,
-    isLoading: false,
-    aplicationLoaded: false
-  };
+const initialState = {
+  pinOpened: false,
+  isLoading: false,
+  aplicationLoaded: false,
+  loginSelected: false
+};
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -50,6 +51,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         aplicationLoaded: action.aplicationLoaded
+      };
+
+    case "setLoginSelected":
+      return {
+        ...state,
+        loginSelected: action.loginSelected
       };
 
     case "isLoading":

@@ -16,6 +16,10 @@
     justify-content: center;
     background-color: #1b5063;
 
+    > .content {
+      
+    }
+
     > .ambient {
       width: 100%;
       height: auto;
@@ -71,7 +75,7 @@
 
   .logo {
     position: absolute;
-    left: 30px;
+    left: 40px;
     top: 30px;
     margin-bottom: auto;
   }

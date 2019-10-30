@@ -28,7 +28,7 @@ import illustrationAmbient from "../../assets/images/login-illustration.svg";
 import logoLoading from "../../assets/images/logo-full.svg";
 
 const Login = props => {
-  const [{ aplicationLoaded }, dispatch] = useStateValue();
+  const [{ loginSelected }, dispatch] = useStateValue();
   const db = firebase.firestore();
   const reallyDisconnected = R.path(
     ["firebaseprops", "firebase", "auth"],
@@ -61,8 +61,8 @@ const Login = props => {
   };
   const toggleLoad = () => {
     dispatch({
-      type: "setAplicationLoaded",
-      aplicationLoaded: !aplicationLoaded
+      type: "setLoginSelected",
+      loginSelected: !loginSelected
     });
   };
   if (!reallyDisconnected) return null;
@@ -70,6 +70,13 @@ const Login = props => {
     <Page name="login">
       <div className="logo-loading">
         <img src={logoLoading} alt="" />
+      </div>
+
+      <div className="content">
+        <img src={logo} className="logo" alt="" />
+        <h1 className="title">Ajude-nos a <br/>achar bichinhos <br/>perdidos.</h1>
+        <Link className="button -register" to={'/register'}>Registrar-se</Link>
+        <button className="button -signin" onClick={toggleLoad}>Entrar</button>
       </div>
       <div className="banner">
         <div className="ambient">

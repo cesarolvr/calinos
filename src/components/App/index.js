@@ -23,7 +23,7 @@ import isHome from "../../utils/isHome";
 
 const App = ({ firebaseprops, location }) => {
   const [
-    { pinOpened, menuOpened, aplicationLoaded },
+    { pinOpened, menuOpened, aplicationLoaded, loginSelected },
     dispatch
   ] = useStateValue();
 
@@ -54,8 +54,8 @@ const App = ({ firebaseprops, location }) => {
       className={classNames("wrapper", {
         "-opened": menuOpened,
         "-pin-opened": !!pinOpened,
-        "-loaded": !!aplicationLoaded,
-        "-loading": !aplicationLoaded
+        "-loaded": !!aplicationLoaded && !loginSelected,
+        "-login-selected": !!loginSelected
       })}
     >
       {isAuthed(firebaseprops) && isHomepage && (

@@ -1,9 +1,55 @@
 .wrapper {
+  // Reset
   .login {
     background: #1b5063;
 
     .form {
       transition: transform 0.3s ease-in-out, opacity 0.3s ease;
+
+      .button {
+        transition: opacity 0.3s ease 0.4s, transform 0.3s ease 0.4s;
+      }
+    }
+
+    .content {
+      padding: 25% 40px 40px;
+      width: 100%;
+      position: absolute;
+
+      > * {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        transform: translateY(15px);
+        opacity: 0;
+      }
+      
+
+      > .logo {
+        left: 40px;
+      }
+
+      > .title {
+        opacity: 0;
+        font-size: 22px;
+        line-height: 28px;
+        font-weight: 500;
+        color: white;
+        margin-bottom: 15%;
+      }
+
+      .button {
+        box-shadow: none;
+        margin-bottom: 15px;
+        display: block;
+        text-align: center;
+      }
+
+      .-signin {
+        background-color: #0fa5a3;
+      }
+
+      .-register {
+        background-color: #2f6b7e;
+      }
     }
 
     .banner {
@@ -25,10 +71,6 @@
     > .logo-loading {
       transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
-
-    // &.page-enter {
-    //   border: 1px solid red;
-    // }
     .input-wrapper {
       transition: opacity 0.3s ease-in-out 0.25s, transform 0.3s ease-in-out 0.25s;
 
@@ -37,132 +79,111 @@
       }
     }
 
-    .button {
-      transition: opacity 0.3s ease 0.4s, transform 0.3s ease 0.4s;
+  }
+
+  // Initial
+  .login {
+    .form {
+      transform: translateY(430px);
+      .input-wrapper,
+      .button {
+        opacity: 0;
+        transform: translateY(10px);
+        pointer-events: none;
+      }
+    }
+
+    .banner {
+      transform: translateY(430px);
+
+      > .logo,
+      > .register {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(0px);
+      }
+
+      > .people {
+        transform: scale(0.9) translateY(-180px);
+      }
     }
   }
 
+  // Loaded
   &.-loading {
-    .login {
-      .form {
-        transform: translateY(430px);
-        .input-wrapper,
-        .button {
-          opacity: 0;
-          transform: translateY(10px);
-          pointer-events: none;
-        }
+    .logo-loading {
+      transform: translateY(0px) scale(0.7);
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  // Loading
+  &.-loaded {
+    .logo-loading {
+      transform: translateY(-80px) scale(0.7);
+      opacity: 0;
+      pointer-events: auto;
+    }
+
+    .content {
+      > .logo,
+      > .title,
+      > .-signin,
+      > .-register {
+        transform: translateY(0px);
+        opacity: 1;
       }
 
-      .banner {
-        transform: translateY(430px);
-
-        > .logo,
-        > .register {
-          opacity: 0;
-          pointer-events: none;
-          transform: translateY(0px);
-        }
-
-        > .people {
-          transform: scale(0.9) translateY(-180px);
-        }
+      > .title {
+        transition-delay: .1s;
       }
+      > .-register {
+        transition-delay: .2s;
+      }
+      > .-signin {
+        transition-delay: .3s;
+      }
+      
+    }
+  }
 
-      .logo-loading {
-        transform: translateY(0px) scale(0.7);
+  &.-login-selected {
+    .logo-loading {
+      transform: translateY(-80px) scale(0.7);
+      opacity: 0;
+      pointer-events: auto;
+    }
+
+    .form {
+      transform: translateY(0px);
+      opacity: 1;
+      .input-wrapper,
+      .button {
+        opacity: 1;
+        transform: translateY(0px);
+        pointer-events: auto;
+      }
+    }
+
+    .banner {
+      transform: translateY(0px);
+      opacity: 1;
+      > .logo,
+      > .register {
+        transition-duration: 0.3s;
+        transition-delay: 0.2s;
+        transform: translateY(-10px);
         opacity: 1;
         pointer-events: auto;
       }
-    }
-  }
 
-  &.-loaded {
-    .login {
-      .form {
-        .input-wrapper,
-        .button {
-          opacity: 1;
-          transform: translateY(0px);
-          pointer-events: auto;
-        }
+      > .register {
+        transition-delay: 0.3s;
       }
 
-      .banner {
-        > .logo,
-        > .register {
-          transition-duration: 0.3s;
-          transition-delay: 0.2s;
-          transform: translateY(-10px);
-          opacity: 1;
-          pointer-events: auto;
-        }
-
-        > .register {
-          transition-delay: 0.3s;
-        }
-      }
-
-      .logo-loading {
-        transform: translateY(-80px) scale(0.7);
-        opacity: 0;
-        pointer-events: auto;
-      }
-    }
-
-    .login {
-      &.page-enter,
-      &.page-enter-active {
-        .form {
-          transform: translateY(30px);
-          opacity: 0;
-          .input-wrapper,
-          .button {
-            opacity: 0;
-            transform: translateY(10px);
-            pointer-events: none;
-          }
-        }
-
-        .banner {
-          transform: translateY(30px);
-          opacity: 0;
-
-          > .logo,
-          > .register {
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(0px);
-          }
-        }
-
-        .logo-loading {
-          opacity: 0;
-        }
-      }
-      &.page-enter-done {
-        .form {
-          transform: translateY(0px);
-          opacity: 1;
-          .input-wrapper,
-          .button {
-            opacity: 1;
-            transform: translateY(0px);
-            pointer-events: auto;
-          }
-        }
-
-        .banner {
-          transform: translateY(0px);
-          opacity: 1;
-
-          > .logo,
-          > .register {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(-10px);
-          }
-        }
+      > .people {
+        transform: scale(0.9) translateY(-0px);
       }
     }
   }
