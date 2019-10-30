@@ -6,11 +6,11 @@ import * as R from "ramda";
 
 import "./MapPanel.scss";
 
-const MapPanel = ({ animal = {}, photos = [], local = {} }) => {
+const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName }) => {
   const hasContent = !R.isEmpty(animal);
 
-  const { breed = "", color = "", name = "", size = "" } = animal;
-  const { comment = "", reference = "", street = "" } = local;
+  const { breed = "", color = "", name = "", size = "", type = "" } = animal;
+  const { comment = "" } = local;
 
   useEffect(() => {
     if (hasContent) {
@@ -29,15 +29,21 @@ const MapPanel = ({ animal = {}, photos = [], local = {} }) => {
       {hasContent ? (
         <>
           <div className="panel-content">
-            <h1 className="title">{name}</h1>
+            <div className="panel-header">
+              <h1 className="title">{name}</h1>
+              <Link className="to" to="/">
+                Ver post
+              </Link>
+            </div>
+            <p className="info type">
+              {name} é um{" "}
+              <strong>{type === "cat" ? "Gato" : "Cachorro"}</strong>
+            </p>
             <p className="info breed">
-              A raça do {name} é um <strong>{breed}</strong>
+              A raça do {name} é <strong>{breed}</strong>
             </p>
             <p className="info size">
               {name} é um animal de <strong>{size.toLowerCase()}</strong> porte
-            </p>
-            <p className="info color">
-              {name} é <strong>{color.toLowerCase()}</strong>
             </p>
             <div className="slider">
               <div data-glide-el="track" className="glide__track">
@@ -62,11 +68,12 @@ const MapPanel = ({ animal = {}, photos = [], local = {} }) => {
               </div>
             </div>
 
-            <p className="info breed">
-              A raça do {name} é um <strong>{breed}</strong>
+            <p className="info color">
+              {name} é <strong>{color.toLowerCase()}</strong>
             </p>
             <p className="info size">
-              {name} é um animal de <strong>{size.toLowerCase()}</strong> porte
+              <strong>{ownerName.split(" ")[0]}</strong> é a pessoa responsável
+              por {name}
             </p>
 
             <p className="comment">{comment}</p>

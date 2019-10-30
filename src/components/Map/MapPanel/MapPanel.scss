@@ -23,21 +23,35 @@
     }
   }
 
-  .title {
-    margin-top: 0;
-    margin-bottom: 10px;
-    padding-top: 30px;
-    padding-bottom: 5px;
-    font-size: 27px;
-    font-weight: 800;
+  .panel-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
     position: sticky;
     top: -10px;
     background: white;
+    z-index: 1;
+    padding-bottom: 10px;
+    padding-top: 15px;
+  }
+
+  .to {
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .title {
+    margin-top: 0;
+    margin-bottom: 0px;
+    font-size: 27px;
+    font-weight: 800;
     z-index: 10;
 
-    @media screen and (max-width: 400px) {
-      padding-top: 20px;
-    }
+    // @media screen and (max-width: 400px) {
+    //   padding-top: 20px;
+    // }
   }
 
   .subtitle {
