@@ -6,7 +6,8 @@ import * as R from "ramda";
 
 import "./MapPanel.scss";
 
-const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName }) => {
+const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName, id }) => {
+
   const hasContent = !R.isEmpty(animal);
 
   const { breed = "", color = "", name = "", size = "", type = "" } = animal;
@@ -31,7 +32,7 @@ const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName }) => {
           <div className="panel-content">
             <div className="panel-header">
               <h1 className="title">{name}</h1>
-              <Link className="to" to="/">
+              <Link className="to" to={`/publication/${id}`}>
                 Ver post
               </Link>
             </div>

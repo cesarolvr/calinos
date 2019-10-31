@@ -13,76 +13,10 @@ import Feed from "../pages/Feed";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Post from "../pages/Post";
+import Publication from "../pages/Publication";
 import Chat from "../pages/Chat";
 import MyPosts from "../pages/MyPosts";
 import NotFound from "../pages/NotFound";
-
-const Routes = () => {
-  return (
-    <FirebaseAuthConsumer>
-      {firebaseProps => {
-        return (
-          <Fragment>
-            {/* <Switch> */}
-            <OwnRoute
-              exact
-              path="/login"
-              authed={isAuthed(firebaseProps)}
-              component={Login}
-              firebaseprops={firebaseProps}
-            />
-            <OwnRoute
-              exact
-              path="/register"
-              authed={isAuthed(firebaseProps)}
-              component={Register}
-              firebaseprops={firebaseProps}
-            />
-            <PrivatedRoute
-              exact
-              path="/home"
-              authed={isAuthed(firebaseProps)}
-              component={Home}
-            />
-            <PrivatedRoute
-              exact
-              path="/"
-              authed={isAuthed(firebaseProps)}
-              component={Home}
-            />
-            <PrivatedRoute
-              exact
-              path="/feed"
-              authed={isAuthed(firebaseProps)}
-              component={Feed}
-            />
-            <PrivatedRoute
-              exact
-              path="/post"
-              authed={isAuthed(firebaseProps)}
-              component={Post}
-            />
-            <PrivatedRoute
-              exact
-              path="/chat"
-              authed={isAuthed(firebaseProps)}
-              component={Chat}
-            />
-            <PrivatedRoute
-              exact
-              path="/my-posts"
-              authed={isAuthed(firebaseProps)}
-              component={MyPosts}
-            />
-            <OwnRoute path="/not-found" exact={true} component={NotFound} />
-            <Redirect from="*" to="/home" />
-            {/* </Switch> */}
-          </Fragment>
-        );
-      }}
-    </FirebaseAuthConsumer>
-  );
-};
 
 const OwnRoute = ({ component: Component, authed, path, ...rest }) => {
   return (
@@ -127,6 +61,98 @@ const PrivatedRoute = ({ component: Component, authed, ...rest }) => {
         );
       }}
     </Route>
+  );
+};
+
+const PublicRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route {...rest}>
+      {({ match, ...props }) => {
+        return (
+          <CSSTransition
+            in={match != null}
+            timeout={100}
+            classNames="page"
+            unmountOnExit
+          >
+            <Component {...props} {...rest} />
+          </CSSTransition>
+        );
+      }}
+    </Route>
+  );
+};
+
+const Routes = () => {
+  return (
+    <FirebaseAuthConsumer>
+      {firebaseProps => {
+        return (
+          <Fragment>
+            {/* <Switch> */}
+            <PublicRoute
+              exact
+              path="/publication/:id"
+              component={Publication}
+            />
+            <OwnRoute
+              exact
+              path="/login"
+              authed={isAuthed(firebaseProps)}
+              component={Login}
+              firebaseprops={firebaseProps}
+            />
+            <OwnRoute
+              exact
+              path="/register"
+              authed={isAuthed(firebaseProps)}
+              component={Register}
+              firebaseprops={firebaseProps}
+            />
+            <PrivatedRoute
+              exact
+              path="/home"
+              authed={isAuthed(firebaseProps)}
+              component={Home}
+            />
+            <PrivatedRoute
+              exact
+              path="/"
+              authed={isAuthed(firebaseProps)}
+              component={Home}
+            />
+            <PrivatedRoute
+              exact
+              path="/feed"
+              authed={isAuthed(firebaseProps)}
+              component={Feed}
+            />
+            <PrivatedRoute
+              exact
+              path="/post"
+              authed={isAuthed(firebaseProps)}
+              component={Post}
+            />
+
+            <PrivatedRoute
+              exact
+              path="/chat"
+              authed={isAuthed(firebaseProps)}
+              component={Chat}
+            />
+            <PrivatedRoute
+              exact
+              path="/my-posts"
+              authed={isAuthed(firebaseProps)}
+              component={MyPosts}
+            />
+            <OwnRoute path="/not-found" exact={true} component={NotFound} />
+            {/* <Redirect from="*" to="/home" /> */}
+            {/* </Switch> */}
+          </Fragment>
+        );
+      }}
+    </FirebaseAuthConsumer>
   );
 };
 

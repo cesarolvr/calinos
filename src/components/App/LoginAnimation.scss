@@ -189,10 +189,10 @@
 
   // Transition Group
   &.-login-selected {
-    .content {
-      opacity: 0;
-    }
     .login {
+      .content {
+        opacity: 0;
+      }
       &.page-enter {
         .logo,
         .register {
