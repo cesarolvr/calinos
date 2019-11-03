@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import Glide from "@glidejs/glide";
 import * as R from "ramda";
 
+// Components
+import Loader from "../../Loader";
+
 import "./MapPanel.scss";
 
 const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName, id }) => {
-
   const hasContent = !R.isEmpty(animal);
 
   const { breed = "", color = "", name = "", size = "", type = "" } = animal;
@@ -51,10 +53,11 @@ const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName, id }) => {
                 <ul className="glide__slides">
                   {photos.map((photo, index) => (
                     <li className="glide__slide" key={index}>
-                      <img src={photo} className="image" />
+                    <img src={photo} className="image" />
                     </li>
                   ))}
                 </ul>
+                <Loader />
                 <div className="glide__bullets" data-glide-el="controls[nav]">
                   {photos.map((item, index) => {
                     return (
@@ -78,15 +81,6 @@ const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName, id }) => {
             </p>
 
             <p className="comment">{comment}</p>
-
-            {/* <div className="block-content reference">
-              <h3 className="subtitle">O ponto de referência</h3>
-              <p className="paragraph">{reference}</p>
-            </div>
-            <div className="block-content street">
-              <h3 className="subtitle">Último contato</h3>
-              <p className="paragraph">{street}</p>
-            </div> */}
           </div>
 
           <Link className="button help" to="/chat">

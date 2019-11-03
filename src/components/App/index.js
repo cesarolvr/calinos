@@ -3,6 +3,8 @@ import { withRouter } from "react-router";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 
+// TODO: refatorar esse App. Ele é mais um wrapper do que um componente
+
 // State
 import { useStateValue } from "../../state";
 

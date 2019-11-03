@@ -5,6 +5,7 @@
   "dependencies": {
     "@glidejs/glide": "^3.4.1",
     "@react-firebase/auth": "^0.2.9",
+    "antd": "^3.24.3",
     "classnames": "^2.2.6",
     "firebase": "^6.4.2",
     "formik": "^1.5.8",

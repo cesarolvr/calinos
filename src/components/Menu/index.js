@@ -1,11 +1,14 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { Icon } from "antd";
 
 // Firebase
 import firebase from "firebase/app";
 
 import "./Menu.scss";
 import "./Motion.scss";
+
+import pawIcon from "../../assets/images/paw-icon-outline.svg";
 
 const Menu = ({ history, toggleMenu }) => {
   const logout = () => {
@@ -23,22 +26,22 @@ const Menu = ({ history, toggleMenu }) => {
       <ul className="nav-list">
         <li className="item">
           Meu pet
-          <span className="icon"></span>
+          <img src={pawIcon} className="anticon" />
         </li>
         <li className="item" onClick={() => to("/my-posts")}>
           Meus posts
-          <span className="icon"></span>
+          <Icon type="environment" />
         </li>
         <li className="item">
           Perfil
-          <span className="icon"></span>
+          <Icon type="profile" />
         </li>
         <li className="item">
           Ajustes
-          <span className="icon"></span>
+          <Icon type="setting" />
         </li>
         <li className="item" onClick={logout}>
-          <span className="icon"></span>
+          <Icon type="logout" />
           Sair
         </li>
       </ul>

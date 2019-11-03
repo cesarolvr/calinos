@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Icon } from "antd";
 
 // Firebase
 import firebase from "firebase/app";
@@ -32,8 +33,6 @@ const Publication = () => {
     getPost();
   }, []);
 
-  console.log(post);
-
   return (
     <div className="publication">
       <div className="back"></div>
@@ -44,17 +43,31 @@ const Publication = () => {
           <div className="share">Compartilhar</div>
         </div>
         <ul className="details-list">
-          <li className="item">Labrador amarelo</li>
-          <li className="item">Estação Santo Amaro</li>
-          <li className="item">Maria Fernanda é a dona</li>
-          <li className="item">Fred é macho</li>
+          <li className="item">
+            <Icon type="info-circle" />
+            Labrador amarelo
+          </li>
+          <li className="item">
+            <Icon type="info-circle" />
+            Estação Santo Amaro
+          </li>
+          <li className="item">
+            <Icon type="info-circle" />
+            Maria Fernanda é a dona
+          </li>
+          <li className="item">
+            <Icon type="info-circle" />
+            Fred é macho
+          </li>
         </ul>
         <p className="comment">
           O Fred fugiu da casa de sua dona Fernanda ontem por voltar das 20h00,
           próximo à estação.
         </p>
-        <button className="button">Ver discussão</button>
-        <button className="button">Ligar para o dono</button>
+        <div className="control">
+          <button className="button">Ver discussão</button>
+          <button className="button -call">Ligar para o dono</button>
+        </div>
       </div>
     </div>
   );
