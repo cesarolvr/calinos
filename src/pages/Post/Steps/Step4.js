@@ -1,26 +1,10 @@
 import React from "react";
 
-// State
-import { useStateValue } from "../../../state";
-
 import { Link } from "react-router-dom";
 
-const Step4 = () => {
-
-  const [
-    { pinOpened },
-    dispatch
-  ] = useStateValue();
-
-  // const {
-  //   animal = {},
-  //   ownerName = "",
-  //   id: postId,
-  //   postType = ""
-  // } = post;
-  // const { name = "", breed = "", color = "", gender = "", type = "" } = animal;
-
-  console.log(pinOpened);
+const Step4 = ({ postUploaded, setPostUploaded }) => {
+  console.log(postUploaded, setPostUploaded);
+  
   
 
   const sharePostLabels = () => {
@@ -41,7 +25,7 @@ const Step4 = () => {
       <div className="content">
         <h1 className="title">Feito!</h1>
         <p className="description">
-          A notícia sobre seu bichinho foi postada para pessoas ao redor e para
+          A notícia sobre esse bichinho foi postada para pessoas ao redor e para
           seu amigos.
         </p>
         <button

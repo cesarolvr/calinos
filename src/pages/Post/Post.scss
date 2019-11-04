@@ -24,6 +24,9 @@
   .step-control {
     display: flex;
     justify-content: space-between;
+    position: sticky;
+    bottom: 0;
+    background: white;
     width: 100%;
     margin: 10px 0px 20px;
 
@@ -78,10 +81,18 @@
       padding-right: 0;
     }
   }
-
-  .title {
-    font-size: 22px;
-    line-height: 28px;
+  
+  .content {
+    > .title {
+      font-size: 22px;
+      line-height: 28px; 
+      position: sticky;
+      top: 0px;
+      background: white;
+      z-index: 30;
+      padding: 13px 0px 8px;
+      margin-bottom: 0;
+    }
   }
 
   &.-intro {
@@ -273,10 +284,11 @@
       }
 
       .button {
-        padding: 12px 20px;
+        padding: 14px 20px;
         width: 180px;
         text-align: center;
         font-size: 16px;
+        box-shadow: none;
 
         @media screen and (max-width: 400px) {
           font-size: 14px;
@@ -359,6 +371,7 @@
   left: 0;
   width: 0;
   height: 2px;
+  z-index: 31;
   background: #dc1d48;
   transition: width 0.3s ease;
 

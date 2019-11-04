@@ -69,7 +69,6 @@ const Publication = ({ history }) => {
       <button
         className="back"
         onClick={() => {
-          // history.goBack();
           history.push('/home');
         }}
       >

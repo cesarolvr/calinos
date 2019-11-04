@@ -52,13 +52,15 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
           photos: [...newPhoto],
           id: postId
         })
-        .then(() => {
-          db.collection("chats")
-            .doc(postId)
-            .set({
-              messages: []
-            });
-          nextStep();
+        .then((res) => {
+          console.log(res);
+          
+          // db.collection("chats")
+          //   .doc(postId)
+          //   .set({
+          //     messages: []
+          //   });
+          // nextStep();
         })
         .catch(console.log);
     });
