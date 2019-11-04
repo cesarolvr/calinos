@@ -49,8 +49,8 @@ const Publication = ({ history }) => {
     const the = gender === "M" ? "O" : "A";
     const animalType = type === "cat" ? "gatinh" : "cachorrinh";
     return {
-      title: `${the} ${animalType}${the.toLowerCase()} ${name} desapareceu </3`,
-      description: `Compartilhe a notícia com seus amigos para que ${name} possa voltar para casa logo.`
+      title: `Ajude um animalzinho perdido.`,
+      description: `${the} ${animalType}${the.toLowerCase()} ${name.trim()} desapareceu </3. Compartilhe a notícia.`
     };
   };
 
@@ -69,7 +69,8 @@ const Publication = ({ history }) => {
       <button
         className="back"
         onClick={() => {
-          history.goBack();
+          // history.goBack();
+          history.push('/home');
         }}
       >
         <Icon type="left" />
