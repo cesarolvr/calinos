@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 import Glide from "@glidejs/glide";
 import * as R from "ramda";
 
-// Components
-import Loader from "../../Loader";
-
 import "./MapPanel.scss";
 
 const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName, id }) => {
@@ -57,7 +54,6 @@ const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName, id }) => {
                     </li>
                   ))}
                 </ul>
-                <Loader />
                 <div className="glide__bullets" data-glide-el="controls[nav]">
                   {photos.map((item, index) => {
                     return (

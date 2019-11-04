@@ -110,38 +110,42 @@
 
   // Loaded
   &.-loading {
-    .logo-loading {
-      transform: translateY(0px) scale(0.7);
-      opacity: 1;
-      pointer-events: auto;
+    .login {
+      .logo-loading {
+        transform: translateY(0px) scale(0.7);
+        opacity: 1;
+        pointer-events: auto;
+      }
     }
   }
 
   // Loading
   &.-loaded {
-    .logo-loading {
-      transform: translateY(-80px) scale(0.7);
-      opacity: 0;
-      pointer-events: auto;
-    }
-
-    .content {
-      > .logo,
-      > .title,
-      > .-signin,
-      > .-register {
-        transform: translateY(0px);
-        opacity: 1;
+    .login {
+      .logo-loading {
+        transform: translateY(-80px) scale(0.7);
+        opacity: 0;
+        pointer-events: auto;
       }
 
-      > .title {
-        transition-delay: 0.1s;
-      }
-      > .-register {
-        transition-delay: 0.2s;
-      }
-      > .-signin {
-        transition-delay: 0.3s;
+      .content {
+        > .logo,
+        > .title,
+        > .-signin,
+        > .-register {
+          transform: translateY(0px);
+          opacity: 1;
+        }
+
+        > .title {
+          transition-delay: 0.1s;
+        }
+        > .-register {
+          transition-delay: 0.2s;
+        }
+        > .-signin {
+          transition-delay: 0.3s;
+        }
       }
     }
   }

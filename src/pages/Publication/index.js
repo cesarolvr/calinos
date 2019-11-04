@@ -33,19 +33,24 @@ const Publication = () => {
     getPost();
   }, []);
 
+  const { animal = {}, ownerName = '' } = post;
+  const { name = "", breed = "", color = "" } = animal;
+
+  console.log(name, post);
+
   return (
     <div className="publication">
       <div className="back"></div>
       <div className="slider"></div>
       <div className="content">
         <div className="header">
-          <div className="title">Fred</div>
+          <div className="title">{name}</div>
           <div className="share">Compartilhar</div>
         </div>
         <ul className="details-list">
           <li className="item">
             <Icon type="info-circle" />
-            Labrador amarelo
+            {name} é um {breed} {color.toLowerCase()}
           </li>
           <li className="item">
             <Icon type="info-circle" />
@@ -53,7 +58,7 @@ const Publication = () => {
           </li>
           <li className="item">
             <Icon type="info-circle" />
-            Maria Fernanda é a dona
+            {ownerName.split(" ")[0]} é a pessoa responsável
           </li>
           <li className="item">
             <Icon type="info-circle" />

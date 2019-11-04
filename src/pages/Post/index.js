@@ -27,7 +27,8 @@ const Post = () => {
       breed: "",
       color: "",
       size: "",
-      type: ""
+      type: "",
+      gender: ""
     },
     local: {
       street: "",

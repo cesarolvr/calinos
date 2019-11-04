@@ -24,9 +24,10 @@
       .button {
         border-radius: 0;
         margin: 0;
-        font-weight: normal;
+        font-weight: 600;
         font-size: 13px;
         background-color: #0FA5A3;
+        padding: 18px 20px;
 
         &.-call {
           background-color: #1B5063;
@@ -38,8 +39,19 @@
       margin-bottom: 0;
       > .item {
         font-size: 14px;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+
+        > .anticon {
+          width: 18px;
+          height: 18px;
+          display: flex;
+          align-items: center;
+          margin-right: 5px;
+        }
       }
+      
     }
 
     > .header,
@@ -60,6 +72,7 @@
 
       > .share {
         font-size: 14px;
+        font-weight: 600;
       }
     }
 

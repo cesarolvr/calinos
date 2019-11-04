@@ -14,6 +14,7 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => {
             type: "",
             name: "",
             breed: "",
+            gender: "",
             color: "",
             size: ""
           }}
@@ -24,6 +25,9 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => {
             }
             if (!values.breed) {
               errors.breed = "Selecione uma raça";
+            }
+            if (!values.gender) {
+              errors.gender = "Selecione o gênero";
             }
             if (!values.color) {
               errors.color = "Selecione uma cor";
@@ -86,6 +90,19 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => {
                       {errors.name && touched.name && errors.name && (
                         <span className="error">
                           {errors.name && touched.name && errors.name}
+                        </span>
+                      )}
+                    </div>
+                    <div className="input-wrapper">
+                      <label className="label">Sexo</label>
+                      <Field component="select" name="gender" className="input">
+                        <option value="">Selecionar</option>
+                        <option value="M">Macho</option>
+                        <option value="F">Fêmea</option>
+                      </Field>
+                      {errors.gender && touched.gender && errors.gender && (
+                        <span className="error">
+                          {errors.gender && touched.gender && errors.gender}
                         </span>
                       )}
                     </div>
