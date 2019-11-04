@@ -172,7 +172,7 @@ const Chat = ({ history }) => {
                 }
               }}
             >
-              Compatilhar a notícia
+              Compatilhar o post
             </button>
           </div>
         )}

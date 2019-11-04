@@ -17,8 +17,15 @@ const Publication = ({ history }) => {
   const { id = "" } = useParams();
   const [post, setPost] = useState({});
 
-  const { animal = {}, ownerName = "", local = {}, photos = [], id: postId } = post;
-  const { name = "", breed = "", color = "", gender = "" } = animal;
+  const {
+    animal = {},
+    ownerName = "",
+    local = {},
+    photos = [],
+    id: postId,
+    postType = ""
+  } = post;
+  const { name = "", breed = "", color = "", gender = "", type = "" } = animal;
   const { comment = "" } = local;
 
   const getPost = () => {
@@ -38,6 +45,15 @@ const Publication = ({ history }) => {
       .catch(console.log);
   };
 
+  const sharePostLabels = () => {
+    const the = gender === "M" ? "O" : "A";
+    const animalType = type === "cat" ? "gatinh" : "cachorrinh";
+    return {
+      title: `${the} ${animalType}${the.toLowerCase()} ${name} desapareceu </3`,
+      description: `Compartilhe a notícia com seus amigos para que ${name} possa voltar para casa logo.`
+    };
+  };
+
   useEffect(() => {
     getPost();
   }, []);
@@ -50,14 +66,14 @@ const Publication = ({ history }) => {
 
   return (
     <div className="publication">
-       <button
-          className="back"
-          onClick={() => {
-            history.goBack();
-          }}
-        >
-          <Icon type="left" />
-        </button>
+      <button
+        className="back"
+        onClick={() => {
+          history.goBack();
+        }}
+      >
+        <Icon type="left" />
+      </button>
       <div className="slider">
         <div data-glide-el="track" className="glide__track">
           <ul className="glide__slides">
@@ -83,7 +99,21 @@ const Publication = ({ history }) => {
       <div className="content">
         <div className="header">
           <div className="title">{name}</div>
-          <div className="share">
+          <div
+            className="share"
+            onClick={() => {
+              if (navigator.share) {
+                navigator
+                  .share({
+                    title: `${sharePostLabels().title}`,
+                    text: `${sharePostLabels().description}`,
+                    url: `https://www.calinos.com.br/#/publication/${id}`
+                  })
+                  .then(() => console.log("Successful share"))
+                  .catch(error => console.log("Error sharing", error));
+              }
+            }}
+          >
             Compartilhar
             <Icon type="share-alt" />
           </div>
