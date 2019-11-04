@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Icon } from "antd";
 import { Formik } from "formik";
 
@@ -16,11 +17,14 @@ import "./Chat.scss";
 const Chat = ({ history }) => {
   const [{ pinOpened }, dispatch] = useStateValue();
   const [localMessages, setLocalMessages] = useState([]);
+  const { id: idFromUrl = "" } = useParams();
   const currentUser = firebase.auth().currentUser;
   const db = firebase.firestore();
   const hasMessages = localMessages && localMessages.length > 0;
   const { id, animal = {}, ownerName = "" } = pinOpened;
   const days = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"];
+
+  const chatId = idFromUrl || id;
 
   const sendMessage = message => {
     const date = `${
@@ -44,8 +48,9 @@ const Chat = ({ history }) => {
   };
 
   const chatListener = () => {
+    if (!chatId) return;
     db.collection("chats")
-      .doc(id)
+      .doc(chatId)
       .onSnapshot(doc => {
         if (!doc || !doc.data()) return;
         const messagesUpdated = doc.data().messages;
@@ -73,8 +78,40 @@ const Chat = ({ history }) => {
       });
   };
 
+  const getPost = () => {
+    return new Promise((resolve, reject) => {
+      const databaseInstance = firebase.firestore();
+      if (!idFromUrl) return;
+      databaseInstance
+        .collection("posts")
+        .where("id", "==", idFromUrl)
+        .get()
+        .then(querySnapshot => {
+          if (querySnapshot.empty) return false;
+          querySnapshot.forEach(snapshot => {
+            if (snapshot.data()) {
+              resolve(snapshot.data());
+            }
+          });
+        })
+        .catch(reject);
+    });
+  };
+
   useEffect(() => {
-    chatListener();
+    if (!id) {
+      getPost()
+        .then(res => {
+          dispatch({
+            type: "setPinOpened",
+            pinOpened: res
+          });
+          chatListener();
+        })
+        .catch(console.log);
+    } else {
+      chatListener();
+    }
   }, []);
 
   if (!pinOpened) return null;

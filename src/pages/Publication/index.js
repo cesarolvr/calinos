@@ -48,8 +48,6 @@ const Publication = ({ history }) => {
     }).mount();
   }, [photos]);
 
-  console.log(history);
-
   return (
     <div className="publication">
        <button
