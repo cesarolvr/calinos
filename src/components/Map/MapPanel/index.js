@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
+import { Icon } from "antd";
 import { Link } from "react-router-dom";
 import Glide from "@glidejs/glide";
 import * as R from "ramda";
@@ -33,6 +34,7 @@ const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName, id }) => {
               <h1 className="title">{name}</h1>
               <Link className="to" to={`/publication/${id}`}>
                 Ver post
+                <Icon type="right" />
               </Link>
             </div>
             <p className="info type">

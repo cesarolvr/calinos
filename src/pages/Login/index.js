@@ -3,8 +3,6 @@ import { Formik } from "formik";
 import classNames from "classnames";
 import * as R from "ramda";
 import {
-  BrowserRouter as Router,
-  Route,
   Link,
   NavLink
 } from "react-router-dom";

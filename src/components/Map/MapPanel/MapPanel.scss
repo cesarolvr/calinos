@@ -111,6 +111,14 @@
     font-weight: 600;
     font-size: 14px;
     margin: 0;
+    display: flex;
+    align-items: center;
+
+    .anticon {
+      width: 14px;
+      height: 14px;
+      margin-left: 5px;
+    }
   }
 
   .title {
