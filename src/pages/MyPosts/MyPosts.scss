@@ -1,5 +1,5 @@
 .panel {
-  &.messages {
+  &.publications {
     > .menu-toggle {
       position: relative;
       display: block;
@@ -16,6 +16,7 @@
 
     > .content {
       height: auto;
+      padding: 0px 30px;
       > .title {
         margin-top: 10px;
         font-size: 28px;

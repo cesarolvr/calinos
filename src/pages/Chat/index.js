@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Icon } from "antd";
 import { Formik } from "formik";
-import { Link } from "react-router-dom";
+
 import classNames from "classnames";
 
 // State
@@ -86,7 +87,9 @@ const Chat = ({ history }) => {
           onClick={() => {
             history.goBack();
           }}
-        ></button>
+        >
+          <Icon type="left" />
+        </button>
         <h2 className="name">{animal.name}</h2>
       </div>
       <div className="artboard">

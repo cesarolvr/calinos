@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import { Icon } from "antd";
 import { useStateValue } from "../../state";
 
 // Components
@@ -62,7 +63,7 @@ const MapContainer = ({ google }) => {
     <>
       <MapPanel {...activeMarker} />
       <div className="button-back" onClick={() => openMarker(false)}>
-        <div className="icon"></div>
+        <Icon type="close" />
       </div>
       <Map
         google={google}

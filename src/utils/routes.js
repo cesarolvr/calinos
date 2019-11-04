@@ -136,7 +136,7 @@ const Routes = () => {
 
             <PrivatedRoute
               exact
-              path="/chat"
+              path="/chat/:id"
               authed={isAuthed(firebaseProps)}
               component={Chat}
             />

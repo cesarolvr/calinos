@@ -81,7 +81,7 @@ const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName, id }) => {
             <p className="comment">{comment}</p>
           </div>
 
-          <Link className="button help" to="/chat">
+          <Link className="button help" to={`/chat/${id}`}>
             Ajudar
           </Link>
         </>

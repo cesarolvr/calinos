@@ -37,15 +37,17 @@ const MyPosts = ({ history }) => {
   
 
   const setChat = marker => {
+    const { id } = marker
+    
     dispatch({
       type: "setPinOpened",
       pinOpened: marker
     });
-    history.push("/chat");
+    history.push(`/chat/${id}`);
   };
 
   return (
-    <div className="panel messages">
+    <div className="panel publications">
       <MenuButton />
       <div className="content">
         <h1 className="title">Publicações</h1>
@@ -69,14 +71,6 @@ const MyPosts = ({ history }) => {
                   <p className="description">
                     {comment}
                   </p>
-                  {/* <div className="details">
-                    <p className="detail">
-                      <span>15</span> ups
-                    </p>
-                    <p className="detail">
-                      <span>29</span> mensagens
-                    </p>
-                  </div> */}
                 </div>
               </li>
             );

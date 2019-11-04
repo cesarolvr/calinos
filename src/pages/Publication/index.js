@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Icon } from "antd";
 import Glide from "@glidejs/glide";
+import { Link } from "react-router-dom";
 
 // Utils
 import getGender from "../../utils/getGender";
@@ -12,11 +13,11 @@ import firebase from "firebase/app";
 // Styles
 import "./Publication.scss";
 
-const Publication = () => {
+const Publication = ({ history }) => {
   const { id = "" } = useParams();
   const [post, setPost] = useState({});
 
-  const { animal = {}, ownerName = "", local = {}, photos = [] } = post;
+  const { animal = {}, ownerName = "", local = {}, photos = [], id: postId } = post;
   const { name = "", breed = "", color = "", gender = "" } = animal;
   const { comment = "" } = local;
 
@@ -47,11 +48,18 @@ const Publication = () => {
     }).mount();
   }, [photos]);
 
-  console.log(photos, post);
+  console.log(history);
 
   return (
     <div className="publication">
-      <div className="back"></div>
+       <button
+          className="back"
+          onClick={() => {
+            history.goBack();
+          }}
+        >
+          <Icon type="left" />
+        </button>
       <div className="slider">
         <div data-glide-el="track" className="glide__track">
           <ul className="glide__slides">
@@ -102,7 +110,9 @@ const Publication = () => {
         </ul>
         <p className="comment">{comment}</p>
         <div className="control">
-          <button className="button">Ver discussão</button>
+          <Link className="button" to={`/chat/${postId}`}>
+            Ver discussão
+          </Link>
           <button className="button -call">Ligar para o dono</button>
         </div>
       </div>

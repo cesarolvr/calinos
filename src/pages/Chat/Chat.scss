@@ -28,7 +28,16 @@
       margin: auto;
       width: 18px;
       height: 18px;
-      background: url(../../assets/images/arrow-back.svg) center center no-repeat / contain;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      background: none;
+
+      > .anticon {
+        margin: 0;
+        font-size: 20px;
+      }
 
       &:focus {
         border: none;

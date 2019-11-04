@@ -8,16 +8,16 @@
     z-index: 30;
     opacity: 0;
     pointer-events: none;
-    .icon {
+    .anticon {
       transform: translateY(20px);
       transition: opacity 0.3s ease, transform 0.3s ease;
-      background: url(../../assets/images/arrow-back.svg) center center no-repeat / 100%;
       position: fixed;
       width: 20px;
       height: 20px;
-      top: 60px;
+      top: 50px;
       left: 30px;
       opacity: 0;
+      font-size: 25px;
     }
   }
 }
@@ -26,22 +26,10 @@
   .button-back {
     opacity: 1;
     pointer-events: auto;
-    .icon {
+    .anticon {
       opacity: 1;
       transform: translateY(0px);
       transition-delay: 0.1s;
     }
-
-    // &:before {
-    //   content: "";
-    //   width: 100vw;
-    //   height: 100vh;
-    //   position: fixed;
-    //   top: 0;
-    //   left: 0;
-    //   right: 0;
-    //   bottom: 0;
-    //   background: red;
-    // }
   }
 }
