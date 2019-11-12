@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
 import classNames from "classnames";
 
 import { CSSTransition } from "react-transition-group";
@@ -13,6 +13,7 @@ const Step2 = ({ nextStep, prevStep, step, setFormValue, formValue }) => (
             street: "",
             reference: "",
             comment: "",
+            contactPhone: "",
             pin: {
               lat: 0,
               lng: 0
@@ -25,6 +26,9 @@ const Step2 = ({ nextStep, prevStep, step, setFormValue, formValue }) => (
             }
             if (!values.reference) {
               errors.reference = "Obrigatório";
+            }
+            if (!values.contactPhone) {
+              errors.contactPhone = "Obrigatório";
             }
             return errors;
           }}
@@ -101,6 +105,23 @@ const Step2 = ({ nextStep, prevStep, step, setFormValue, formValue }) => (
                     {errors.comment && touched.comment && errors.comment && (
                       <span className="error">
                         {errors.comment && touched.comment && errors.comment}
+                      </span>
+                    )}
+                  </div>
+                  <div className="input-wrapper">
+                    <label className="label">Telefone para contato</label>
+                    <input
+                      type="tel"
+                      name="contactPhone"
+                      className="input"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.contactPhone}
+                      placeholder="XX XXXXX XXXX"
+                    />
+                    {errors.contactPhone && touched.contactPhone && errors.contactPhone && (
+                      <span className="error">
+                        {errors.contactPhone && touched.contactPhone && errors.contactPhone}
                       </span>
                     )}
                   </div>

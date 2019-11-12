@@ -23,10 +23,9 @@ const Publication = ({ history }) => {
     local = {},
     photos = [],
     id: postId,
-    contactPhone = ""
   } = post;
   const { name = "", breed = "", color = "", gender = "", type = "" } = animal;
-  const { comment = "" } = local;
+  const { comment = "", contactPhone = "" } = local;
 
   const getPost = () => {
     const databaseInstance = firebase.firestore();
