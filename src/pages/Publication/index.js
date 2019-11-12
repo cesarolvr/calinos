@@ -23,7 +23,7 @@ const Publication = ({ history }) => {
     local = {},
     photos = [],
     id: postId,
-    postType = ""
+    contactPhone = ""
   } = post;
   const { name = "", breed = "", color = "", gender = "", type = "" } = animal;
   const { comment = "" } = local;
@@ -69,7 +69,7 @@ const Publication = ({ history }) => {
       <button
         className="back"
         onClick={() => {
-          history.push('/home');
+          history.push("/home");
         }}
       >
         <Icon type="left" />
@@ -141,7 +141,9 @@ const Publication = ({ history }) => {
           <Link className="button" to={`/chat/${postId}`}>
             Ver discussão
           </Link>
-          <button className="button -call">Ligar para o dono</button>
+          <a href={`tel:+${contactPhone}`} className="button -call">
+            Ligar para o dono
+          </a>
         </div>
       </div>
     </div>
