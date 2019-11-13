@@ -50,7 +50,7 @@ const Step2 = ({ nextStep, prevStep, step, setFormValue, formValue }) => (
             isValid
           }) => (
             <>
-              <h1 className="title">Sobre o local de desaparecimento</h1>
+              <h1 className="title">Informações sobre o desaparecimento</h1>
               <form className="form" onSubmit={handleSubmit} noValidate>
                 <div className="box">
                   <div className="input-wrapper">
