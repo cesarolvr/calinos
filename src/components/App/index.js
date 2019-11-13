@@ -15,6 +15,8 @@ import Routes from "../../utils/routes";
 import Bar from "../../components/Bar";
 import Menu from "../../components/Menu";
 
+import logoLoading from "../../assets/images/logo-full.svg";
+
 // Styles
 import "./App.scss";
 import "./LoginAnimation.scss";
@@ -52,35 +54,41 @@ const App = ({ firebaseprops, location }) => {
   }, []);
 
   return (
-    <div
-      className={classNames("wrapper", {
-        "-opened": menuOpened,
-        "-pin-opened": !!pinOpened,
-        "-loaded": !!aplicationLoaded && !loginSelected,
-        "-login-selected": !!loginSelected
-      })}
-    >
-      {isAuthed(firebaseprops) && isHomepage && (
-        <>
-          <Link className="create-post" to="/post">
-            Alertar
-          </Link>
-          <div className="menu-toggle" onClick={toggleMenu} />
-        </>
-      )}
-      <Menu toggleMenu={toggleMenu} />
-      <div
-        className="page-holder"
-        onClick={() => {
-          if (menuOpened) {
-            toggleMenu();
-          }
-        }}
-      >
-        <Routes />
-        {isAuthed(firebaseprops) && isHomepage && <Bar />}
+    <>
+      <div className="locker">
+        <img src={logoLoading} alt="" />
+        <p>Acesse através de um dispositivo móvel</p>
       </div>
-    </div>
+      <div
+        className={classNames("wrapper", {
+          "-opened": menuOpened,
+          "-pin-opened": !!pinOpened,
+          "-loaded": !!aplicationLoaded && !loginSelected,
+          "-login-selected": !!loginSelected
+        })}
+      >
+        {isAuthed(firebaseprops) && isHomepage && (
+          <>
+            <Link className="create-post" to="/post">
+              Alertar
+            </Link>
+            <div className="menu-toggle" onClick={toggleMenu} />
+          </>
+        )}
+        <Menu toggleMenu={toggleMenu} />
+        <div
+          className="page-holder"
+          onClick={() => {
+            if (menuOpened) {
+              toggleMenu();
+            }
+          }}
+        >
+          <Routes />
+          {isAuthed(firebaseprops) && isHomepage && <Bar />}
+        </div>
+      </div>
+    </>
   );
 };
 
