@@ -39,6 +39,10 @@ const Register = ({ history, ...props }) => {
 
   // TODO: transferir signup para um lugar equivalente ao lugar do signIn em /auth
   const signUp = ({ name, email, password }) => {
+    dispatch({
+      type: "setIsLoading",
+      isLoading: true
+    });
     const db = firebase.firestore();
     const citiesRef = db.collection("users");
     const query = citiesRef.where("email", "==", email);
@@ -57,20 +61,38 @@ const Register = ({ history, ...props }) => {
                 name
               })
               .then(docRef => {
+                dispatch({
+                  type: "setIsLoading",
+                  isLoading: false
+                });
                 console.log("User registered with ID: ", docRef.id);
               })
               .catch(error => {
+                dispatch({
+                  type: "setIsLoading",
+                  isLoading: false
+                });
                 console.error("Error on register user: ", error);
               });
+          } else {
+            dispatch({
+              type: "setIsLoading",
+              isLoading: false
+            });
           }
         });
       })
       .catch(err => {
         console.log(err);
+
         const { message = "Erro ao fazer login" } = err
         notification.error({
           message,
           duration: 4
+        });
+        dispatch({
+          type: "setIsLoading",
+          isLoading: false
         });
       });
   };
