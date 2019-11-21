@@ -11,7 +11,7 @@ import Page from "../Page";
 
 // Style
 import "./Register.scss";
-import "./Motion.scss";
+import "./RegisterAnimation.scss";
 
 const Register = ({ history, ...props }) => {
   // const [{ aplicationLoaded }, dispatch] = useStateValue();
@@ -19,6 +19,8 @@ const Register = ({ history, ...props }) => {
     ["firebaseprops", "firebase", "auth"],
     props
   );
+
+  // TODO: transferir signup para um lugar equivalente ao lugar do signIn em /auth
   const signUp = ({ name, email, password }) => {
     const db = firebase.firestore();
     const citiesRef = db.collection("users");
