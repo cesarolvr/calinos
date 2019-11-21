@@ -119,10 +119,19 @@ h1 {
   }
 }
 
+.-isLoading {
+  .step-control {
+    button, .button {
+      transition-delay: 0s;
+      pointer-events: none;
+      opacity: 0.5 !important;
+    }
+  }
+}
+
 .-disabled {
   opacity: .5;
   pointer-events: none;
-
 }
 
 .textarea {
@@ -162,8 +171,28 @@ h1 {
   .ant-notification-notice-with-icon .ant-notification-notice-message {
     margin-bottom: 0;
   }
+}
 
-  // .ant-notification-notice-close {
-  //   position: relative;
-  // }
+.loader.ant-spin-spinning {
+  position: fixed;
+  z-index: 101;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  top: -100px;
+  transition: transform .3s ease;
+  background: #0fa5a3;
+  color: white;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.-isLoading {
+  .loader.ant-spin-spinning {
+    transform: translateY(150px)
+  }
 }

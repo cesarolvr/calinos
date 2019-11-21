@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
+import { Spin, Icon } from 'antd';
 
 
 // TODO: refatorar esse App. Ele é mais um wrapper do que um componente
@@ -28,7 +29,7 @@ import isHome from "../../utils/isHome";
 
 const App = ({ firebaseprops, location }) => {
   const [
-    { pinOpened, menuOpened, aplicationLoaded, loginSelected, registerSelected },
+    { pinOpened, menuOpened, isLoading, aplicationLoaded, loginSelected, registerSelected },
     dispatch
   ] = useStateValue();
 
@@ -41,18 +42,7 @@ const App = ({ firebaseprops, location }) => {
     });
   };
 
-  // const triggerAnimation = () => {
-  //   dispatch({
-  //     type: "setAplicationLoaded",
-  //     aplicationLoaded: !aplicationLoaded
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     triggerAnimation();
-  //   }, 1000);
-  // }, []);
+  const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 
   return (
     <>
@@ -60,15 +50,18 @@ const App = ({ firebaseprops, location }) => {
         <img src={logoLoading} alt="" />
         <p>Acesse através de um dispositivo móvel</p>
       </div>
+      
       <div
         className={classNames("wrapper", {
           "-opened": menuOpened,
           "-pin-opened": !!pinOpened,
           "-loaded": !!aplicationLoaded && !loginSelected && !registerSelected,
           "-login-selected": !!loginSelected,
-          "-register-selected": !!registerSelected
+          "-register-selected": !!registerSelected,
+          "-isLoading": isLoading
         })}
       >
+        <Spin indicator={antIcon} className="loader" />
         {isAuthed(firebaseprops) && isHomepage && (
           <>
             <Link className="create-post" to="/post">

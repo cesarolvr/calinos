@@ -34,7 +34,8 @@ const initialState = {
   isLoading: false,
   aplicationLoaded: false,
   loginSelected: false,
-  alert: false
+  alert: false,
+  isLoading: false,
 };
 
 const reducer = (state, action) => {
@@ -76,10 +77,10 @@ const reducer = (state, action) => {
         registerSelected: action.registerSelected
       };
 
-    case "isLoading":
+    case "setIsLoading":
       return {
         ...state,
-        menuOpened: action.isLoading
+        isLoading: action.isLoading
       };
 
     default:

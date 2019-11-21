@@ -1,10 +1,12 @@
 import { notification } from "antd";
 
+
 // Firebase
 import firebase from "firebase/app";
 
-const signIn = ({ email, password }) =>
-  new Promise((resolve, reject) => {
+const signIn = ({ email, password }) => {
+  
+  return new Promise((resolve, reject) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -19,6 +21,6 @@ const signIn = ({ email, password }) =>
         });
         reject(err);
       });
-  });
+  })};
 
 export { signIn };

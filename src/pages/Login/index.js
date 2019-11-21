@@ -32,6 +32,10 @@ const Login = props => {
   );
 
   const signInWithEmailPassword = ({ email, password }) => {
+    dispatch({
+      type: "setIsLoading",
+      isLoading: true
+    });
     signIn({ email, password })
       .then(({ user }) => {
         const usersRef = db.collection("users");
@@ -46,15 +50,33 @@ const Login = props => {
                 name: "Usuário"
               })
               .then(docRef => {
+                dispatch({
+                  type: "setIsLoading",
+                  isLoading: false
+                });
                 console.log("User registered with ID: ", docRef.id);
               })
               .catch(error => {
+                dispatch({
+                  type: "setIsLoading",
+                  isLoading: false
+                });
                 console.error("Error on register user: ", error);
               });
+          } else {
+            dispatch({
+              type: "setIsLoading",
+              isLoading: false
+            });
           }
         });
       })
-      .catch(console.log);
+      .catch(() => {
+        dispatch({
+          type: "setIsLoading",
+          isLoading: false
+        });
+      });
   };
   const toggleLoad = () => {
     dispatch({

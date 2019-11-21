@@ -2,10 +2,14 @@ import React from "react";
 
 import getGeolocation from "../../../utils/geolocation";
 
+// State
+import { useStateValue } from "../../../state";
+
 // Firebase
 import firebase from "firebase/app";
 
 const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
+  const [{ isLoading }, dispatch] = useStateValue();
   const { photos = [] } = formValue;
   const userId = firebase.auth().currentUser.uid;
 
@@ -35,6 +39,10 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
   };
 
   const createPost = () => {
+    dispatch({
+      type: "setIsLoading",
+      isLoading: true
+    });
     const db = firebase.firestore();
     const postId = `${Math.floor(Math.random() * 1000000000)}`;
     getGeolocation().then(location => {
@@ -52,21 +60,33 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
           photos: [...newPhoto],
           id: postId
         })
-        .then((res) => {
+        .then(res => {
           console.log(res);
-          
-          // db.collection("chats")
-          //   .doc(postId)
-          //   .set({
-          //     messages: []
-          //   });
-          // nextStep();
+          db.collection("chats")
+            .doc(postId)
+            .set({
+              messages: []
+            });
+          nextStep();
+          dispatch({
+            type: "setIsLoading",
+            isLoading: false
+          });
         })
-        .catch(console.log);
+        .catch(() => {
+          dispatch({
+            type: "setIsLoading",
+            isLoading: false
+          });
+        });
     });
   };
 
   const uploadFile = () => {
+    dispatch({
+      type: "setIsLoading",
+      isLoading: true
+    });
     const storageRef = firebase.storage().ref();
     if (photos.length === 0) return;
     for (let i = 0; i < photos.length; i++) {
@@ -79,14 +99,33 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
       uploadTask.on(
         "state_changed",
         progress => console.log(progress),
-        err => console.log(err),
-        () => {
-          uploadTask.snapshot.ref.getDownloadURL().then(url => {
-            newPhoto.push(url);
-            if (i === photos.length - 1) {
-              createPost();
-            }
+        err => {
+          console.log(err);
+
+          dispatch({
+            type: "setIsLoading",
+            isLoading: false
           });
+        },
+        () => {
+          uploadTask.snapshot.ref
+            .getDownloadURL()
+            .then(url => {
+              newPhoto.push(url);
+              if (i === photos.length - 1) {
+                createPost();
+                dispatch({
+                  type: "setIsLoading",
+                  isLoading: false
+                });
+              }
+            })
+            .catch(() => {
+              dispatch({
+                type: "setIsLoading",
+                isLoading: false
+              });
+            });
         }
       );
     }
@@ -103,6 +142,8 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
       photos: [...newPhotos]
     });
   };
+
+  console.log(isLoading);
 
   return (
     <div className="panel post -photo">
