@@ -25,20 +25,32 @@ const Menu = ({ history, toggleMenu }) => {
       <h1 className="title">Menu</h1>
       <ul className="nav-list">
         <li className="item">
+          <span className="-disabled">
           Meu pet
-          <img src={pawIcon} className="anticon" />
+
+          </span>
+          <img src={pawIcon} className="anticon  -disabled" />
         </li>
         <li className="item" onClick={() => to("/my-posts")}>
+        <span>
+
           Meus posts
-          <Icon type="environment" />
+        </span>
+          <Icon type="environment" className="-disabled" />
         </li>
         <li className="item">
+        <span className="-disabled">
+
           Perfil
-          <Icon type="profile" />
+        </span>
+          <Icon type="profile"  className="-disabled"/>
         </li>
         <li className="item">
+        <span className="-disabled">
+
           Ajustes
-          <Icon type="setting" />
+        </span>
+          <Icon type="setting"  className="-disabled" />
         </li>
         <li className="item" onClick={logout}>
           <Icon type="logout" />
