@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 
+
 // TODO: refatorar esse App. Ele é mais um wrapper do que um componente
 
 // State
@@ -27,7 +28,7 @@ import isHome from "../../utils/isHome";
 
 const App = ({ firebaseprops, location }) => {
   const [
-    { pinOpened, menuOpened, aplicationLoaded, loginSelected },
+    { pinOpened, menuOpened, aplicationLoaded, loginSelected, alert },
     dispatch
   ] = useStateValue();
 

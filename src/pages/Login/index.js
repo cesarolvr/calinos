@@ -2,10 +2,8 @@ import React from "react";
 import { Formik } from "formik";
 import classNames from "classnames";
 import * as R from "ramda";
-import {
-  Link,
-  NavLink
-} from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
 
 import Page from "../Page";
 
@@ -55,7 +53,7 @@ const Login = props => {
           }
         });
       })
-      .catch(err => console.log(err));
+      .catch(console.log);
   };
   const toggleLoad = () => {
     dispatch({
@@ -72,9 +70,17 @@ const Login = props => {
 
       <div className="content">
         <img src={logo} className="logo" alt="" />
-        <h1 className="title">Ajude-nos a <br/>achar bichinhos <br/>perdidos.</h1>
-        <Link className="button -register" to={'/register'}>Registrar-se</Link>
-        <button className="button -signin" onClick={toggleLoad}>Entrar</button>
+        <h1 className="title">
+          Ajude-nos a <br />
+          achar bichinhos <br />
+          perdidos.
+        </h1>
+        <Link className="button -register" to={"/register"}>
+          Registrar-se
+        </Link>
+        <button className="button -signin" onClick={toggleLoad}>
+          Entrar
+        </button>
       </div>
       <div className="banner">
         <div className="ambient">

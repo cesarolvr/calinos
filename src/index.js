@@ -8,6 +8,7 @@ import App from "./components/App";
 // Styles
 import "./styles/base.scss";
 import "./styles/default.scss";
+import 'antd/dist/antd.css';
 
 // State
 import { StateProvider } from "./state";
@@ -30,7 +31,8 @@ const initialState = {
   pinOpened: false,
   isLoading: false,
   aplicationLoaded: false,
-  loginSelected: false
+  loginSelected: false,
+  alert: false
 };
 
 const reducer = (state, action) => {
@@ -39,6 +41,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         pinOpened: action.pinOpened
+      };
+
+    case "setAlert":
+      return {
+        ...state,
+        alert: action.alert
       };
 
     case "setMenuOpened":
