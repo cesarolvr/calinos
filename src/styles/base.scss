@@ -121,10 +121,12 @@ h1 {
 
 .-isLoading {
   .step-control {
+    pointer-events: none !important;
     button, .button {
       transition-delay: 0s;
-      pointer-events: none;
+      pointer-events: none !important;
       opacity: 0.5 !important;
+      touch-action: none;
     }
   }
 }
