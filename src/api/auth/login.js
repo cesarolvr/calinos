@@ -13,7 +13,6 @@ const signIn = ({ email, password }) =>
       })
       .catch((err) => {
         const { message = "Erro ao fazer login" } = err
-        // console.log(err);
         notification.error({
           message,
           duration: 999999
@@ -21,19 +20,5 @@ const signIn = ({ email, password }) =>
         reject(err);
       });
   });
-
-// const signInGoogle = () =>
-//   new Promise((resolve, reject) => {
-//     const provider = new firebase.auth.GoogleAuthProvider();
-//     firebase
-//       .auth()
-//       .signInWithPopup(provider)
-//       .then(res =>
-//         resolve(res).catch(err => {
-//           console.log(err);
-//           reject(err);
-//         })
-//       );
-//   });
 
 export { signIn };

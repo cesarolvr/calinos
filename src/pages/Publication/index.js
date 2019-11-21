@@ -29,6 +29,7 @@ const Publication = ({ history }) => {
 
   const getPost = () => {
     const databaseInstance = firebase.firestore();
+    // TODO: abstrair essas chamadas no DB
     databaseInstance
       .collection("posts")
       .where("id", "==", id)

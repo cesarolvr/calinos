@@ -5,6 +5,7 @@ const isUserInDatabase = () =>
   new Promise((resolve, reject) => {
     const databaseInstance = firebase.firestore();
     const currentUser = firebase.auth().currentUser;
+    // TODO: abstrair essas chamadas no DB
     databaseInstance
       .collection("users")
       .where("id", "==", currentUser.uid)

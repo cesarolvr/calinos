@@ -21,6 +21,7 @@ const MyPosts = ({ history }) => {
   const getMyPosts = () => {
     const db = firebase.firestore();
     const currentUser = firebase.auth().currentUser;
+    // TODO: abstrair essas chamadas no DB
     db.collection("posts")
       .where("authorId", "==", currentUser.uid)
       .get()

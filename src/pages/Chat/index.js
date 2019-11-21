@@ -82,6 +82,7 @@ const Chat = ({ history }) => {
     return new Promise((resolve, reject) => {
       const databaseInstance = firebase.firestore();
       if (!idFromUrl) return;
+      // TODO: abstrair essas chamadas no DB
       databaseInstance
         .collection("posts")
         .where("id", "==", idFromUrl)

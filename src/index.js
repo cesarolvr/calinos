@@ -27,6 +27,8 @@ import "firebase/storage";
 // Consts
 import { firebaseConfig } from "./consts";
 
+
+// TODO: passar esse state para outro canto mais adequado
 const initialState = {
   pinOpened: false,
   isLoading: false,
@@ -36,6 +38,7 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
+  // TODO: passar esse reducer para outro lugar
   switch (action.type) {
     case "setPinOpened":
       return {

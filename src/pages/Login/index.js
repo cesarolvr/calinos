@@ -36,6 +36,7 @@ const Login = props => {
       .then(({ user }) => {
         const usersRef = db.collection("users");
         const query = usersRef.where("email", "==", email);
+        // TODO: abstrair essas chamadas no DB
         query.get().then(querySnapshot => {
           if (querySnapshot.empty) {
             db.collection("users")
