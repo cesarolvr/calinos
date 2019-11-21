@@ -18,6 +18,7 @@ import Chat from "../pages/Chat";
 import MyPosts from "../pages/MyPosts";
 import NotFound from "../pages/NotFound";
 
+// TODO: reimplementar o TransitionGroup nas rotas. Passar a usar keys ao invés de in
 const OwnRoute = ({ component: Component, authed, path, ...rest }) => {
   return (
     <Route {...rest} key={path} path={path}>
