@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { withRouter } from "react-router";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
@@ -28,7 +28,7 @@ import isHome from "../../utils/isHome";
 
 const App = ({ firebaseprops, location }) => {
   const [
-    { pinOpened, menuOpened, aplicationLoaded, loginSelected, alert },
+    { pinOpened, menuOpened, aplicationLoaded, loginSelected, registerSelected },
     dispatch
   ] = useStateValue();
 
@@ -41,18 +41,18 @@ const App = ({ firebaseprops, location }) => {
     });
   };
 
-  const triggerAnimation = () => {
-    dispatch({
-      type: "setAplicationLoaded",
-      aplicationLoaded: !aplicationLoaded
-    });
-  };
+  // const triggerAnimation = () => {
+  //   dispatch({
+  //     type: "setAplicationLoaded",
+  //     aplicationLoaded: !aplicationLoaded
+  //   });
+  // };
 
-  useEffect(() => {
-    setTimeout(() => {
-      triggerAnimation();
-    }, 1000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     triggerAnimation();
+  //   }, 1000);
+  // }, []);
 
   return (
     <>
@@ -64,8 +64,9 @@ const App = ({ firebaseprops, location }) => {
         className={classNames("wrapper", {
           "-opened": menuOpened,
           "-pin-opened": !!pinOpened,
-          "-loaded": !!aplicationLoaded && !loginSelected,
-          "-login-selected": !!loginSelected
+          "-loaded": !!aplicationLoaded && !loginSelected && !registerSelected,
+          "-login-selected": !!loginSelected,
+          "-register-selected": !!registerSelected
         })}
       >
         {isAuthed(firebaseprops) && isHomepage && (

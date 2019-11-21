@@ -70,6 +70,12 @@ const reducer = (state, action) => {
         loginSelected: action.loginSelected
       };
 
+    case "setRegisterSelected":
+      return {
+        ...state,
+        registerSelected: action.registerSelected
+      };
+
     case "isLoading":
       return {
         ...state,

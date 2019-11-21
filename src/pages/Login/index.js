@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik } from "formik";
 import classNames from "classnames";
 import * as R from "ramda";
@@ -24,7 +24,7 @@ import illustrationAmbient from "../../assets/images/login-illustration.svg";
 import logoLoading from "../../assets/images/logo-full.svg";
 
 const Login = props => {
-  const [{ loginSelected }, dispatch] = useStateValue();
+  const [{ loginSelected, aplicationLoaded }, dispatch] = useStateValue();
   const db = firebase.firestore();
   const reallyDisconnected = R.path(
     ["firebaseprops", "firebase", "auth"],
@@ -62,6 +62,32 @@ const Login = props => {
       loginSelected: !loginSelected
     });
   };
+
+  const triggerAnimation = () => {
+    dispatch({
+      type: "setAplicationLoaded",
+      aplicationLoaded: true
+    });
+
+   
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      triggerAnimation();
+    }, 1000);
+
+    return () => {
+      dispatch({
+        type: "setLoginSelected",
+        loginSelected: false
+      });
+      dispatch({
+        type: "setAplicationLoaded",
+        aplicationLoaded: false
+      });
+    }
+  }, []);
   if (!reallyDisconnected) return null;
   return (
     <Page name="login">

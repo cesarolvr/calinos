@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik } from "formik";
 import { withRouter } from "react-router";
 import * as R from "ramda";
@@ -9,16 +9,32 @@ import firebase from "firebase/app";
 
 import Page from "../Page";
 
+import { useStateValue } from "../../state";
+
 // Style
 import "./Register.scss";
 import "./RegisterAnimation.scss";
 
 const Register = ({ history, ...props }) => {
-  // const [{ aplicationLoaded }, dispatch] = useStateValue();
+  const [_, dispatch] = useStateValue();
   const reallyDisconnected = R.path(
     ["firebaseprops", "firebase", "auth"],
     props
   );
+
+  useEffect(() => {
+    dispatch({
+      type: "setRegisterSelected",
+      registerSelected: true
+    });
+
+    return () => {
+      dispatch({
+        type: "setRegisterSelected",
+        registerSelected: false
+      });
+    }
+  }, [])
 
   // TODO: transferir signup para um lugar equivalente ao lugar do signIn em /auth
   const signUp = ({ name, email, password }) => {
