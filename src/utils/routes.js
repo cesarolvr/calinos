@@ -23,8 +23,6 @@ const OwnRoute = ({ component: Component, authed, path, ...rest }) => {
   return (
     <Route {...rest} key={path} path={path}>
       {({ match, location, ...props }) => {
-        console.log(location.pathname === "/register");
-        
         return (
           <CSSTransition
             in={match != null}

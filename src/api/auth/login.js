@@ -15,7 +15,7 @@ const signIn = ({ email, password }) =>
         const { message = "Erro ao fazer login" } = err
         notification.error({
           message,
-          duration: 4000
+          duration: 4
         });
         reject(err);
       });

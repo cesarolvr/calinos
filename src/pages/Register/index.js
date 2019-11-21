@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { notification } from "antd";
 import { Formik } from "formik";
 import { withRouter } from "react-router";
 import * as R from "ramda";
@@ -64,7 +65,14 @@ const Register = ({ history, ...props }) => {
           }
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        const { message = "Erro ao fazer login" } = err
+        notification.error({
+          message,
+          duration: 4
+        });
+      });
   };
   if (!reallyDisconnected) return null;
   return (
