@@ -11,7 +11,8 @@ const Bar = ({ fixed }) => (
   })}>
     <ul className="bar-list">
       <Link className="item link paw" to="/home"></Link>
-      <Link className="item link" to="/feed"></Link>
+      {/* <Link className="item link" to="/feed"></Link> */}
+      <li className="item" />
       <li className="item" />
       <li className="item" />
     </ul>

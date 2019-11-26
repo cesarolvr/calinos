@@ -74,7 +74,7 @@ const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName, id }) => {
               {name} é <strong>{color.toLowerCase()}</strong>
             </p>
             <p className="info size">
-              <strong>{ownerName.split(" ")[0]}</strong> é a pessoa responsável
+              <strong>{ownerName && ownerName.split(" ")[0]}</strong> é a pessoa responsável
               por {name}
             </p>
 

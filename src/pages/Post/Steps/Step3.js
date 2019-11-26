@@ -60,8 +60,11 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
           photos: [...newPhoto],
           id: postId
         })
-        .then(res => {
-          console.log(res);
+        .then(() => {
+          dispatch({
+            type: "setPostUploaded",
+            postUploaded: postId
+          });
           db.collection("chats")
             .doc(postId)
             .set({
@@ -101,11 +104,6 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
         progress => console.log(progress),
         err => {
           console.log(err);
-
-          dispatch({
-            type: "setIsLoading",
-            isLoading: false
-          });
         },
         () => {
           uploadTask.snapshot.ref
@@ -114,10 +112,6 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
               newPhoto.push(url);
               if (i === photos.length - 1) {
                 createPost();
-                dispatch({
-                  type: "setIsLoading",
-                  isLoading: false
-                });
               }
             })
             .catch(() => {
@@ -142,8 +136,6 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
       photos: [...newPhotos]
     });
   };
-
-  console.log(isLoading);
 
   return (
     <div className="panel post -photo">

@@ -76,6 +76,7 @@
           margin: 5px 0 5px 0;
           font-size: 16px;
           font-weight: 600;
+          color: white;
         }
 
         .name {
@@ -97,6 +98,10 @@
           margin-left: auto;
           background: #f0f0f0;
           color: black;
+
+          .text {
+            color: black;
+          }
         }
       }
     }

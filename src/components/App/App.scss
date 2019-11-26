@@ -61,10 +61,6 @@
     .page-holder {
       transform: scale(0.8) translateX(70%);
       border-radius: 30px;
-
-      > .home {
-        pointer-events: none;
-      }
     }
 
     > .menu {

@@ -129,7 +129,7 @@ const Publication = ({ history }) => {
           </li>
           <li className="item">
             <Icon type="info-circle" />
-            {ownerName.split(" ")[0]} é a pessoa responsável
+            {ownerName && ownerName.split(" ")[0]} é a pessoa responsável
           </li>
           <li className="item">
             <Icon type="info-circle" />

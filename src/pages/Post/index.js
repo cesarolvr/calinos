@@ -20,7 +20,7 @@ const Post = () => {
   const currentUser = firebase.auth().currentUser;
 
   // TODO: transferir essa model para outro canto
-  const [postUploaded, setPostUploaded] = useState(null);
+  
   const [formValue, setFormValue] = useState({
     postType: "",
     animal: {
@@ -106,15 +106,7 @@ const Post = () => {
               />
             )
           ],
-          [
-            R.equals(4),
-            R.always(
-              <Step4
-                postUploaded={postUploaded}
-                setPostUploaded={setPostUploaded}
-              />
-            )
-          ],
+          [R.equals(4), R.always(<Step4 />)],
           [R.T, R.always(null)]
         ])(step)}
       </CSSTransition>

@@ -70,11 +70,13 @@
 
     > .info {
       padding-left: 10px;
+      display: flex;
+      align-items: center;
       > .name {
         margin: 0;
         font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 3px;
+        font-weight: 400;
+        margin-bottom: 0px;
 
         
       }

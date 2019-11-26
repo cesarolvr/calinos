@@ -61,7 +61,6 @@ const Menu = ({ history, toggleMenu }) => {
         <img src="" alt="" className="photo" />
         <div className="info">
           <p className="name">Cesar</p>
-          <div className="description">Dono do vinil</div>
         </div>
       </div>
     </div>

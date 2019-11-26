@@ -8,7 +8,7 @@ import App from "./components/App";
 // Styles
 import "./styles/base.scss";
 import "./styles/default.scss";
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css";
 
 // State
 import { StateProvider } from "./state";
@@ -27,15 +27,15 @@ import "firebase/storage";
 // Consts
 import { firebaseConfig } from "./consts";
 
-
 // TODO: passar esse state para outro canto mais adequado
 const initialState = {
   pinOpened: false,
   isLoading: false,
   aplicationLoaded: false,
   loginSelected: false,
+  postUploaded: null,
   alert: false,
-  isLoading: false,
+  isLoading: false
 };
 
 const reducer = (state, action) => {
@@ -81,6 +81,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         isLoading: action.isLoading
+      };
+
+    case "setPostUploaded":
+      return {
+        ...state,
+        postUploaded: action.postUploaded
       };
 
     default:

@@ -146,7 +146,7 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => {
                       <Field component="select" name="size" className="input">
                         <option value="">Selecionar</option>
                         <option value="Pequeno">Pequeno</option>
-                        <option value="Medio">Médio</option>
+                        <option value="Médio">Médio</option>
                         <option value="Grande">Grande</option>
                       </Field>
                       {errors.size && touched.size && errors.size && (

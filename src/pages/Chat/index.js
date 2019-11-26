@@ -153,7 +153,7 @@ const Chat = ({ history }) => {
         ) : (
           <div className="actions">
             <h3 className="title">
-              Como você <br /> quer ajudar {ownerName.split(" ")[0]}?
+              Como você <br /> quer ajudar {ownerName && ownerName.split(" ")[0]}?
             </h3>
             <button className="button find" onClick={isFounded}>
               Informar que achou {animal.name}

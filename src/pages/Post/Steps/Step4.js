@@ -2,23 +2,12 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-const Step4 = ({ postUploaded, setPostUploaded }) => {
-  console.log(postUploaded, setPostUploaded);
-  
-  
+// State
+import { useStateValue } from "../../../state";
 
-  const sharePostLabels = () => {
-    // const the = gender === "M" ? "O" : "A";
-    // const animalType = type === "cat" ? "gatinh" : "cachorrinh";
-    // return {
-    //   title: `Ajude um animalzinho perdido.`,
-    //   description: `${the} ${animalType}${the.toLowerCase()} ${name.trim()} desapareceu </3. Compartilhe a notícia.`
-    // };
-    return {
-      title: '',
-      description: ''
-    }
-  };
+const Step4 = () => {
+  const [{ postUploaded }, dispatch] = useStateValue();
+  console.log(postUploaded);
   return (
     <div className="panel post -final">
       <div className="banner"></div>
@@ -34,9 +23,9 @@ const Step4 = ({ postUploaded, setPostUploaded }) => {
             if (navigator.share) {
               navigator
                 .share({
-                  title: `${sharePostLabels().title}`,
-                  text: `${sharePostLabels().description}`,
-                  // url: `https://www.calinos.com.br/#/publication/${id}`
+                  title: `Ajude um animalzinho perdido.`,
+                  text: `Um bichinho desapareceu </3. Compartilhe a notícia.`,
+                  url: `https://www.calinos.com.br/#/publication/${postUploaded}`
                 })
                 .then(() => console.log("Successful share"))
                 .catch(error => console.log("Error sharing", error));
