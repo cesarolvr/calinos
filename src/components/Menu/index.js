@@ -11,6 +11,7 @@ import "./Motion.scss";
 import pawIcon from "../../assets/images/paw-icon-outline.svg";
 
 const Menu = ({ history, toggleMenu }) => {
+  const currentUser = firebase.auth().currentUser;
   const logout = () => {
     toggleMenu();
     firebase.auth().signOut();
@@ -25,32 +26,20 @@ const Menu = ({ history, toggleMenu }) => {
       <h1 className="title">Menu</h1>
       <ul className="nav-list">
         <li className="item">
-          <span className="-disabled">
-          Meu pet
-
-          </span>
+          <span className="-disabled">Meu pet</span>
           <img src={pawIcon} className="anticon  -disabled" />
         </li>
         <li className="item" onClick={() => to("/my-posts")}>
-        <span>
-
-          Meus posts
-        </span>
+          <span>Meus posts</span>
           <Icon type="environment" className="-disabled" />
         </li>
         <li className="item">
-        <span className="-disabled">
-
-          Perfil
-        </span>
-          <Icon type="profile"  className="-disabled"/>
+          <span className="-disabled">Perfil</span>
+          <Icon type="profile" className="-disabled" />
         </li>
         <li className="item">
-        <span className="-disabled">
-
-          Ajustes
-        </span>
-          <Icon type="setting"  className="-disabled" />
+          <span className="-disabled">Ajustes</span>
+          <Icon type="setting" className="-disabled" />
         </li>
         <li className="item" onClick={logout}>
           <Icon type="logout" />
@@ -60,7 +49,9 @@ const Menu = ({ history, toggleMenu }) => {
       <div className="profile">
         <img src="" alt="" className="photo" />
         <div className="info">
-          <p className="name">Cesar</p>
+          <p className="name">
+            {currentUser && currentUser.displayName.split(" ")[0]}
+          </p>
         </div>
       </div>
     </div>

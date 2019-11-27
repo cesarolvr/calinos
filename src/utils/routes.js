@@ -29,6 +29,7 @@ const OwnRoute = ({ component: Component, authed, path, ...rest }) => {
             timeout={100}
             classNames="page"
             unmountOnExit
+            appear
           >
             {authed ? (
               <Redirect to={{ pathname: "/home" }} />

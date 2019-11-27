@@ -20,6 +20,17 @@
       font-size: 25px;
     }
   }
+
+  .fslightbox-toolbar {
+    top: 30px;
+    right: 30px;
+    background: none;
+
+    /* or hide fullscreen button at low resolution */
+    .fslightbox-toolbar-button:nth-child(1) {
+      display: none;
+    }
+  }
 }
 
 .-pin-opened {

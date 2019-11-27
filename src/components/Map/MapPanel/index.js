@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
+
 import { Icon } from "antd";
 import { Link } from "react-router-dom";
 import Glide from "@glidejs/glide";
@@ -7,8 +8,9 @@ import * as R from "ramda";
 
 import "./MapPanel.scss";
 
-const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName, id }) => {
+const MapPanel = ({ animal = {}, photos = [''], local = {}, ownerName, id, toggleLightbox }) => {
   const hasContent = !R.isEmpty(animal);
+  
 
   const { breed = "", color = "", name = "", size = "", type = "" } = animal;
   const { comment = "" } = local;
@@ -29,6 +31,7 @@ const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName, id }) => {
     >
       {hasContent ? (
         <>
+        
           <div className="panel-content">
             <div className="panel-header">
               <h1 className="title">{name}</h1>
@@ -50,11 +53,17 @@ const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName, id }) => {
             <div className="slider">
               <div data-glide-el="track" className="glide__track">
                 <ul className="glide__slides">
-                  {photos.map((photo, index) => (
-                    <li className="glide__slide" key={index}>
-                    <img src={photo} className="image" />
-                    </li>
-                  ))}
+                  {photos.map((photo, index) => {
+                    return (
+                      <li className="glide__slide" key={index}>
+                        <img
+                          src={photo}
+                          className="image"
+                          onClick={toggleLightbox}
+                        />
+                      </li>
+                    )
+                  })}
                 </ul>
                 <div className="glide__bullets" data-glide-el="controls[nav]">
                   {photos.map((item, index) => {
@@ -74,8 +83,8 @@ const MapPanel = ({ animal = {}, photos = [], local = {}, ownerName, id }) => {
               {name} é <strong>{color.toLowerCase()}</strong>
             </p>
             <p className="info size">
-              <strong>{ownerName && ownerName.split(" ")[0]}</strong> é a pessoa responsável
-              por {name}
+              <strong>{ownerName && ownerName.split(" ")[0]}</strong> é a pessoa
+              responsável por {name}
             </p>
 
             <p className="comment">{comment}</p>

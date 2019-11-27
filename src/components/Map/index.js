@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import { Icon } from "antd";
+import FsLightbox from "fslightbox-react";
 import { useStateValue } from "../../state";
 
 // Components
@@ -26,12 +27,24 @@ import pinMe from "../../assets/images/pinMe.svg";
 
 const MapContainer = ({ google }) => {
   const [markers, setMarkers] = useState([]);
+  const [toggler, setToggler] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
   const [initialCoords, setInitialCoords] = useState({ lat: 20, lng: 20 });
   const [_, dispatch] = useStateValue();
+  const { photos = [""] } = activeMarker;
+
+  const toggleLightbox = () => {
+    setToggler(!toggler);
+  };
 
   const getLocation = () => {
-    return getGeolocation().then(res => setInitialCoords(res));
+    dispatch({
+      type: "setIsLoading",
+      isLoading: true
+    });
+    return getGeolocation().then(res => {
+      setInitialCoords(res);
+    });
   };
 
   const getPublications = () => {
@@ -61,7 +74,13 @@ const MapContainer = ({ google }) => {
 
   return (
     <>
-      <MapPanel {...activeMarker} />
+      <FsLightbox
+        toggler={toggler}
+        sources={photos}
+        type="image"
+        // onClose={toggleLightbox}
+      />
+      <MapPanel {...activeMarker} toggleLightbox={toggleLightbox} />
       <div className="button-back" onClick={() => openMarker(false)}>
         <Icon type="close" />
       </div>
@@ -69,6 +88,12 @@ const MapContainer = ({ google }) => {
         google={google}
         zoom={15}
         disableDefaultUI={true}
+        onIdle={() => {
+          dispatch({
+            type: "setIsLoading",
+            isLoading: false
+          });
+        }}
         style={{
           width: "100%",
           height: "100%"
