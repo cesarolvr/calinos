@@ -51,6 +51,9 @@ const Register = ({ history, ...props }) => {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(({ user }) => {
+        user.updateProfile({
+          displayName: name,
+        })
         // TODO: abstrair essas chamadas no DB
         query.get().then(querySnapshot => {
           if (querySnapshot.empty) {
