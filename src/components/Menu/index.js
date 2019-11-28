@@ -50,7 +50,7 @@ const Menu = ({ history, toggleMenu }) => {
         <img src="" alt="" className="photo" />
         <div className="info">
           <p className="name">
-            {currentUser && currentUser.displayName.split(" ")[0]}
+            {currentUser && currentUser.displayName && currentUser.displayName.split(" ")[0]}
           </p>
         </div>
       </div>
