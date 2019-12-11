@@ -12,15 +12,12 @@ const HeartIcon = () => (
     <g
       id="UI-Aplicativo"
       stroke="none"
-      stroke-width="1"
-      fill="none"
-      fill-rule="evenodd"
+      strokeWidth="1"
+      
     >
       <g
         id="Mapa"
         transform="translate(-134.000000, -765.000000)"
-        fill="#EDEDED"
-        fill-rule="nonzero"
       >
         <g id="Group-5" transform="translate(2.000000, 746.000000)">
           <path

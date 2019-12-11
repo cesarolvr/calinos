@@ -3,11 +3,11 @@
     <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
     <title>Group 57</title>
     <desc>Created with Sketch.</desc>
-    <g id="UI-Aplicativo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.146763393">
+    <g id="UI-Aplicativo" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" opacity="0.146763393">
         <g id="Formulário---Animal" transform="translate(-323.000000, -305.000000)">
             <g id="Group-57" transform="translate(320.000000, 299.000000)">
                 <rect id="Rectangle-36-Copy-6" x="0" y="0" width="20" height="20"></rect>
-                <g id="down" transform="translate(3.000000, 6.000000)" fill="#000000" fill-rule="nonzero">
+                <g id="down" transform="translate(3.000000, 6.000000)" fill="#000000" fillRule="nonzero">
                     <path d="M13.9945312,0.861328125 C13.9945312,1.04882812 13.9361979,1.23828125 13.8195312,1.39648437 L7.60520833,9.67382813 C7.45390625,9.875 7.22604167,9.9921875 6.98359375,9.9921875 C6.74296875,9.9921875 6.51328125,9.875 6.36380208,9.67382813 L0.182291667,1.43164062 C-0.09296875,1.06445312 -0.03828125,0.52734375 0.304427083,0.232421875 C0.647135417,-0.0625 1.1484375,-0.00390625 1.42369792,0.36328125 L6.98541667,7.77734375 L12.578125,0.326171875 C12.8533854,-0.041015625 13.3546875,-0.099609375 13.6973958,0.1953125 C13.8924479,0.365234375 13.9945312,0.611328125 13.9945312,0.861328125 Z" id="Shape"></path>
                 </g>
             </g>

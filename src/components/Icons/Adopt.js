@@ -11,14 +11,12 @@ const AdoptIcon = () => (
     <g
       id="UI-Aplicativo"
       stroke="none"
-      stroke-width="1"
-      fill="none"
-      fill-rule="evenodd"
+      strokeWidth="1"
+      
     >
       <g
         id="Mapa"
         transform="translate(-220.000000, -765.000000)"
-        fill="#EDEDED"
       >
         <g id="Group-5" transform="translate(2.000000, 746.000000)">
           <g id="Group-4" transform="translate(218.000000, 19.000000)">

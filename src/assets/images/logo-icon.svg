@@ -6,7 +6,7 @@
     <defs>
         <polygon id="path-1" points="0 0 34 0 34 41 0 41"></polygon>
     </defs>
-    <g id="UI-Aplicativo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="UI-Aplicativo" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="Login" transform="translate(-167.000000, -63.000000)">
             <g id="Group-15" transform="translate(167.000000, 63.000000)">
                 <mask id="mask-2" fill="white">

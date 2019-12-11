@@ -3,8 +3,8 @@
     <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
     <title>023-menu</title>
     <desc>Created with Sketch.</desc>
-    <g id="UI-Aplicativo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Mapa" transform="translate(-49.000000, -63.000000)" fill="#000000" fill-rule="nonzero">
+    <g id="UI-Aplicativo" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="Mapa" transform="translate(-49.000000, -63.000000)" fill="#000000" fillRule="nonzero">
             <g id="023-menu" transform="translate(49.000000, 63.000000)">
                 <path d="M18.2916131,0 L2.70834544,0 C2.31713057,0 2,0.447719216 2,0.999970703 C2,1.55222219 2.31713057,2 2.70834544,2 L18.2916546,2 C18.6828694,2 19,1.55228078 19,0.999970703 C19,0.447660622 18.6828279,0 18.2916131,0 Z" id="Path"></path>
                 <path d="M20.1249338,7 L0.875014954,7 C0.391749532,7 0,7.4477061 0,8 C0,8.5522939 0.391749532,9 0.875014954,9 L20.124985,9 C20.6082505,9 21,8.5522939 21,8 C21,7.4477061 20.6081992,7 20.1249338,7 Z" id="Path"></path>

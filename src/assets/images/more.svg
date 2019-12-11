@@ -3,7 +3,7 @@
     <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
     <title>Shape</title>
     <desc>Created with Sketch.</desc>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="imagepicker/add/add-icon1" fill="#CCCCCC">
             <path d="M34,36 L34,61.85625 C34,63.04375 33.10625,64 32,64 C30.89375,64 30,63.04375 30,61.85625 L30,36 L2.14375,36 C0.95625,36 0,35.10625 0,34 C0,32.89375 0.95625,32 2.14375,32 L30,32 L30,2.14375 C30,0.95625 30.89375,-4.26325641e-14 32,-4.26325641e-14 C33.10625,-4.26325641e-14 34,0.95625 34,2.14375 L34,32 L61.85625,32 C63.04375,32 64,32.89375 64,34 C64,35.10625 63.04375,36 61.85625,36 L34,36 Z" id="Shape" transform="translate(32.000000, 32.000000) scale(1, -1) translate(-32.000000, -32.000000) "></path>
         </g>

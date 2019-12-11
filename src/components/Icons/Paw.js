@@ -9,7 +9,7 @@ const PawIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
   >
-    <g id="UI-Aplicativo" stroke="none" stroke-width="1">
+    <g id="UI-Aplicativo" stroke="none" strokeWidth="1">
       <g id="Mapa" transform="translate(-60.000000, -719.000000)">
         <g id="Group-3" transform="translate(33.000000, 698.000000)">
           <g id="Group-2" transform="translate(27.000000, 21.000000)">

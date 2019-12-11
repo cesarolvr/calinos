@@ -12,6 +12,8 @@ import StoreIcon from "../../components/Icons/Store";
 import "./Bar.scss";
 
 const Bar = ({ fixed, location }) => {
+  console.log(location.pathname);
+  
   const isRouteActive = routename => location.pathname === routename;
 
   return (

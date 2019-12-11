@@ -3,13 +3,13 @@ import React from "react";
 // Components
 import Bar from "../../components/Bar";
 
-const Feed = () => {
+const Store = () => {
   return (
-    <div className="feed">
-      Feed
+    <div className="store">
+      Store
       <Bar />
     </div>
   );
 };
 
-export default Feed;
+export default Store;

@@ -3,13 +3,13 @@ import React from "react";
 // Components
 import Bar from "../../components/Bar";
 
-const Feed = () => {
+const Adopt = () => {
   return (
-    <div className="feed">
-      Feed
+    <div className="adopt">
+      Adopt
       <Bar />
     </div>
   );
 };
 
-export default Feed;
+export default Adopt;

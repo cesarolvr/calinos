@@ -17,6 +17,8 @@ import Publication from "../pages/Publication";
 import Chat from "../pages/Chat";
 import MyPosts from "../pages/MyPosts";
 import NotFound from "../pages/NotFound";
+import Adopt from "../pages/Adopt";
+import Store from "../pages/Store";
 
 // TODO: reimplementar o TransitionGroup nas rotas. Passar a usar keys ao invés de in
 const OwnRoute = ({ component: Component, authed, path, ...rest }) => {
@@ -148,6 +150,18 @@ const Routes = () => {
               path="/minhas-publicacoes"
               authed={isAuthed(firebaseProps)}
               component={MyPosts}
+            />
+            <PrivatedRoute
+              exact
+              path="/adotar"
+              authed={isAuthed(firebaseProps)}
+              component={Adopt}
+            />
+            <PrivatedRoute
+              exact
+              path="/loja"
+              authed={isAuthed(firebaseProps)}
+              component={Store}
             />
             <OwnRoute path="/nao-encontrado" exact={true} component={NotFound} />
           </Fragment>
