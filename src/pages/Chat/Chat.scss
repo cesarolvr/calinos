@@ -83,12 +83,14 @@
           margin: 5px 0 8px 0;
           font-size: 12px;
           font-weight: normal;
+          color: #f0f0f0;
         }
 
         .hour {
           font-size: 12px;
           font-style: italic;
           width: 100%;
+          color: #f0f0f0;
           text-align: right;
           padding-right: 5px;
           display: inline-block;
@@ -97,7 +99,10 @@
         &.-me {
           margin-left: auto;
           background: #f0f0f0;
-          color: black;
+
+          .name, .hour {
+            color: black;
+          }
 
           .text {
             color: black;
