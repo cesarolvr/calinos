@@ -2,11 +2,12 @@ import React from "react";
 
 // Components
 import Bar from "../../components/Bar";
+import PageTitle from "../../components/PageTitle";
 
 const Store = () => {
   return (
     <div className="store">
-      Store
+      <PageTitle title="Ofertas" />
       <Bar />
     </div>
   );
