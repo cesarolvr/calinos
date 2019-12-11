@@ -2,7 +2,7 @@
 
 const isHome = pathname => {
   if (!window) return;
-  return pathname === "/home";
+  return pathname === "/inicio";
 };
 
 export default isHome;

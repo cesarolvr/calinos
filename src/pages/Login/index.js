@@ -124,7 +124,7 @@ const Login = props => {
           achar bichinhos <br />
           perdidos.
         </h1>
-        <Link className="button -register" to={"/register"}>
+        <Link className="button -register" to={"/registro"}>
           Registrar-se
         </Link>
         <button className="button -signin" onClick={toggleLoad}>
@@ -140,12 +140,9 @@ const Login = props => {
         </div>
         <img src={logo} className="logo" alt="" />
         <p className="register">
-          <Link key="/register" as={NavLink} className="link" to="/register">
+          <Link key="/registro" as={NavLink} className="link" to="/registro">
             Cadastre-se
           </Link>
-          {/* <Link className="link" to="/register">
-            Cadastre-se
-          </Link> */}
         </p>
       </div>
       <Formik

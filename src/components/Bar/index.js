@@ -10,11 +10,11 @@ const Bar = ({ fixed }) => (
     '-fixed' : fixed
   })}>
     <ul className="bar-list">
-      <Link className="item link paw" to="/home"></Link>
+      <Link className="item link paw" to="/inicio"></Link>
       {/* <Link className="item link" to="/feed"></Link> */}
-      <li className="item" />
-      <li className="item" />
-      <li className="item" />
+      <Link className="item link heart" to="/feed" />
+      <Link className="item link adopt" to="/adotar" />
+      <Link className="item link store" to="/loja" />
     </ul>
   </div>
 );

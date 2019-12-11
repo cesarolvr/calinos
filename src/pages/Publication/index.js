@@ -69,7 +69,7 @@ const Publication = ({ history }) => {
       <button
         className="back"
         onClick={() => {
-          history.push("/home");
+          history.push("/inicio");
         }}
       >
         <Icon type="left" />
@@ -107,7 +107,7 @@ const Publication = ({ history }) => {
                   .share({
                     title: `${sharePostLabels().title}`,
                     text: `${sharePostLabels().description}`,
-                    url: `https://www.calinos.com.br/#/publication/${id}`
+                    url: `https://www.calinos.com.br/#/publicacao/${id}`
                   })
                   .then(() => console.log("Successful share"))
                   .catch(error => console.log("Error sharing", error));

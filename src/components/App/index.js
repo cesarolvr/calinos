@@ -64,7 +64,7 @@ const App = ({ firebaseprops, location }) => {
         <Spin indicator={antIcon} className="loader" />
         {isAuthed(firebaseprops) && isHomepage && (
           <>
-            <Link className="create-post" to="/post">
+            <Link className="create-post" to="/publicar">
               Alertar
             </Link>
             <div className="menu-toggle" onClick={toggleMenu} />

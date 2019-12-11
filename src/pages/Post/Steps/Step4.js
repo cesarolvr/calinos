@@ -34,7 +34,7 @@ const Step4 = () => {
         >
           Compartilhar
         </button>
-        <Link className="button to-home" to="/home">
+        <Link className="button to-home" to="/inicio">
           Voltar para home
         </Link>
       </div>

@@ -35,7 +35,7 @@ const MapPanel = ({ animal = {}, photos = [''], local = {}, ownerName, id, toggl
           <div className="panel-content">
             <div className="panel-header">
               <h1 className="title">{name}</h1>
-              <Link className="to" to={`/publication/${id}`}>
+              <Link className="to" to={`/publicacao/${id}`}>
                 Ver post
                 <Icon type="right" />
               </Link>

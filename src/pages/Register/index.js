@@ -110,7 +110,7 @@ const Register = ({ history, ...props }) => {
           <a
             className="link"
             onClick={() => {
-              history.push('/login');
+              history.push('/entrar');
             }}
           >
             Login

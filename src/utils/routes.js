@@ -1,4 +1,4 @@
-import { Route, Redirect, Switch } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import React, { Fragment } from "react";
 import { CSSTransition } from "react-transition-group";
 
@@ -23,16 +23,19 @@ const OwnRoute = ({ component: Component, authed, path, ...rest }) => {
   return (
     <Route {...rest} key={path} path={path}>
       {({ match, location, ...props }) => {
+        console.log(location);
+        
         return (
           <CSSTransition
             in={match != null}
             timeout={100}
             classNames="page"
             unmountOnExit
+            mountOnEnter
             appear
           >
             {authed ? (
-              <Redirect to={{ pathname: "/home" }} />
+              <Redirect to={{ pathname: "/inicio" }} />
             ) : (
               <Component {...props} {...rest} />
             )}
@@ -57,7 +60,7 @@ const PrivatedRoute = ({ component: Component, authed, ...rest }) => {
             {authed ? (
               <Component {...props} {...rest} />
             ) : (
-              <Redirect to={{ pathname: "/login" }} />
+              <Redirect to={{ pathname: "/entrar" }} />
             )}
           </CSSTransition>
         );
@@ -94,26 +97,26 @@ const Routes = () => {
             {/* <Switch> */}
             <PublicRoute
               exact
-              path="/publication/:id"
+              path="/publicacao/:id"
               component={Publication}
             />
             <OwnRoute
               exact
-              path="/login"
+              path="/entrar"
               authed={isAuthed(firebaseProps)}
               component={Login}
               firebaseprops={firebaseProps}
             />
             <OwnRoute
               exact
-              path="/register"
+              path="/registro"
               authed={isAuthed(firebaseProps)}
               component={Register}
               firebaseprops={firebaseProps}
             />
             <PrivatedRoute
               exact
-              path="/home"
+              path="/inicio"
               authed={isAuthed(firebaseProps)}
               component={Home}
             />
@@ -131,7 +134,7 @@ const Routes = () => {
             />
             <PrivatedRoute
               exact
-              path="/post"
+              path="/publicar"
               authed={isAuthed(firebaseProps)}
               component={Post}
             />
@@ -144,13 +147,11 @@ const Routes = () => {
             />
             <PrivatedRoute
               exact
-              path="/my-posts"
+              path="/minhas-publicacoes"
               authed={isAuthed(firebaseProps)}
               component={MyPosts}
             />
-            <OwnRoute path="/not-found" exact={true} component={NotFound} />
-            {/* <Redirect from="*" to="/home" /> */}
-            {/* </Switch> */}
+            <OwnRoute path="/nao-encontrado" exact={true} component={NotFound} />
           </Fragment>
         );
       }}

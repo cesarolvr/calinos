@@ -29,7 +29,7 @@ const Menu = ({ history, toggleMenu }) => {
           <span className="-disabled">Meu pet</span>
           <img src={pawIcon} className="anticon  -disabled" />
         </li>
-        <li className="item" onClick={() => to("/my-posts")}>
+        <li className="item" onClick={() => to("/minhas-publicacoes")}>
           <span>Meus posts</span>
           <Icon type="environment" className="-disabled" />
         </li>
