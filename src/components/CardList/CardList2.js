@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Glide from "@glidejs/glide";
+import { Icon } from "antd";
 
 import dogPhoto from "../../assets/images/dog-photo.png";
 
@@ -17,7 +18,12 @@ const CardList2 = () => {
   return (
     <ul className="card-list -two">
       {[1, 2, 4, 5, 6].map((_, index) => (
-        <li className="item" key={index} data-murphy="bottom-to-top" data-murphy-animation-delay="600">
+        <li
+          className="item"
+          key={index}
+          // data-murphy="bottom-to-top"
+          // data-murphy-animation-delay="600"
+        >
           <div className="card-body">
             <div className="slider">
               <div className={`slider-post-two slider-post-two-${index}`}>
@@ -48,11 +54,20 @@ const CardList2 = () => {
             <div className="block-info">
               <div className="block-info-header">
                 <div className="name">Fred</div>
-                <p className="share">Compartilhar</p>
+                <p className="share">
+                  Compartilhar
+                  <Icon type="share-alt" />
+                </p>
               </div>
               <div className="block-info-body">
-                <div className="info">Labrador amarelo</div>
-                <div className="info">Estação Santo Amaro</div>
+                <div className="info">
+                  Labrador amarelo
+                  <Icon type="gitlab" theme="filled" />
+                </div>
+                <div className="info">
+                  <Icon type="environment" theme="filled" />
+                  Estação Santo Amaro
+                </div>
               </div>
               <button className="button">Adotar</button>
             </div>

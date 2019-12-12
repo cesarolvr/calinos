@@ -1,5 +1,5 @@
 .card-list {
-  padding: 0px 20px;
+  padding: 0px 30px;
   width: 100%;
 
   .item {
@@ -21,10 +21,17 @@
     .name {
       font-size: 16px;
       font-weight: bold;
+      color: black;
     }
 
     .description {
-      font-size: 14px;
+      font-size: 13px;
+      color: #919191;
+      i {
+        margin-right: 5px;
+        color: #ccc;
+        font-size: 12px;
+      }
     }
 
     .profile {
@@ -56,6 +63,7 @@
     .slider {
       position: relative;
       height: 250px;
+      z-index: 50;
 
       .slider-post-two {
         display: flex;
@@ -119,7 +127,7 @@
       border-radius: 26px;
       margin-top: -30px;
       position: relative;
-      z-index: 40;
+      z-index: 70;
 
       &-header,
       &-body {
@@ -144,21 +152,26 @@
 
       .share {
         margin: 0;
+        display: flex;
+        align-items: center;
+
+        i {
+          margin-left: 5px;
+        }
       }
 
       .info {
-        padding: 3px 0px 3px 20px;
+        padding: 3px 0px 3px 25px;
         position: relative;
 
-        &:after {
-          content: '';
+        i {
+          color: #ddd;
           position: absolute;
           left: 0;
           top: 0;
           border-radius: 50%;
           margin: auto;
           bottom: 0;
-          background: #ddd;
           width: 14px;
           height: 14px;
         }
@@ -178,6 +191,7 @@
       bottom: 0;
       width: 100%;
       display: flex;
+      z-index: 80;
 
       .button {
         margin: 0;

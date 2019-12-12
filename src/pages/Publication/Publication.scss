@@ -128,11 +128,13 @@
         font-size: 14px;
         margin-bottom: 10px;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
 
         > .anticon {
           width: 18px;
           height: 18px;
+          color: #ccc;
+          margin-top: 2px;
           display: flex;
           align-items: center;
           margin-right: 5px;

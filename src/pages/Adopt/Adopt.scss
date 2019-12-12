@@ -7,11 +7,12 @@
 
     > .page-title {
       padding-right: 100px;
+      padding-left: 30px;
     }
 
     > .filter {
       display: flex;
-      padding: 0px 20px 20px;
+      padding: 0px 30px 20px;
 
       .select-wrapper {
         width: 100%;
@@ -40,6 +41,49 @@
           color: black;
           font-weight: 400;
           position: relative;
+        }
+      }
+    }
+
+    > .page-title,
+    > .card-list .item, > .filter .select-wrapper {
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    > .page-title {
+      transition-delay: 250ms;
+    }
+
+    @for $i from 1 through 10 {
+      .card-list {
+        .item:nth-of-type(0n + #{$i}) {
+          transition-delay: ($i * 300) + 300ms;
+        }
+      }
+    }
+
+    @for $i from 1 through 10 {
+      .filter {
+        .select-wrapper:nth-of-type(0n + #{$i}) {
+          transition-delay: ($i * 100) + 300ms;
+        }
+      }
+    }
+
+    &.page-enter {
+      > .page-title,
+      > .card-list .item, > .filter .select-wrapper {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+  
+      &-active,
+      &-done {
+        > .page-title,
+        > .card-list .item, > .filter .select-wrapper {
+          opacity: 1;
+          transform: translateY(0px);
         }
       }
     }

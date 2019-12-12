@@ -120,19 +120,21 @@ const Publication = ({ history }) => {
         </div>
         <ul className="details-list">
           <li className="item">
-            <Icon type="info-circle" />
+            <Icon type="gitlab" theme="filled" />
             {name} é um {breed} {color.toLowerCase()}
           </li>
           <li className="item">
-            <Icon type="info-circle" />
+            <Icon type="environment" theme="filled" />
             Estação Santo Amaro
           </li>
           <li className="item">
-            <Icon type="info-circle" />
+            <Icon type="user" />
             {ownerName && ownerName.split(" ")[0]} é a pessoa responsável
           </li>
           <li className="item">
-            <Icon type="info-circle" />
+            {
+              getGender(gender) && getGender(gender).toLowerCase() === 'fêmea' ? <Icon type="woman" /> : <Icon type="man" />
+            }
             {name} é {getGender(gender).toLowerCase()}
           </li>
         </ul>

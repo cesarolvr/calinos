@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import murphy from "murphyjs";
+// import murphy from "murphyjs";
 
 import "./Adopt.scss";
 
@@ -9,14 +9,14 @@ import PageTitle from "../../components/PageTitle";
 import CardList2 from "../../components/CardList/CardList2";
 
 const Adopt = () => {
-  useEffect(() => {
-    murphy.play()
-  }, []);
+  // useEffect(() => {
+  //   murphy.play()
+  // }, []);
   return (
     <div className="adopt">
       <PageTitle title="Bichinhos que precisam de um lar" />
       <div className="filter">
-        <div className="select-wrapper" data-murphy="bottom-to-top" data-murphy-animation-delay="300">
+        <div className="select-wrapper">
           <select name="" id="" className="select">
             <option value="" defaultValue>
               Tipo
@@ -25,7 +25,7 @@ const Adopt = () => {
             <option value="">Gatos</option>
           </select>
         </div>
-        <div className="select-wrapper" data-murphy="bottom-to-top" data-murphy-animation-delay="400">
+        <div className="select-wrapper">
           <select name="" id="" className="select">
             <option value="">Porte</option>
             <option value="">Pequeno</option>
@@ -33,7 +33,7 @@ const Adopt = () => {
             <option value="">Grande</option>
           </select>
         </div>
-        <div className="select-wrapper" data-murphy="bottom-to-top" data-murphy-animation-delay="500">
+        <div className="select-wrapper">
           <select name="" id="" className="select">
             <option value="">Sexo</option>
             <option value="">Macho</option>

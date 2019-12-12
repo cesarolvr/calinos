@@ -6,6 +6,8 @@ import dogPhoto from "../../assets/images/dog-photo.png";
 
 import "./CardList.scss";
 
+import { Icon } from "antd";
+
 const CardList1 = () => {
   useEffect(() => {
     const sliders = document.querySelectorAll(".slider-post");
@@ -28,7 +30,8 @@ const CardList1 = () => {
             <div className="holder">
               <div className="name">Maria Fernanda</div>
               <div className="description">
-                Perdeu o <strong>Fred</strong> em Santo Amaro
+                <Icon type="environment" theme="filled" />
+                Fred sumiu em Santo Amaro
               </div>
             </div>
           </div>
@@ -65,7 +68,7 @@ const CardList1 = () => {
             </div>
             <div className="control">
               <button className="button -gift">Presentear Fred</button>
-              <button className="button -ask">Perguntar sobre Fred</button>
+              <button className="button -ask">Perguntar sobre</button>
             </div>
           </div>
         </li>

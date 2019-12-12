@@ -41,13 +41,16 @@ const MapPanel = ({ animal = {}, photos = [''], local = {}, ownerName, id, toggl
               </Link>
             </div>
             <p className="info type">
+              <Icon type="flag" theme="filled" />
               {name} é um{" "}
               <strong>{type === "cat" ? "Gato" : "Cachorro"}</strong>
             </p>
             <p className="info breed">
-              A raça do {name} é <strong>{breed}</strong>
+              <Icon type="gitlab" theme="filled" />
+              A raça de {name} é <strong>{breed}</strong>
             </p>
             <p className="info size">
+              <Icon type="fullscreen" />
               {name} é um animal de <strong>{size.toLowerCase()}</strong> porte
             </p>
             <div className="slider">
@@ -80,9 +83,11 @@ const MapPanel = ({ animal = {}, photos = [''], local = {}, ownerName, id, toggl
             </div>
 
             <p className="info color">
+              <Icon type="bg-colors" />
               {name} é <strong>{color.toLowerCase()}</strong>
             </p>
             <p className="info size">
+              <Icon type="user" />
               <strong>{ownerName && ownerName.split(" ")[0]}</strong> é a pessoa
               responsável por {name}
             </p>
