@@ -3,6 +3,10 @@
   font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, Roboto, 'sans-serif';
 }
 
+*[data-murphy] {
+  opacity: 0;
+}
+
 /* Change the white to any color ;) */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 

@@ -17,7 +17,7 @@ const CardList2 = () => {
   return (
     <ul className="card-list -two">
       {[1, 2, 4, 5, 6].map((_, index) => (
-        <li className="item" key={index}>
+        <li className="item" key={index} data-murphy="bottom-to-top" data-murphy-animation-delay="600">
           <div className="card-body">
             <div className="slider">
               <div className={`slider-post-two slider-post-two-${index}`}>
