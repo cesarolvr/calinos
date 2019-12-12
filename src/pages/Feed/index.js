@@ -15,7 +15,7 @@ const Feed = () => {
   }, []);
   return (
     <div className="feed">
-      <PageTitle title="Feed" />
+      <PageTitle title="Favoritos" />
       <CardList />
       <Bar />
     </div>

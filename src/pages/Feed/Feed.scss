@@ -3,4 +3,40 @@
   width: 100vw;
   height: 100vh;
   padding-bottom: 70px;
+
+  > .page-title,
+  .card-list .item {
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  > .page-title {
+    transition-delay: 300ms;
+  }
+
+  @for $i from 1 through 10 {
+    .card-list {
+      .item:nth-of-type(0n + #{$i}) {
+        transition-delay: ($i * 100) + 300ms;
+        // background-color: lighten(red, $i * 5%);
+      }
+    }
+  }
+
+  &.page-enter {
+    > .page-title,
+    .card-list .item {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    &-active,
+    &-done {
+      > .page-title,
+      .card-list .item {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+  }
 }

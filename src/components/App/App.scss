@@ -32,9 +32,12 @@
   overflow: hidden;
   width: 100%;
   height: 100%;
-  transition: transform .3s ease, border-radius .3s ease;
+  transition: all .3s ease, border-radius .3s ease;
   background: white;
   border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -khtml-border-radius: 0px;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
@@ -61,6 +64,9 @@
     .page-holder {
       transform: scale(0.8) translateX(70%);
       border-radius: 30px;
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+      -khtml-border-radius: 30px;
     }
 
     > .menu {

@@ -14,7 +14,7 @@ const Adopt = () => {
   }, []);
   return (
     <div className="adopt">
-      <PageTitle title="Adoção e apadrinhamento de bichinhos" />
+      <PageTitle title="Bichinhos que precisam de um lar" />
       <div className="filter">
         <div className="select-wrapper" data-murphy="bottom-to-top" data-murphy-animation-delay="300">
           <select name="" id="" className="select">
