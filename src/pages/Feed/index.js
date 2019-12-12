@@ -3,7 +3,7 @@ import React from "react";
 // Components
 import Bar from "../../components/Bar";
 import PageTitle from '../../components/PageTitle'
-import CardList from '../../components/CardList'
+import CardList from '../../components/CardList/CardList1'
 
 import './Feed.scss'
 

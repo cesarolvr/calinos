@@ -44,7 +44,16 @@
     border-radius: 26px;
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+
     .slider {
+      position: relative;
+      height: 250px;
+
+      .slider-post-two {
+        display: flex;
+        align-items: center;
+      }
+
       .glide__track {
         background: #eee;
         min-height: 100%;
@@ -95,6 +104,67 @@
       }
     }
 
+    .block-info {
+      width: 100%;
+      background: white;
+      padding-top: 20px;
+      border-radius: 26px;
+      margin-top: -30px;
+      position: relative;
+      z-index: 40;
+
+      &-header,
+      &-body {
+        padding: 0 20px;
+      }
+
+      &-header {
+        width: 100%;
+        display: flex;
+        margin-bottom: 10px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .name {
+        font-size: 23px;
+        margin: 0;
+        font-weight: bold;
+        color: #000000;
+        line-height: 24px;
+      }
+
+      .share {
+        margin: 0;
+      }
+
+      .info {
+        padding: 3px 0px 3px 20px;
+        position: relative;
+
+        &:after {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          border-radius: 50%;
+          margin: auto;
+          bottom: 0;
+          background: #ddd;
+          width: 14px;
+          height: 14px;
+        }
+      }
+
+      .button {
+        margin-top: 20px;
+        margin-bottom: 0;
+        border-radius: 0;
+        background-color: #dc1d48;
+        color: white;
+      }
+    }
+
     .control {
       position: absolute;
       bottom: 0;
@@ -115,6 +185,19 @@
         &.-ask {
           background-color: #1b5063;
         }
+      }
+    }
+  }
+
+  &.-two {
+    .card-body .slider {
+      height: 200px;
+      .glide__bullets {
+        bottom: 50px;
+      }
+
+      .slider-post-two {
+        height: 200px;
       }
     }
   }

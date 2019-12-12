@@ -6,10 +6,10 @@ import dogPhoto from "../../assets/images/dog-photo.png";
 
 import "./CardList.scss";
 
-const CardList = ({ type = 1 }) => {
+const CardList1 = () => {
   useEffect(() => {
     const sliders = document.querySelectorAll(".slider-post");
-    for (const [index] of sliders.entries()) {
+    for (const [index, item] of sliders.entries()) {
       new Glide(`.slider-post-${index}`, {
         gap: 0
       }).mount();
@@ -19,21 +19,19 @@ const CardList = ({ type = 1 }) => {
     <ul className="card-list">
       {[1, 2, 4, 5, 6].map((_, index) => (
         <li className="item" key={index}>
-          {type === 1 && (
-            <div className="card-header">
-              <div className="holder">
-                <div className="profile">
-                  <img src={userPhoto} alt="" />
-                </div>
-              </div>
-              <div className="holder">
-                <div className="name">Maria Fernanda</div>
-                <div className="description">
-                  Perdeu o <strong>Fred</strong> em Santo Amaro
-                </div>
+          <div className="card-header">
+            <div className="holder">
+              <div className="profile">
+                <img src={userPhoto} alt="" />
               </div>
             </div>
-          )}
+            <div className="holder">
+              <div className="name">Maria Fernanda</div>
+              <div className="description">
+                Perdeu o <strong>Fred</strong> em Santo Amaro
+              </div>
+            </div>
+          </div>
           <div className="card-body">
             <div className="slider">
               <div className={`slider-post slider-post-${index}`}>
@@ -65,13 +63,10 @@ const CardList = ({ type = 1 }) => {
                 </div>
               </div>
             </div>
-            {type === 1 && (
-              <div className="control">
-                <button className="button -gift">Presentear Fred</button>
-                <button className="button -ask">Perguntar sobre Fred</button>
-              </div>
-            )}
-            {type === 2 && <div className="panel">Fred</div>}
+            <div className="control">
+              <button className="button -gift">Presentear Fred</button>
+              <button className="button -ask">Perguntar sobre Fred</button>
+            </div>
           </div>
         </li>
       ))}
@@ -79,4 +74,4 @@ const CardList = ({ type = 1 }) => {
   );
 };
 
-export default CardList;
+export default CardList1;
