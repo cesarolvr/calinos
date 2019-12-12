@@ -195,6 +195,14 @@
         border-radius: 0;
         background-color: #dc1d48;
         color: white;
+        border-bottom-right-radius: 26px;
+          -webkit-border-bottom-right-radius: 26px;
+          -moz-border-bottom-right-radius: 26px;
+          -khtml-border-bottom-right-radius: 26px;
+          border-bottom-left-radius: 26px;
+          -webkit-border-bottom-left-radius: 26px;
+          -moz-border-bottom-left-radius: 26px;
+          -khtml-border-bottom-left-radius: 26px;
       }
     }
 
@@ -215,11 +223,17 @@
         &.-gift {
           background-color: #0fa5a3;
           border-bottom-left-radius: 26px;
+          -webkit-border-bottom-left-radius: 26px;
+          -moz-border-bottom-left-radius: 26px;
+          -khtml-border-bottom-left-radius: 26px;
         }
 
         &.-ask {
           background-color: #1b5063;
           border-bottom-right-radius: 26px;
+          -webkit-border-bottom-right-radius: 26px;
+          -moz-border-bottom-right-radius: 26px;
+          -khtml-border-bottom-right-radius: 26px;
         }
       }
     }
@@ -228,6 +242,14 @@
   &.-two {
     .card-body .slider {
       height: 200px;
+      border-bottom-right-radius: 0;
+      -webkit-border-bottom-right-radius: 0;
+      -moz-border-bottom-right-radius: 0;
+      -khtml-border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      -webkit-border-bottom-left-radius: 0;
+      -moz-border-bottom-left-radius: 0;
+      -khtml-border-bottom-left-radius: 0;
       .glide__bullets {
         bottom: 50px;
       }
