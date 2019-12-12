@@ -13,8 +13,8 @@ const Store = () => {
       <PageTitle title="Loja" />
       <div className="loader">
         <ContentLoader
-          height={600}
-          viewBox="0 0 360 800"
+          height={1200}
+          viewBox="0 0 360 1500"
         >
           {/* Only SVG shapes */}
           <rect

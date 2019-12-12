@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { withRouter } from "react-router";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
-import { Spin, Icon } from 'antd';
-
+import { Spin, Icon } from "antd";
 
 // TODO: refatorar esse App. Ele é mais um wrapper do que um componente
 
@@ -29,7 +28,14 @@ import isHome from "../../utils/isHome";
 
 const App = ({ firebaseprops, location }) => {
   const [
-    { pinOpened, menuOpened, isLoading, aplicationLoaded, loginSelected, registerSelected },
+    {
+      pinOpened,
+      menuOpened,
+      isLoading,
+      aplicationLoaded,
+      loginSelected,
+      registerSelected
+    },
     dispatch
   ] = useStateValue();
 
@@ -44,13 +50,30 @@ const App = ({ firebaseprops, location }) => {
 
   const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 
+  const preloadImage = url => {
+    console.log('preload', url);
+    var img = new Image();
+    img.src = url;
+  };
+
+  useEffect(() => {
+    [
+      '../../assets/images/post-illustration.svg',
+      '../../assets/images/more.svg',
+      '../../assets/images/close.svg',
+      '../../assets/images/final-illustration.svg'
+    ].map(image => {
+      preloadImage(image)
+    })
+  }, []);
+
   return (
     <>
       <div className="locker">
         <img src={logoLoading} alt="" />
         <p>Acesse através de um dispositivo móvel</p>
       </div>
-      
+
       <div
         className={classNames("wrapper", {
           "-opened": menuOpened,
