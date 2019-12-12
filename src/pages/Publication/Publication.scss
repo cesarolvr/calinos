@@ -167,7 +167,7 @@
 
       > .share {
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 400;
         display: flex;
         align-items: center;
 
@@ -184,6 +184,18 @@
       line-height: 26px;
       font-style: italic;
       margin-bottom: 25px;
+    }
+  }
+
+  @media screen and (min-width: 400px) {
+    > .content {
+      > .comment {
+        margin-bottom: 5px;
+      }
+
+      > .details-list > .item {
+        font-size: 16px;
+      }
     }
   }
 }
