@@ -49,14 +49,15 @@
   .card-body {
     position: relative;
     border-radius: 26px;
-    // -webkit-border-radius: 26px;
-    // -moz-border-radius: 26px;
-    // -khtml-border-radius: 26px;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    -khtml-border-radius: 26px;
     // // -webkit-mask-image: -webkit-radial-gradient(white, black);
-    // -webkit-backface-visibility: hidden;
-    // -moz-backface-visibility: hidden;
-    // -webkit-transform: translate3d(0, 0, 0);
-    // -moz-transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    -webkit-overflow-scrolling: touch;
+    -moz-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
     // overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 
@@ -64,6 +65,17 @@
       position: relative;
       height: 250px;
       z-index: 50;
+      overflow: hidden;
+      border-radius: 26px;
+      -webkit-border-radius: 26px;
+      -moz-border-radius: 26px;
+      -khtml-border-radius: 26px;
+      // -webkit-mask-image: -webkit-radial-gradient(white, black);
+      -webkit-backface-visibility: hidden;
+      -webkit-overflow-scrolling: touch;
+      -moz-backface-visibility: hidden;
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
 
       .slider-post-two {
         display: flex;
@@ -202,10 +214,12 @@
 
         &.-gift {
           background-color: #0fa5a3;
+          border-bottom-left-radius: 26px;
         }
 
         &.-ask {
           background-color: #1b5063;
+          border-bottom-right-radius: 26px;
         }
       }
     }
