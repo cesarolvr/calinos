@@ -34,7 +34,8 @@ const App = ({ firebaseprops, location }) => {
       isLoading,
       aplicationLoaded,
       loginSelected,
-      registerSelected
+      registerSelected,
+      
     },
     dispatch
   ] = useStateValue();
@@ -51,20 +52,19 @@ const App = ({ firebaseprops, location }) => {
   const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 
   const preloadImage = url => {
-    console.log('preload', url);
     var img = new Image();
     img.src = url;
   };
 
   useEffect(() => {
     [
-      '../../assets/images/post-illustration.svg',
-      '../../assets/images/more.svg',
-      '../../assets/images/close.svg',
-      '../../assets/images/final-illustration.svg'
+      "../../assets/images/post-illustration.svg",
+      "../../assets/images/more.svg",
+      "../../assets/images/close.svg",
+      "../../assets/images/final-illustration.svg"
     ].map(image => {
-      preloadImage(image)
-    })
+      preloadImage(image);
+    });
   }, []);
 
   return (

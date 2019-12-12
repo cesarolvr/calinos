@@ -14,7 +14,7 @@
     transition-delay: 300ms;
   }
 
-  @for $i from 1 through 10 {
+  @for $i from 1 through 100 {
     .card-list {
       .item:nth-of-type(0n + #{$i}) {
         transition-delay: ($i * 100) + 300ms;

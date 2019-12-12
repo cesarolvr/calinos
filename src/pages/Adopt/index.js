@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
-// import murphy from "murphyjs";
+import React from "react";
+
+// State
+import { useStateValue } from "../../state";
 
 import "./Adopt.scss";
 
@@ -9,9 +11,12 @@ import PageTitle from "../../components/PageTitle";
 import CardList2 from "../../components/CardList/CardList2";
 
 const Adopt = () => {
-  // useEffect(() => {
-  //   murphy.play()
-  // }, []);
+  const [
+    {
+      adoption
+    },
+    dispatch
+  ] = useStateValue();
   return (
     <div className="adopt">
       <PageTitle title="Bichinhos que precisam de um lar" />
@@ -41,7 +46,7 @@ const Adopt = () => {
           </select>
         </div>
       </div>
-      <CardList2 />
+      <CardList2 data={adoption} />
       <Bar />
     </div>
   );

@@ -5,6 +5,9 @@ import { BrowserRouter as Router, HashRouter } from "react-router-dom";
 // Components
 import App from "./components/App";
 
+// Mock
+import { favorites, adoption } from './mock'
+
 // Styles
 import "./styles/base.scss";
 import "./styles/default.scss";
@@ -35,7 +38,10 @@ const initialState = {
   loginSelected: false,
   postUploaded: null,
   alert: false,
-  isLoading: false
+  isLoading: false,
+  favoriteSelected: [],
+  favorites,
+  adoption,
 };
 
 const reducer = (state, action) => {
@@ -45,6 +51,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         pinOpened: action.pinOpened
+      };
+
+    case "setFavoriteSelected":
+      return {
+        ...state,
+        favoriteSelected: action.favoriteSelected
       };
 
     case "setAlert":

@@ -6,7 +6,7 @@ import dogPhoto from "../../assets/images/dog-photo.png";
 
 import "./CardList.scss";
 
-const CardList2 = () => {
+const CardList2 = ({ data = [] }) => {
   useEffect(() => {
     const sliders = document.querySelectorAll(".slider-post-two");
     for (const [index, item] of sliders.entries()) {
@@ -17,7 +17,7 @@ const CardList2 = () => {
   }, []);
   return (
     <ul className="card-list -two">
-      {[1, 2, 4, 5, 6].map((_, index) => (
+      {data.map((_, index) => (
         <li
           className="item"
           key={index}

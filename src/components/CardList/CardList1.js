@@ -8,7 +8,7 @@ import "./CardList.scss";
 
 import { Icon } from "antd";
 
-const CardList1 = () => {
+const CardList1 = ({ data = [] }) => {
   useEffect(() => {
     const sliders = document.querySelectorAll(".slider-post");
     for (const [index, item] of sliders.entries()) {
@@ -19,7 +19,7 @@ const CardList1 = () => {
   }, []);
   return (
     <ul className="card-list">
-      {[1, 2, 4, 5, 6].map((_, index) => (
+      {data.map((_, index) => (
         <li className="item" key={index}>
           <div className="card-header">
             <div className="holder">

@@ -20,7 +20,7 @@
         transition-delay: 0.1s;
       }
 
-      @for $i from 1 through 3 {
+      @for $i from 1 through 90 {
         .input-wrapper:nth-of-type(3n + #{$i}) {
           transition-delay: #{$i / 10}s;
         }
