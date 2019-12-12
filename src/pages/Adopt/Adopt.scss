@@ -8,5 +8,40 @@
     > .page-title {
       padding-right: 100px;
     }
+
+    > .filter {
+      display: flex;
+      padding: 0px 20px 20px;
+
+      .select-wrapper {
+        width: 100%;
+        position: relative;
+        padding-right: 20px;
+
+        &:last-of-type {
+          padding-right: 0;
+        }
+
+        &:after {
+          content: "";
+          position: absolute;
+          right: 20px;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          width: 10px;
+          height: 10px;
+          background: url(../../assets/images/arrow-down-black.svg) center center no-repeat / contain;
+        }
+
+        .select {
+          border: none;
+          font-size: 16px;
+          color: black;
+          font-weight: 400;
+          position: relative;
+        }
+      }
+    }
   }
 }
