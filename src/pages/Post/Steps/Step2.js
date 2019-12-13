@@ -112,13 +112,13 @@ const Step2 = ({ nextStep, prevStep, step, setFormValue, formValue }) => {
                         }) => (
                           <>
                             <input
-                              placeholder="Search Places..."
+                              placeholder="Procurar endereço"
                               {...getInputProps({
                                 className: "location-search-input"
                               })}
                             />
                             <div className="autocomplete-dropdown-container">
-                              {loading && <div>Loading...</div>}
+                              {loading && <div>Carregando...</div>}
                               {suggestions.map(suggestion => {
                                 const className = suggestion.active
                                   ? "suggestion-item--active"

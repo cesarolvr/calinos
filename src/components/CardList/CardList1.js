@@ -24,8 +24,6 @@ const CardList1 = ({ data = [] }) => {
           { ownerName = "", photos = [], postType = "", animal = {}, ...props },
           index
         ) => {
-          console.log(props);
-
           return (
             <li className="item" key={index}>
               <div className="card-header">
@@ -47,17 +45,14 @@ const CardList1 = ({ data = [] }) => {
                   <div className={`slider-post slider-post-${index}`}>
                     <div data-glide-el="track" className="glide__track">
                       <ul className="glide__slides">
-                        {[dogPhoto, dogPhoto].map((photo, index) => {
+                        {photos.map((photo, index) => {
                           return (
                             <li className="glide__slide" key={index}>
-                              {photos.map((photo, index) => (
-                                <img
-                                  key={index}
-                                  src={photo}
-                                  className="image"
-                                  // onClick={toggleLightbox}
-                                />
-                              ))}
+                              <img
+                                src={photo}
+                                className="image"
+                                // onClick={toggleLightbox}
+                              />
                             </li>
                           );
                         })}
@@ -66,7 +61,7 @@ const CardList1 = ({ data = [] }) => {
                         className="glide__bullets"
                         data-glide-el="controls[nav]"
                       >
-                        {[dogPhoto, dogPhoto].map((item, index) => {
+                        {photos.map((item, index) => {
                           return (
                             <button
                               key={index}
