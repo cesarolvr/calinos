@@ -63,6 +63,7 @@
   }
 
   .illustration-track {
+    pointer-events: none;
     position: absolute;
     z-index: 200;
     left: 0;
