@@ -64,7 +64,7 @@
       padding: 10px 20px;
       background: #dc1d48;
 
-      &.-disabled {
+      &.-disabled, &:disabled {
         background: #ddd;
       }
     }
@@ -75,7 +75,6 @@
     margin-bottom: 0px;
     height: 100%;
     display: flex;
-    padding-bottom: 80px;
     flex-direction: column;
     justify-content: space-between;
     .box {
@@ -104,16 +103,16 @@
         right: 0;
         background: white;
         border-radius: 26px;
-    -webkit-border-radius: 26px;
-    -moz-border-radius: 26px;
-    -khtml-border-radius: 26px;
-    // // -webkit-mask-image: -webkit-radial-gradient(white, black);
-    -webkit-backface-visibility: hidden;
-    -webkit-overflow-scrolling: touch;
-    -moz-backface-visibility: hidden;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    overflow: hidden;
+        -webkit-border-radius: 26px;
+        -moz-border-radius: 26px;
+        -khtml-border-radius: 26px;
+        // // -webkit-mask-image: -webkit-radial-gradient(white, black);
+        -webkit-backface-visibility: hidden;
+        -webkit-overflow-scrolling: touch;
+        -moz-backface-visibility: hidden;
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        overflow: hidden;
         box-shadow: 0 5px 10px rgba(168, 174, 201, 0.3);
         z-index: 80;
         

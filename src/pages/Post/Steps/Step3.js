@@ -138,8 +138,6 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
     });
   };
 
-  // console.log("formValue", formValue);
-
   return (
     <div className="panel post -photo">
       <div className="content">
@@ -176,7 +174,7 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
           >
             Voltar
           </button>
-          <button className="button next" onClick={uploadFile}>
+          <button className="button next" disabled={photos.length === 0} onClick={uploadFile}>
             Próximo
           </button>
         </div>
