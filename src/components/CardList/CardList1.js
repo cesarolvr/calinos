@@ -21,7 +21,14 @@ const CardList1 = ({ data = [] }) => {
     <ul className="card-list">
       {data.map(
         (
-          { ownerName = "", photos = [], postType = "", animal = {}, ...props },
+          {
+            ownerName = "",
+            photos = [],
+            postType = "",
+            animal = {},
+            ownerPhoto = "",
+            lastActivity = {}
+          },
           index
         ) => {
           return (
@@ -29,14 +36,16 @@ const CardList1 = ({ data = [] }) => {
               <div className="card-header">
                 <div className="holder">
                   <div className="profile">
-                    <img src={userPhoto} alt="" />
+                    <img src={ownerPhoto} alt="" />
                   </div>
                 </div>
                 <div className="holder">
                   <div className="name">{ownerName}</div>
                   <div className="description">
-                    <Icon type="environment" theme="filled" />
-                    {animal.name || ""} foi passear de tarde
+                    <Icon type={lastActivity.type} />
+                    {
+                      lastActivity.title || 'Foi passear no parque'
+                    }
                   </div>
                 </div>
               </div>
@@ -76,7 +85,7 @@ const CardList1 = ({ data = [] }) => {
                 </div>
                 <div className="control">
                   <button className="button -gift">
-                    Presentear {animal.name || ""}
+                    Presentear <strong>{animal.name || ""}</strong>
                   </button>
                   <button className="button -ask">Perguntar sobre</button>
                 </div>

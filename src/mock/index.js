@@ -27,6 +27,17 @@ import lua1 from "../assets/mock/9-lua/1.png";
 import bob1 from "../assets/mock/10-bob/1.png";
 import bob2 from "../assets/mock/10-bob/2.png";
 
+import brunoImg from "../assets/users/bruno.jpg";
+import larissaImg from "../assets/users/larissa.jpg";
+import lauraImg from "../assets/users/laura.jpg";
+import gustavoImg from "../assets/users/gustavo.jpg";
+import luisaImg from "../assets/users/luisa.jpg";
+import marianaImg from "../assets/users/mariana.jpg";
+import miguelImg from "../assets/users/miguel.jpg";
+import pauloImg from "../assets/users/paulo.jpg";
+import luanaImg from "../assets/users/luana.jpg";
+import pedroImg from "../assets/users/pedro.png";
+
 export const favorites = [
   {
     animal: {
@@ -48,9 +59,14 @@ export const favorites = [
       reference: "Próximo à rua Tibiriçá",
       street: "Rua Joaquim Nabuco"
     },
+    ownerPhoto: larissaImg,
     ownerName: "Larissa Alves",
     photos: [frida1, frida2],
-    postType: "lost"
+    postType: "lost",
+    lastActivity: {
+      type: 'environment',
+      title: 'Foi as 14h passear no parque'
+    }
   },
   {
     animal: {
@@ -72,9 +88,14 @@ export const favorites = [
       street: "Rua Gaivota",
       reference: "Próximo a academia Smart Fit"
     },
+    ownerPhoto: pedroImg,
     ownerName: "Pedro Nunes",
     photos: [fred1, fred2],
-    postType: "lost"
+    postType: "lost",
+    lastActivity: {
+      type: 'like',
+      title: 'Foi no veterinário ontem'
+    }
   },
   {
     animal: {
@@ -96,9 +117,14 @@ export const favorites = [
       street: "Av. dos Eucaliptos",
       reference: "Próximo à estação de metrô Eucaliptos"
     },
+    ownerPhoto: gustavoImg,
     ownerName: "Gustavo Peixoto",
     photos: [otavio1, otavio2, otavio3],
-    postType: "lost"
+    postType: "lost",
+    lastActivity: {
+      type: 'gift',
+      title: 'Ganhou um ossinho de um amigo'
+    }
   },
   {
     animal: {
@@ -120,9 +146,14 @@ export const favorites = [
       street: "Al. Franca",
       reference: "Chegando na Av. 9 de Julho"
     },
+    ownerPhoto: lauraImg,
     ownerName: "Laura Dias",
     photos: [luna1, luna2],
-    postType: "lost"
+    postType: "lost",
+    lastActivity: {
+      type: 'star',
+      title: 'Tava na tosa hoje cedo'
+    }
   },
   {
     animal: {
@@ -144,10 +175,18 @@ export const favorites = [
       street: "Rua Caiubí",
       reference: "Na quadra do Mito Burger"
     },
+    ownerPhoto: pauloImg,
     ownerName: "Paulo Souza",
     photos: [nina1, nina2],
-    postType: "lost"
-  },
+    postType: "lost",
+    lastActivity: {
+      type: 'shopping',
+      title: 'Foi no Pet Shop com Paulo'
+    }
+  }
+];
+
+export const adoption = [
   {
     animal: {
       name: "Thor",
@@ -168,9 +207,14 @@ export const favorites = [
       street: "Rua Ariquemi",
       reference: "Na região do Parque Villa-Lobos"
     },
+    ownerPhoto: luisaImg,
     ownerName: "Luiza Torres",
     photos: [thor1, thor2],
-    postType: "lost"
+    postType: "lost",
+    lastActivity: {
+      type: 'tag',
+      title: 'Trocou de coleira'
+    }
   },
   {
     animal: {
@@ -192,9 +236,14 @@ export const favorites = [
       street: "R. Dr. Felix",
       reference: "Próximo à estação de metrô Vergueiros"
     },
+    ownerPhoto: luanaImg,
     ownerName: "Luana Britto",
     photos: [lulinha1, lulinha2],
-    postType: "lost"
+    postType: "lost",
+    lastActivity: {
+      type: 'woman',
+      title: 'Foi castrada semana passada'
+    }
   },
   {
     animal: {
@@ -216,9 +265,14 @@ export const favorites = [
       street: "R. Daniel Rossi",
       reference: "Nas redondezas do Metrô Santana"
     },
+    ownerPhoto: marianaImg,
     ownerName: "Mariana Tavares",
     photos: [maya1],
-    postType: "lost"
+    postType: "lost",
+    lastActivity: {
+      type: 'environment',
+      title: 'Foi passear de noite com Mariana'
+    }
   },
   {
     animal: {
@@ -240,9 +294,14 @@ export const favorites = [
       street: "Rua dos Ingleses",
       reference: "Próximo ao teatro Ruth Escobar"
     },
+    ownerPhoto: miguelImg,
     ownerName: "Miguel Montes",
     photos: [lua1],
-    postType: "lost"
+    postType: "lost",
+    lastActivity: {
+      type: 'poweroff',
+      title: 'Dormiu por toda tarde'
+    }
   },
   {
     animal: {
@@ -264,10 +323,13 @@ export const favorites = [
       street: "R. Pedroso Alvarenga",
       reference: "Na região da FMU Itaim"
     },
+    ownerPhoto: brunoImg,
     ownerName: "Bruno Costa",
     photos: [bob1, bob2],
-    postType: "lost"
+    postType: "lost",
+    lastActivity: {
+      type: 'car',
+      title: 'Passeou de carro agora pouco'
+    }
   }
 ];
-
-export const adoption = [];

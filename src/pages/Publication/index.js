@@ -22,7 +22,7 @@ const Publication = ({ history }) => {
     ownerName = "",
     local = {},
     photos = [],
-    id: postId,
+    id: postId
   } = post;
   const { name = "", breed = "", color = "", gender = "", type = "" } = animal;
   const { comment = "", contactPhone = "" } = local;
@@ -125,16 +125,19 @@ const Publication = ({ history }) => {
           </li>
           <li className="item">
             <Icon type="environment" theme="filled" />
-            Estação Santo Amaro
+            {(local && local.street) || ""}
           </li>
           <li className="item">
             <Icon type="user" />
             {ownerName && ownerName.split(" ")[0]} é a pessoa responsável
           </li>
           <li className="item">
-            {
-              getGender(gender) && getGender(gender).toLowerCase() === 'fêmea' ? <Icon type="woman" /> : <Icon type="man" />
-            }
+            {getGender(gender) &&
+            getGender(gender).toLowerCase() === "fêmea" ? (
+              <Icon type="woman" />
+            ) : (
+              <Icon type="man" />
+            )}
             {name} é {getGender(gender).toLowerCase()}
           </li>
         </ul>
