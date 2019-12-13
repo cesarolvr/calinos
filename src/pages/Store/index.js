@@ -10,7 +10,7 @@ import "./Store.scss";
 const Store = () => {
   return (
     <div className="store">
-      <PageTitle title="Loja" />
+      <PageTitle title="Loja" subtitle="(Em breve)" />
       <div className="loader">
         <ContentLoader
           height={1200}
