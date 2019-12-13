@@ -130,6 +130,12 @@ const Step1 = ({ nextStep, prevStep, formValue, setFormValue }) => {
                       <label className="label">Cor</label>
                       <Field component="select" name="color" className="input">
                         <option value="">Selecionar</option>
+                        <option value="Outra">Outra</option>
+                        <option value="Malhado">Malhado</option>
+                        <option value="Marrom">Marrom</option>
+                        <option value="Marrom">Cinza</option>
+                        <option value="Pintado">Pintado</option>
+                        <option value="Caramelo">Caramelo</option>
                         <option value="Amarelo">Amarelo</option>
                         <option value="Bege">Bege</option>
                         <option value="Preto">Preto</option>

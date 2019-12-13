@@ -1,6 +1,7 @@
 const getBreed = type => {
   if (type === "dog") {
     return [
+      { name: "Outra" },
       { name: "Afghan Hound" },
       { name: "Airedale Terrier" },
       { name: "Akita" },
@@ -179,10 +180,10 @@ const getBreed = type => {
       { name: "West Highland White Terrier" },
       { name: "Whippet" },
       { name: "Yorkshire Terrier" },
-      { name: "Outra" }
     ];
   }
   return [
+    { name: "Outra" },
     { name: "American Bobtail pelo longo" },
     { name: "American Bobtail pelo curto" },
     { name: "American pelo curto" },
@@ -256,7 +257,7 @@ const getBreed = type => {
     { name: "Turkish Angorá" },
     { name: "Turkish Van" },
     { name: "York Chocolate" },
-    { name: "Outra" }
+    
   ];
 };
 
