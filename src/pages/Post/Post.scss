@@ -220,6 +220,7 @@
 
         .delete-photo {
           position: absolute;
+          z-index: 130;
           width: 30px;
           height: 30px;
           border-radius: 50%;

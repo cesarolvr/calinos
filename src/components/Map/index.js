@@ -132,5 +132,6 @@ const MapContainer = ({ google }) => {
 };
 
 export default GoogleApiWrapper({
-  apiKey: mapsConfig.apiKey
+  apiKey: mapsConfig.apiKey,
+  libraries: ['places']
 })(MapContainer);

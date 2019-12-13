@@ -45,44 +45,45 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
     });
     const db = firebase.firestore();
     const postId = `${Math.floor(Math.random() * 1000000000)}`;
-    getGeolocation().then(location => {
-      db.collection("posts")
-        .add({
-          ...formValue,
-          local: {
-            ...formValue.local,
-            pin: {
-              lat: location.lat,
-              lng: location.lng
-            }
-          },
-          authorId: userId,
-          photos: [...newPhoto],
-          id: postId
-        })
-        .then(() => {
-          dispatch({
-            type: "setPostUploaded",
-            postUploaded: postId
-          });
-          db.collection("chats")
-            .doc(postId)
-            .set({
-              messages: []
-            });
-          nextStep();
-          dispatch({
-            type: "setIsLoading",
-            isLoading: false
-          });
-        })
-        .catch(() => {
-          dispatch({
-            type: "setIsLoading",
-            isLoading: false
-          });
+    // getGeolocation().then(location => {
+
+    // });
+    db.collection("posts")
+      .add({
+        ...formValue,
+        local: {
+          ...formValue.local
+          // pin: {
+          //   lat: location.lat,
+          //   lng: location.lng
+          // }
+        },
+        authorId: userId,
+        photos: [...newPhoto],
+        id: postId
+      })
+      .then(() => {
+        dispatch({
+          type: "setPostUploaded",
+          postUploaded: postId
         });
-    });
+        db.collection("chats")
+          .doc(postId)
+          .set({
+            messages: []
+          });
+        nextStep();
+        dispatch({
+          type: "setIsLoading",
+          isLoading: false
+        });
+      })
+      .catch(() => {
+        dispatch({
+          type: "setIsLoading",
+          isLoading: false
+        });
+      });
   };
 
   const uploadFile = () => {
@@ -136,6 +137,8 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
       photos: [...newPhotos]
     });
   };
+
+  console.log("formValue", formValue);
 
   return (
     <div className="panel post -photo">
