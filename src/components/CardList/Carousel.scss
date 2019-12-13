@@ -1,7 +1,8 @@
 .ant-carousel {
   width: 100%;
   height: 100%;
-  background: #ff653a;
+  background: url(../../assets/images/grafism.svg) top center no-repeat / contain;
+  background-color: #ff653a;
   transition: background-color .3s ease;
 
   .slick-slider,
@@ -23,7 +24,7 @@
     }
 
     .slide-item {
-      padding: 40vh 70px 0 30px;
+      padding: 45vh 70px 0 30px;
 
       > h3 {
         font-size: 28px;

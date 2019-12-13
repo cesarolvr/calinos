@@ -8,6 +8,8 @@ import "./CardList.scss";
 import "./Modal.scss";
 import "./Carousel.scss";
 
+import illustrations from "../../assets/images/illustration-track.svg";
+
 const CardList2 = ({ data = [] }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [carouselRef, setCarouselRef] = useState(null);
@@ -36,7 +38,7 @@ const CardList2 = ({ data = [] }) => {
   };
 
   const onChange = (from, to) => {
-    setCurrentSlide(to)
+    setCurrentSlide(to);
   };
   return (
     <>
@@ -47,7 +49,10 @@ const CardList2 = ({ data = [] }) => {
         onCancel={handleCancel}
         footer={null}
       >
-        <Carousel beforeChange={onChange}  ref={node => setCarouselRef(node)}>
+        <div className="illustration-track">
+          <img src={illustrations} />
+        </div>
+        <Carousel beforeChange={onChange} ref={node => setCarouselRef(node)}>
           <div className="slide-item">
             <h3>Adoção e apadrinhamento de bichinhos</h3>
             <p>
@@ -82,8 +87,12 @@ const CardList2 = ({ data = [] }) => {
             </p>
           </div>
         </Carousel>
-        <button className="button-next" onClick={() => carouselRef.next()}>
-          Próximo
+        <button
+          className="button-next"
+          disabled={currentSlide === 3}
+          onClick={() => carouselRef.next()}
+        >
+          {currentSlide === 3 ? "Continuar" : "Próximo"}
         </button>
       </Modal>
       <ul className="card-list -two">

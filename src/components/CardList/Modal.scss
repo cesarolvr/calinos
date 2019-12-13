@@ -1,6 +1,7 @@
 .modal-wrapper {
   width: 100vw;
   height: 100vh;
+  
 
   .ant-modal {
     height: 100vh;
@@ -50,8 +51,25 @@
           right: 30px;
           color: #ff653a;
           font-weight: 600;
+          transition: opacity .3s ease;
+
+          &:disabled {
+            opacity: .5;
+          }
         }
       }
+    }
+  }
+
+  .illustration-track {
+    position: absolute;
+    z-index: 200;
+    left: 0;
+    top: 10px;
+    width: 100%;
+    img {
+      max-width: none;
+      transition: transform .6s ease;
     }
   }
 
@@ -71,6 +89,12 @@
         }
       }
     }
+
+    .illustration-track {
+      img {
+        transform: translateX(-260px);
+      }
+    }
   }
 
   &.-current-2 {
@@ -80,6 +104,14 @@
     .button-next {
       color: #40c0c3 !important;
     }
+
+    .illustration-track {
+      img {
+        transform: translateX(-650px);
+      }
+    }
+
+    
   }
 
   &.-current-3 {
@@ -88,6 +120,12 @@
     }
     .button-next {
       color: #fc2858 !important;
+    }
+
+    .illustration-track {
+      img {
+        transform: translateX(-960px);
+      }
     }
   }
 }
