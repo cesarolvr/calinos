@@ -1,6 +1,8 @@
 .ant-carousel {
   width: 100%;
   height: 100%;
+  background: #ff653a;
+  transition: background-color .3s ease;
 
   .slick-slider,
   .slick-list,
@@ -10,12 +12,59 @@
   }
 
   .slick-slide {
+    
     > div,
     .slide-item {
       width: 100%;
       height: 100%;
       display: flex !important;
       align-items: center !important;
+      flex-direction: column;
+    }
+
+    .slide-item {
+      padding: 40vh 70px 0 30px;
+
+      > h3 {
+        font-size: 28px;
+        color: white;
+        line-height: 33px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      > p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        color: white;
+      }
     }
   }
+
+  .slick-slider {
+    > .slick-dots {
+      text-align: left;
+      bottom: 30px;
+      height: auto;
+      padding: 0 30px;
+      li {
+        margin: 0 5px;
+        button {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+        }
+  
+        &.slick-active {
+          button {
+            width: 10px;
+            height: 10px;
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+  }
+
 }
