@@ -1,6 +1,6 @@
 import React from "react";
 
-import getGeolocation from "../../../utils/geolocation";
+
 
 // State
 import { useStateValue } from "../../../state";
@@ -138,7 +138,7 @@ const Step3 = ({ prevStep, nextStep, formValue, setFormValue }) => {
     });
   };
 
-  console.log("formValue", formValue);
+  // console.log("formValue", formValue);
 
   return (
     <div className="panel post -photo">

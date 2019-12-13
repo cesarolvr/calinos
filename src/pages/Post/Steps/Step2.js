@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Formik, Field } from "formik";
 import classNames from "classnames";
 
+import getGeolocation from "../../../utils/geolocation";
+
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
@@ -10,9 +12,9 @@ import PlacesAutocomplete, {
 import { CSSTransition } from "react-transition-group";
 
 const Step2 = ({ nextStep, prevStep, step, setFormValue, formValue }) => {
-  const [address, setAdress] = useState("");
+  const [address, setAddress] = useState("");
   const placesChange = address => {
-    setAdress(address);
+    setAddress(address);
   };
 
   const placesSelect = address => {
@@ -23,7 +25,9 @@ const Step2 = ({ nextStep, prevStep, step, setFormValue, formValue }) => {
             pin: res,
             street: address[0].formatted_address
           };
-          
+
+          setAddress(address[0].formatted_address)
+
           setFormValue({
             ...formValue,
             local: {
@@ -42,20 +46,12 @@ const Step2 = ({ nextStep, prevStep, step, setFormValue, formValue }) => {
         <div className="content">
           <Formik
             initialValues={{
-              // street: "",
               reference: "",
               comment: "",
               contactPhone: ""
-              // pin: {
-              //   lat: 0,
-              //   lng: 0
-              // }
             }}
             validate={values => {
               let errors = {};
-              // if (!values.street) {
-              //   errors.street = "Obrigatório";
-              // }
               if (!values.reference) {
                 errors.reference = "Obrigatório";
               }
@@ -72,7 +68,20 @@ const Step2 = ({ nextStep, prevStep, step, setFormValue, formValue }) => {
                   ...values
                 }
               });
-              nextStep();
+              if (formValue.local.pin.lat === 0) {
+                return getGeolocation().then(location => {
+                  setFormValue({
+                    ...formValue,
+                    local: {
+                      pin: {
+                        lat: location.lat,
+                        lng: location.lng
+                      }
+                    }
+                  });
+                });
+              }
+              return nextStep();
             }}
           >
             {({
@@ -101,10 +110,10 @@ const Step2 = ({ nextStep, prevStep, step, setFormValue, formValue }) => {
                           getSuggestionItemProps,
                           loading
                         }) => (
-                          <div>
+                          <>
                             <input
+                              placeholder="Search Places..."
                               {...getInputProps({
-                                placeholder: "Search Places ...",
                                 className: "location-search-input"
                               })}
                             />
@@ -136,23 +145,9 @@ const Step2 = ({ nextStep, prevStep, step, setFormValue, formValue }) => {
                                 );
                               })}
                             </div>
-                          </div>
+                          </>
                         )}
                       </PlacesAutocomplete>
-                      {/* <input
-                        type="text"
-                        name="street"
-                        className="input"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.street}
-                        placeholder="Rua Tal, 94"
-                      />
-                      {errors.street && touched.street && errors.street && (
-                        <span className="error">
-                          {errors.street && touched.street && errors.street}
-                        </span>
-                      )} */}
                     </div>
                     <div className="input-wrapper">
                       <label className="label">Ponto de referência</label>

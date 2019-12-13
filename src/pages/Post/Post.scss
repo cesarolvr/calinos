@@ -81,6 +81,47 @@
       padding-left: 0;
       padding-right: 0;
     }
+
+    .input-wrapper {
+      position: relative;
+      > input {
+        font-size: 18px;
+        color: black;
+        background: none;
+        padding: 0;
+        font-weight: 700;
+        width: 100%;
+        padding: 10px 0;
+        border: none;
+        border-bottom: 2px solid #eeeeee;
+      }
+      > .autocomplete-dropdown-container {
+        position: absolute;
+        width: 100%;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border-radius: 26px;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    -khtml-border-radius: 26px;
+    // // -webkit-mask-image: -webkit-radial-gradient(white, black);
+    -webkit-backface-visibility: hidden;
+    -webkit-overflow-scrolling: touch;
+    -moz-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    overflow: hidden;
+        box-shadow: 0 5px 10px rgba(168, 174, 201, 0.3);
+        z-index: 80;
+        
+        .suggestion-item {
+          padding: 15px;
+          background-color: red;
+        }
+      }
+    }
   }
   
   .content {
