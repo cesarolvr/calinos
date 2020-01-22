@@ -4,6 +4,8 @@ import Glide from "@glidejs/glide";
 import { Icon } from "antd";
 import classNames from "classnames";
 
+import { adoptionInfo } from "../../consts/adoption";
+
 import "./CardList.scss";
 import "./Modal.scss";
 import "./Carousel.scss";
@@ -53,39 +55,16 @@ const CardList2 = ({ data = [] }) => {
           <img src={illustrations} />
         </div>
         <Carousel beforeChange={onChange} ref={node => setCarouselRef(node)}>
-          <div className="slide-item">
-            <h3>Adoção e apadrinhamento de bichinhos</h3>
-            <p>
-              Eba! Ficamos muito felizes em saber que você tem interesse em
-              adotar um bichinho! Mas, antes de começarmos, é importante deixar
-              alguns pontos bem claros :)
-            </p>
-          </div>
-          <div className="slide-item">
-            <h3>Um bichinho é um filho. E dará trabalho como um.</h3>
-            <p>
-              Junto com todo amor que você receberá do seu bichinho adotado,
-              virão também responsabilidades importantes. Cuidar de pet dá
-              trabalho, mas é super bem recompensado!
-            </p>
-          </div>
-          <div className="slide-item">
-            <h3>É necessário saber sobre guarda resonsável.</h3>
-            <p>
-              Cuidados veterinários, alimentação, passeios e brincadeiras fazem
-              parte de uma guarda responsável. Antes de adotar, é importante
-              levar em conta sua rotina e condições financeiras para garantir o
-              bem-estar do seu bichinho.
-            </p>
-          </div>
-          <div className="slide-item">
-            <h3>Saiba que adotar um bichinho não é uma brincadeira.</h3>
-            <p>
-              Adotar um bichinho é assumir uma responsabilidade durante toda a
-              vida dele. A média de vida de um pet é de aproximadamente 14 anos.
-              Então, tenha isso em mente e se planeje ao adotar!
-            </p>
-          </div>
+          {
+            adoptionInfo.map((item, i) => {
+              return (
+                <div className="slide-item" key={i}>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
+              )
+            })
+          }
         </Carousel>
         <button
           className="button-next"
