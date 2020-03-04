@@ -7,7 +7,6 @@ import { useStateValue } from "../../../state";
 
 const Step4 = () => {
   const [{ postUploaded }, dispatch] = useStateValue();
-  console.log(postUploaded);
   return (
     <div className="panel post -final">
       <div className="banner"></div>

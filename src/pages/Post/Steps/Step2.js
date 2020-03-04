@@ -13,6 +13,7 @@ import { CSSTransition } from "react-transition-group";
 
 const Step2 = ({ nextStep, prevStep, step, setFormValue, formValue }) => {
   const [address, setAddress] = useState("");
+  
   const placesChange = address => {
     setAddress(address);
   };
@@ -27,6 +28,8 @@ const Step2 = ({ nextStep, prevStep, step, setFormValue, formValue }) => {
           };
 
           setAddress(address[0].formatted_address)
+
+          console.log(address);
 
           setFormValue({
             ...formValue,

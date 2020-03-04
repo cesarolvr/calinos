@@ -181,7 +181,7 @@
         height: 60px;
         margin: auto 20px auto 0;
         box-shadow: none;
-        background: url(../../assets/images/icon-send.svg) center center no-repeat / contain;
+        background: url(../../assets/images/icon-send.svg) center center / contain no-repeat;
         background-size: 25px;
         padding: 0;
         font-weight: normal;
@@ -193,7 +193,7 @@
         height: 20px;
         border-radius: 0;
         opacity: 0.2;
-        background: url(../../assets/images/icon-clip.svg) center center no-repeat / contain;
+        background: url(../../assets/images/icon-clip.svg) center center / contain no-repeat;
         margin: auto 0;
         padding: 0 5px;
         // border-right: 1px solid red;
