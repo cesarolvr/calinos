@@ -9,6 +9,11 @@ import { Spin, Icon } from "antd";
 // State
 import { useStateValue } from "../../state";
 
+import postIllustrationImg from '../../assets/images/post-illustration.svg'
+import moreImg from '../../assets/images/more.svg'
+import closeImg from '../../assets/images/close.svg'
+import finalIllustrationImg from '../../assets/images/final-illustration.svg'
+
 // Routes
 import Routes from "../../utils/routes";
 
@@ -58,10 +63,10 @@ const App = ({ firebaseprops, location }) => {
 
   useEffect(() => {
     [
-      "../../assets/images/post-illustration.svg",
-      "../../assets/images/more.svg",
-      "../../assets/images/close.svg",
-      "../../assets/images/final-illustration.svg"
+      postIllustrationImg,
+      moreImg,
+      closeImg,
+      finalIllustrationImg
     ].map(image => {
       preloadImage(image);
     });
