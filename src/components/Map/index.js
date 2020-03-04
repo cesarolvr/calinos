@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import { Icon } from "antd";
 import FsLightbox from "fslightbox-react";
+import * as R from "ramda";
+
 import { useStateValue } from "../../state";
 
 // Components
@@ -108,9 +110,9 @@ const MapContainer = ({ google }) => {
           position={initialCoords}
         />
         {markers.map((marker, index) => {
-          const local = marker.local;
-          const postType = marker.postType;
-          const animal = marker.animal;
+          const local = R.pathOr({}, ["local"], marker);
+          const postType = R.pathOr('', ['postType'], marker);
+          const animal = R.path('', ['animal'], marker);
           if (!local.pin) return null;
           return (
             <Marker
@@ -133,5 +135,5 @@ const MapContainer = ({ google }) => {
 
 export default GoogleApiWrapper({
   apiKey: mapsConfig.apiKey,
-  libraries: ['places']
+  libraries: ["places"]
 })(MapContainer);
