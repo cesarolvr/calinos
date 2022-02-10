@@ -12,7 +12,7 @@
     "fslightbox-react": "^1.4.5",
     "google-maps-react": "^2.0.2",
     "murphyjs": "^1.0.2",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "ramda": "^0.26.1",
     "react": "^16.9.0",
     "react-content-loader": "^4.3.3",
